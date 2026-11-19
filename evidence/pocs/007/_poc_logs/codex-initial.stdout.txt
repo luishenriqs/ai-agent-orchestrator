@@ -1,0 +1,3 @@
+Implementei `normalize_label` em [labels.py](/tmp/ias-ai-memory-poc-007-c5_hla_j/demo/labels.py:3). A função rejeita valores que não são strings com `TypeError`, converte o texto para minúsculas preservando acentos e números, remove whitespace das pontas e substitui cada sequência interna por um único `_`. Entradas vazias ou compostas só de whitespace retornam `""`.
+
+Os três testes existentes passaram, assim como as verificações adicionais com tabs, quebras de linha e whitespace Unicode. Editei somente `labels.py`.

@@ -1,0 +1,3 @@
+Corrigi apenas [labels.py](/tmp/ias-ai-memory-poc-007-c5_hla_j/demo/labels.py:7). `normalize_label` agora remove whitespace das extremidades e substitui cada sequência interna por um único `_`, inclusive tabs, quebras de linha e whitespace Unicode. Entradas vazias ou compostas só de whitespace retornam `""`.
+
+Os 3 testes do repositório e 13 verificações diretas passaram. Nenhum commit foi criado.

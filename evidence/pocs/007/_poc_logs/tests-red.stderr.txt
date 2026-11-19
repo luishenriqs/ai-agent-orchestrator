@@ -1,0 +1,50 @@
+.FFFF
+======================================================================
+FAIL: test_leading_trailing (__main__.RegressionTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/ias-ai-memory-poc-007-c5_hla_j/regression_tests.py", line 6, in test_leading_trailing
+    self.assertEqual(normalize_label("  Olá Mundo  "), "olá_mundo")
+AssertionError: '__olá_mundo__' != 'olá_mundo'
+- __olá_mundo__
+? --         --
++ olá_mundo
+
+
+======================================================================
+FAIL: test_multispace (__main__.RegressionTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/ias-ai-memory-poc-007-c5_hla_j/regression_tests.py", line 8, in test_multispace
+    self.assertEqual(normalize_label("A   B"), "a_b")
+AssertionError: 'a___b' != 'a_b'
+- a___b
+?  --
++ a_b
+
+
+======================================================================
+FAIL: test_only_whitespace (__main__.RegressionTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/ias-ai-memory-poc-007-c5_hla_j/regression_tests.py", line 12, in test_only_whitespace
+    self.assertEqual(normalize_label("  \t "), "")
+AssertionError: '__\t_' != ''
+- __	_
++ 
+
+
+======================================================================
+FAIL: test_tab_newline (__main__.RegressionTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/ias-ai-memory-poc-007-c5_hla_j/regression_tests.py", line 10, in test_tab_newline
+    self.assertEqual(normalize_label("A\tB\nC"), "a_b_c")
+AssertionError: 'a\tb\nc' != 'a_b_c'
++ a_b_c- a	b
+- c
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+FAILED (failures=4)

@@ -1,0 +1,10 @@
+test_empty (test_labels.LabelTests) ... ok
+test_invalid_type (test_labels.LabelTests) ... ok
+test_preserves_numbers (test_labels.LabelTests) ... ok
+test_runs_of_whitespace (test_labels.LabelTests) ... ok
+test_spaces (test_labels.LabelTests) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.000s
+
+OK

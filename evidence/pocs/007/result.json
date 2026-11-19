@@ -1,0 +1,27 @@
+{
+  "poc": "007",
+  "result": "PASS",
+  "repo": "/tmp/ias-ai-memory-poc-007-c5_hla_j/demo",
+  "coordination": "dispatcher-send-pop",
+  "git_commit": false,
+  "ias_touched": "not_independently_verified",
+  "steps": {
+    "initial_tests": 0,
+    "faulty_public_tests": 0,
+    "adversarial_review": "AJUSTES",
+    "red_confirmed": true,
+    "green_confirmed": true,
+    "corrected_sha256": "cfefb68b637ea6a1ec497116ada9cbd63eb1c214d5f7279289a6ef3bb55eda10",
+    "regressive_review": "APROVADO",
+    "duplicate_timeout_no_retry_selftest": true,
+    "fault_injected_sha256": "92737b4d95838c7d63793059f971a4f39592f16ec327a709742c04103120fd07",
+    "initial_sha256": "0d7b0eae4afcbec20ddd1a3a5805dbfad5969f1b4c2d4e992495d37f8e84ccab"
+  },
+  "review_message_ids": {
+    "request1": "01a1f590-bd60-7a93-a825-8de4f04664c7",
+    "response1": "01a1f591-13e8-77a1-b7ef-d5383ed7adc0",
+    "request2": "01a1f591-889d-76b0-af4f-72bdc2b48138",
+    "response2": "01a1f591-dea1-7241-868b-b90c24c0b2c8"
+  },
+  "git_status": "A  .gitignore\nA  README.md\nAM labels.py\nA  tests/test_labels.py\n"
+}

@@ -1,0 +1,8 @@
+test_invalid_type (test_labels.LabelTests) ... ok
+test_numbers (test_labels.LabelTests) ... ok
+test_simple (test_labels.LabelTests) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK

@@ -1,0 +1,17 @@
+**ID da requisição:** `01a1f584-ba68-7d60-b10b-d796b2fe6b22`
+
+`VEREDITO: APROVADO`
+
+### Achados objetivos
+
+1. **Conformidade com os testes especificados:**
+   - `test_spaces`: `"  Olá Mundo  ".lower().split()` produz `["olá", "mundo"]`, resultando em `"olá_mundo"` (preserva acentuação e remove espaços nas extremidades).
+   - `test_runs_of_whitespace`: `str.split()` sem argumento colapsa sequências arbitrárias de whitespace (`" "`, `"\t"`, etc.), transformando `"A  \t B"` em `"a_b"`.
+   - `test_preserves_numbers`: `"Produto 42"` resulta em `"produto_42"`.
+   - `test_empty`: `"   ".lower().split()` retorna `[]` e `"_".join([])` retorna `""`.
+   - `test_invalid_type`: a guarda `if not isinstance(value, str): raise TypeError(...)` garante `TypeError` para `None` e demais tipos não-string.
+2. **Aderência ao escopo e assinatura:**
+   - A alteração restringe-se exclusivamente a `labels.py`, mantendo a assinatura `normalize_label(value)` e a docstring original.
+   - Implementação simples, idiomática e sem dependências externas.
+
+Não foram identificados defeitos ou desvios em relação à especificação fornecida.

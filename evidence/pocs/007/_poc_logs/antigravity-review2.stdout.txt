@@ -1,0 +1,38 @@
+VEREDITO: APROVADO
+
+### Análise da alteração
+
+A única mudança em `normalize_label` foi a substituição de `split(" ")` por `split()` (com separador padrão `None`):
+
+```python
+# Antes
+return "_".join(value.lower().split(" "))
+
+# Depois
+return "_".join(value.lower().split())
+```
+
+### Verificação contra a especificação e exemplos concretos
+
+1. **Remoção de whitespace inicial/final e colapso de sequências de whitespace**
+   - Em Python, `str.split()` sem argumento descarta whitespace nas extremidades e agrupa qualquer sequência contígua de caracteres whitespace Unicode (`' '`, `'\t'`, `'\n'`, `'\r'`, `'\f'`, `'\v'`, `'\u00a0'`, etc.) como um único separador.
+   - `"  Olá Mundo  "` → Antes: `"__olá_mundo__"` | Depois: `"olá_mundo"` (correto).
+   - `"A   B"` → Antes: `"a___b"` | Depois: `"a_b"` (correto).
+   - `"A\tB\nC"` → Antes: `"a\tb\nc"` | Depois: `"a_b_c"` (correto).
+   - `" \r\n\t Item \u00a0 2 \n"` → Depois: `"item_2"` (correto).
+
+2. **String vazia ou composta apenas de whitespace**
+   - `"".lower().split()` retorna `[]` → `"_".join([])` retorna `""`.
+   - `"  \t ".lower().split()` retorna `[]` → `"_".join([])` retorna `""` (Antes retornava `"__\t_"`).
+   - `"\n\r\t".lower().split()` retorna `[]` → `""`.
+
+3. **Normalização de caixa e preservação de acentos e números**
+   - `value.lower()` permanece intacto antes do `split()`: `"AÇÃO 2026"` → `"ação_2026"`.
+
+4. **Rejeição de não-strings, assinatura e dependências**
+   - A guarda `if not isinstance(value, str): raise TypeError("value must be str")` não foi alterada.
+   - Assinatura `normalize_label(value)`, docstrings e ausência de bibliotecas externas foram preservadas.
+
+5. **Regressões**
+   - Entradas já válidas anteriormente (ex.: `"Olá Mundo"`, `"Python"`, `""`, entradas não-string) mantêm exatamente o mesmo comportamento.
+   - Todos os 5 casos dos testes regressivos informados são satisfeitos pela nova implementação.

@@ -1,0 +1,7 @@
+{
+  "type": "deterministic-fixture-replacement",
+  "file": "labels.py",
+  "clean_pre_injection_sha256": "0d7b0eae4afcbec20ddd1a3a5805dbfad5969f1b4c2d4e992495d37f8e84ccab",
+  "faulty_sha256": "92737b4d95838c7d63793059f971a4f39592f16ec327a709742c04103120fd07",
+  "fault": "split(' ') não colapsa whitespace genérico"
+}

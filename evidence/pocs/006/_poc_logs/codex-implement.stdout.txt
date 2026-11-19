@@ -1,0 +1,3 @@
+Implementei `normalize_label` em [labels.py](/tmp/ias-ai-memory-poc-006-3nvadl13/demo/labels.py). A função converte o texto para minúsculas, preserva acentos e números, une as palavras com `_` e gera `TypeError` para valores que não são strings.
+
+Os cinco testes existentes passaram. Apenas `labels.py` foi editado.

@@ -1,0 +1,11 @@
+{
+  "poc": "006",
+  "result": "PASS",
+  "repo": "/tmp/ias-ai-memory-poc-006-3nvadl13/demo",
+  "review_message_id": "01a1f584-ba68-7d60-b10b-d796b2fe6b22",
+  "response_message_id": "01a1f585-214a-7711-a817-b795c7786777",
+  "test_return_code": 0,
+  "git_status": "A  .gitignore\nA  README.md\nAM labels.py\nA  tests/test_labels.py\n?? REVIEW_RESPONSE.md\n",
+  "git_commit": false,
+  "ias_touched": false
+}
