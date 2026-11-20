@@ -1,144 +1,144 @@
-# Diretrizes arquiteturais do AI Agent Orchestrator
+# AI Agent Orchestrator architectural directives
 
-## 1. Identificação e objetivo
+## 1. Identification and purpose
 
-- **Versão documental** — 0.3, 2026-11-20.
-- **Status** — consolidação das diretrizes aprovadas pelo responsável humano. Homologação documental pendente.
-- **Autoria** — Codex, a partir das diretrizes comunicadas pelo responsável humano.
-- **Referência** — fundação experimental publicada em `main`, commit `eeb3f53a755d7c8b55a6fa606ed3c4ec89d79f91`.
-- **Objetivo** — orientar o planejamento técnico e explicitar seus limites. Os fluxos descritos são conceituais e a implementação do orquestrador ainda não começou.
+- **Document version** — 0.3, 2026-11-20.
+- **Status** — consolidation of the directives approved by the human owner. Formal approval of the document is pending.
+- **Author** — Codex, based on the directives communicated by the human owner.
+- **Reference** — experimental foundation published on `main`, commit `eeb3f53a755d7c8b55a6fa606ed3c4ec89d79f91`.
+- **Purpose** — guide technical planning and make its boundaries explicit. The workflows described are conceptual, and implementation of the orchestrator has yet to begin.
 
-## 2. Contexto e motivação
+## 2. Context and motivation
 
-A fundação experimental investigou como reduzir o trabalho manual de encaminhar tarefas, resultados e pareceres entre agentes. As POCs 006 e 007 registraram que um despachante local pôde coordenar Codex e Antigravity em sequência em repositórios sintéticos. A orientação humana é concentrar a evolução no AI Agent Orchestrator, em parceria com o AI Memory, e preservar o AI Orchestration Lab como referência histórica.
+The experimental foundation investigated how to reduce the manual work of forwarding tasks, results, and reviews between agents. POCs 006 and 007 recorded that a local dispatcher was able to coordinate Codex and Antigravity sequentially in synthetic repositories. The human directive is to focus further development on AI Agent Orchestrator, in partnership with AI Memory, and to preserve AI Orchestration Lab as a historical reference.
 
-O orquestrador deve ser tão simples quanto possível e tão robusto quanto necessário para automatizar, com segurança e rastreabilidade, o fluxo sequencial estudado. Complexidade adicional se justifica quando resolve um risco concreto ou atende a um requisito aprovado.
+The orchestrator should be as simple as possible and as robust as necessary to automate the sequential workflow under study safely and traceably. Additional complexity is justified when it addresses a concrete risk or meets an approved requirement.
 
-## 3. Fontes e hierarquia de evidências
+## 3. Sources and evidence hierarchy
 
-- A delegação humana desta consolidação é a fonte das decisões DEC-01 a DEC-16. A autoridade para executar uma tarefa vem da autorização humana aplicável.
-- As definições humanas posteriores à auditoria orientam as alterações da versão 0.3. A auditoria é um parecer independente e a triagem registra o encaminhamento de seus achados. [Auditoria integral R1](../reviews/005-auditoria-integral-independente-r1.md) · [Triagem da auditoria](../reviews/006-triagem-auditoria-integral-r1.md)
-- Os artefatos primários sustentam afirmações sobre a execução observada. O relatório distingue verificação direta, resultados reportados e inferências. Os pareceres documentais avaliam a fidelidade do relatório às fontes. [Relatório experimental](../001-relatorio-experimental.md) · [Parecer experimental R1](../reviews/001-revisao-independente-r1.md) · [Parecer experimental R2](../reviews/002-revisao-regressiva-r2.md)
-- O README situa o projeto, o handoff reúne o contexto de continuidade e o manifesto registra o acervo e suas lacunas. Esses documentos preservam o estado observado na fundação experimental de 2026-11-19. [README](../../README.md) · [Handoff experimental](../handoffs/001-handoff-fundacao-experimental.md) · [Manifesto](../../evidence/pocs/MANIFEST.md)
-- Uma inferência é limitada pelas condições observadas. Uma recomendação orienta avaliação futura. Uma questão pendente exige decisão posterior, mesmo quando já há uma opção plausível.
+- The human delegation for this consolidation is the source of decisions DEC-01 through DEC-16. Authority to execute a task comes from the applicable human authorization.
+- The human decisions made after the audit guide the changes in version 0.3. The audit is an independent review, and the finding triage records how its findings were handled. [Full audit R1](../reviews/005-auditoria-integral-independente-r1.md) · [Audit finding triage](../reviews/006-triagem-auditoria-integral-r1.md)
+- Primary artifacts support claims about the observed execution. The report distinguishes direct verification, reported results, and inferences. The documentation reviews assess the report's fidelity to its sources. [Experimental report](../001-relatorio-experimental.md) · [Experimental review R1](../reviews/001-revisao-independente-r1.md) · [Experimental review R2](../reviews/002-revisao-regressiva-r2.md)
+- The README provides project context, the handoff brings together the information needed for continuity, and the manifest records the collection and its gaps. These documents preserve the state observed in the experimental foundation on 2026-11-19. [README](../../README.md) · [Experimental handoff](../handoffs/001-handoff-fundacao-experimental.md) · [Manifest](../../evidence/pocs/MANIFEST.md)
+- An inference is limited by the observed conditions. A recommendation guides future evaluation. An open question requires a later decision, even when a plausible option already exists.
 
-## 4. Decisões humanas consolidadas
+## 4. Consolidated human decisions
 
-| ID | Diretriz aprovada |
+| ID | Approved directive |
 | --- | --- |
-| DEC-01 | Começar com uma ferramenta local, simples de projetar, implementar, manter e operar, orientada ao fluxo real de desenvolvimento assistido por IA. Evitar abstrações prematuras, infraestrutura distribuída e funcionalidades especulativas. Manter controles mínimos de integridade, segurança, autorização e rastreabilidade. |
-| DEC-02 | O ChatGPT apoia o responsável humano no planejamento, na análise das entregas e nos gates. O humano define a tarefa e prepara o prompt inicial com o ChatGPT, então entrega manualmente o prompt autorizado e autocontido a Codex, Antigravity ou outro executor designado. O prompt identifica escopo, baseline, fontes, responsabilidades, limites e critérios de conclusão. O primeiro executor registra a tarefa no orquestrador antes de iniciar o fluxo coordenado. O retorno ao ChatGPT pode ser manual por relatório e referências. A primeira versão dispensa integração automática obrigatória à interface ou API do ChatGPT. |
-| DEC-03 | O AI Memory permanece independente e auxilia na comunicação e memória persistente. O orquestrador coordena o trabalho e verifica contexto e autorização antes de agir. Mensagens isoladas são insuficientes para autorizar execução. A confiabilidade do transporte assíncrono em produção permanece por demonstrar. |
-| DEC-04 | Privilegiar mensagens pequenas e estruturadas que indiquem a ação solicitada e referenciem artefatos locais vinculados à tarefa. O conteúdo técnico completo permanece nos documentos. Campos, payloads e protocolos definitivos ficam para o planejamento. |
-| DEC-05 | Dar identidade verificável aos documentos usados na coordenação e preservar a imutabilidade das versões empregadas em revisão. Cada parecer aponta a versão exata examinada. Hashes podem comprovar identidade e integridade do conteúdo. Identificação lógica, armazenamento e versionamento físico ficam para o planejamento. |
-| DEC-06 | Admitir área temporária na raiz do projeto consumidor, segregada por tarefa, para instruções, documentos intermediários, revisões e artefatos de execução. Evitar a inclusão acidental dos arquivos transitórios no versionamento do consumidor, separar artefatos de trabalho dos registros de controle e avaliação do orquestrador e limitar o acesso dos executores ao escopo autorizado. Aplicar isolamento simples e proporcional ao risco. Limpar somente após encerramento autorizado e preservação dos registros necessários. Os registros necessários à retomada e à auditoria devem ter um destino durável fora da área temporária. Nomenclatura, estrutura interna, retenção e mecanismo de isolamento ainda serão definidos. |
-| DEC-07 | Promover artefatos relevantes a destinos persistentes do projeto, usando os conceitos de handoffs, reviews, evidence e documentação técnica. Preservar a associação entre tarefa, versões, resultados e evidências. A inclusão em Git é seletiva. |
-| DEC-08 | Favorecer execução sequencial na primeira versão e evitar concorrência na mesma tarefa. Após o resultado de uma etapa, o executor pode solicitar a próxima operação e o orquestrador verifica a transição antes de acionar outro executor. O fluxo segue até conclusão autorizada ou gate humano. Uma única execução ativa no orquestrador é opção inicial a considerar, sujeita ao planejamento. |
-| DEC-09 | Centralizar no orquestrador estado operacional, sequência, executor designado, validação de transições, cumprimento do escopo e encaminhamento a gates. Agentes podem solicitar ações e entregar resultados. O orquestrador verifica a autorização da tarefa registrada antes de permitir transições. A ampliação de escopo e a passagem por gates exigem a autorização aplicável. |
-| DEC-10 | Manter histórico estruturado por tarefa. Os atores informam operações e resultados, e o orquestrador centraliza e valida transições. O histórico identifica a última etapa comprovadamente concluída e operações com conclusão incerta. O controle operacional depende de registros estruturados. Texto livre pode complementar esses registros. |
-| DEC-11 | Preservar estado suficiente para analisar e retomar interrupções. Adotar histórico autoritativo de eventos e estado atual reconstruível ou reconciliável. Arquivos locais são uma opção a avaliar junto a outras soluções simples. Banco, mensageria e infraestrutura distribuídos ficam fora das decisões desta etapa. |
-| DEC-12 | Tornar reconhecíveis falhas de processo, reinicializações inesperadas, limites de tokens e interrupções de contexto. Na retomada, consultar eventos, artefatos e efeitos comprovados. A falta de registro de conclusão é insuficiente para repetir operação potencialmente irreversível. Diante de incerteza material, interromper e encaminhar ao humano. A recuperação automática pode ser limitada. |
-| DEC-13 | Preservar a continuidade entre sessões por handoff com estado comprovado, artefatos, evidências e próximo passo. A continuação deve poder ser validada a partir dos registros persistidos, mesmo que o contexto conversacional anterior esteja indisponível. |
-| DEC-14 | Preservar independência entre elaboração, implementação e revisão. Codex e Antigravity podem assumir papéis distintos conforme designação. O parecer deve identificar a versão analisada e apresentar achados verificáveis. Vincular correções a seus achados e verificar regressão quando aplicável. A homologação é humana. |
-| DEC-15 | Permitir futura incorporação de executores com extensibilidade controlada. Planejar inicialmente para Codex e Antigravity, ambos exercitados nas POCs, e evitar um framework genérico prematuro. |
-| DEC-16 | Manter o orquestrador independente dos projetos consumidores e de suas regras de domínio. Vincular cada integração ao contexto, repositório e autorizações da tarefa. O namespace do IAS aparece como registro histórico das POCs e fica fora da seleção automática. |
+| DEC-01 | Start with a local tool that is simple to design, implement, maintain, and operate and is geared toward the actual AI-assisted development workflow. Avoid premature abstractions, distributed infrastructure, and speculative features. Maintain minimum controls for integrity, security, authorization, and traceability. |
+| DEC-02 | ChatGPT assists the human owner with planning, analysis of deliverables, and approval gates. The human defines the task and prepares the initial prompt with ChatGPT, then manually delivers the authorized, self-contained prompt to Codex, Antigravity, or another designated executor. The prompt identifies scope, baseline, sources, responsibilities, limits, and completion criteria. The first executor registers the task with the orchestrator before starting the coordinated workflow. Results may be returned to ChatGPT manually through a report and references. The first version has no mandatory automatic integration with the ChatGPT interface or API. |
+| DEC-03 | AI Memory remains independent and assists with communication and persistent memory. The orchestrator coordinates work and verifies context and authorization before acting. Individual messages are insufficient to authorize execution. The reliability of asynchronous transport in production remains to be demonstrated. |
+| DEC-04 | Favor small, structured messages that identify the requested action and reference local artifacts associated with the task. The full technical content remains in the documents. Final fields, payloads, and protocols will be determined during planning. |
+| DEC-05 | Give documents used in coordination a verifiable identity and keep the versions used in review immutable. Each review identifies the exact version examined. Hashes can prove content identity and integrity. Logical identification, storage, and physical versioning will be determined during planning. |
+| DEC-06 | Allow a temporary workspace at the consumer project's root, segregated by task, for instructions, intermediate documents, reviews, and execution artifacts. Prevent transient files from accidentally entering the consumer's version control, separate working artifacts from the orchestrator's control and evaluation records, and limit executor access to the authorized scope. Apply simple isolation proportionate to the risk. Clean up only after authorized closure and preservation of the required records. Records needed for recovery and audit must have a durable destination outside the temporary workspace. Naming, internal structure, retention, and the isolation mechanism remain to be defined. |
+| DEC-07 | Promote relevant artifacts to persistent project locations using the concepts of handoffs, reviews, evidence, and technical documentation. Preserve the association between tasks, versions, results, and evidence. Inclusion in Git is selective. |
+| DEC-08 | Favor sequential execution in the first version and avoid concurrency within the same task. After a step yields a result, the executor may request the next operation, and the orchestrator verifies the transition before invoking another executor. The workflow continues until authorized completion or a human approval gate. A single active execution in the orchestrator is an initial option to consider, subject to planning. |
+| DEC-09 | Centralize operational state, sequencing, executor assignment, transition validation, scope enforcement, and routing to gates in the orchestrator. Agents may request actions and deliver results. The orchestrator verifies the authorization of the registered task before permitting transitions. Scope expansion and passage through gates require the applicable authorization. |
+| DEC-10 | Maintain a structured history for each task. Actors report operations and results, and the orchestrator centralizes and validates transitions. The history identifies the last step known to be complete and operations whose completion is uncertain. Operational control relies on structured records. Free text may supplement these records. |
+| DEC-11 | Preserve enough state to analyze and recover from interruptions. Adopt an authoritative event history and a current state that can be reconstructed or reconciled. Local files are an option to evaluate alongside other simple solutions. Distributed databases, messaging, and infrastructure fall outside the decisions at this stage. |
+| DEC-12 | Make process failures, unexpected restarts, token limits, and context interruptions identifiable. During recovery, consult events, artifacts, and verified effects. The absence of a completion record is insufficient grounds to repeat a potentially irreversible operation. In the event of material uncertainty, stop and escalate to the human. Automatic recovery may be limited. |
+| DEC-13 | Preserve continuity between sessions through a handoff containing verified state, artifacts, evidence, and the next step. It must be possible to validate resumption from persisted records, even if the preceding conversation context is unavailable. |
+| DEC-14 | Preserve independence among drafting, implementation, and review. Codex and Antigravity may assume distinct roles as assigned. The review must identify the version analyzed and present verifiable findings. Link corrections to their findings and check for regressions where applicable. Formal approval rests with the human. |
+| DEC-15 | Allow future integration of executors through controlled extensibility. Plan initially for Codex and Antigravity, both exercised in the POCs, and avoid a premature generic framework. |
+| DEC-16 | Keep the orchestrator independent of consumer projects and their domain rules. Bind each integration to the context, repository, and authorizations of the task. The IAS namespace appears as a historical record of the POCs and is excluded from automatic selection. |
 
-## 5. Responsabilidades
+## 5. Responsibilities
 
-| Ator | Responsabilidade conceitual |
+| Actor | Conceptual responsibility |
 | --- | --- |
-| Responsável humano | Autorizar escopo, decidir gates e exceções, homologar entregas e autorizar efeitos que exijam decisão própria. |
-| ChatGPT | Apoiar o humano na preparação do prompt, na análise dos resultados e na decisão. Receber, quando útil, o relatório e as referências encaminhados manualmente. |
-| AI Memory | Auxiliar na comunicação e memória persistente como produto independente. |
-| Orquestrador | Verificar contexto e autorização, designar executores, validar transições, manter o estado operacional e encaminhar decisões ao humano. |
-| Executores e revisores | Atuar no papel e escopo designados, produzir resultados verificáveis e solicitar a próxima operação. O revisor examina a versão identificada com independência da elaboração e da implementação. |
+| Human owner | Authorize scope, decide on gates and exceptions, formally approve deliverables, and authorize effects requiring a separate decision. |
+| ChatGPT | Assist the human with prompt preparation, analysis of results, and decision-making. Receive the report and references forwarded manually when useful. |
+| AI Memory | Assist with communication and persistent memory as an independent product. |
+| Orchestrator | Verify context and authorization, assign executors, validate transitions, maintain operational state, and refer decisions to the human. |
+| Executors and reviewers | Work within the assigned role and scope, produce verifiable results, and request the next operation. The reviewer examines the identified version independently of drafting and implementation. |
 
-## 6. Fluxo operacional conceitual
+## 6. Conceptual operational workflow
 
-1. O humano e o ChatGPT definem a tarefa e preparam o prompt inicial. O humano entrega manualmente o prompt autorizado ao primeiro executor designado, que registra a tarefa no orquestrador antes de iniciar o fluxo coordenado. O orquestrador valida a tarefa, o escopo, o repositório, a baseline, o executor, os limites e os critérios a partir de autorização humana verificável, antes de liberar a primeira ação ou transição coordenada. Solicitações do executor e mensagens do AI Memory são insumos desse processo. Uma atuação manual avulsa permanece fora do fluxo coordenado até passar por esse gate.
-2. O executor atua dentro do escopo e entrega resultado, versão dos artefatos e evidências. Pode solicitar a próxima operação.
-3. O orquestrador confere a correspondência entre versão e evidências, o escopo e os requisitos da transição. Registra o resultado e aciona a próxima etapa somente quando a passagem estiver autorizada.
-4. Quando há revisão, o revisor independente examina a versão fixada. Se houver correções, o fluxo vincula os achados à nova versão e encaminha a verificação regressiva pertinente.
-5. No gate, o fluxo aguarda a decisão humana. Quando a tarefa é encerrada com autorização, preserva os registros necessários e encaminha o relatório e as referências.
+1. The human and ChatGPT define the task and prepare the initial prompt. The human manually delivers the authorized prompt to the first designated executor, who registers the task with the orchestrator before starting the coordinated workflow. Before releasing the first coordinated action or transition, the orchestrator validates the task, scope, repository, baseline, executor, limits, and criteria against verifiable human authorization. Executor requests and AI Memory messages are inputs to this process. A standalone manual action remains outside the coordinated workflow until it passes this gate.
+2. The executor works within scope and delivers the result, artifact versions, and evidence. The executor may request the next operation.
+3. The orchestrator verifies that the version matches the evidence and checks the scope and transition requirements. It records the result and invokes the next step only when the transition is authorized.
+4. When review is required, the independent reviewer examines the pinned version. If corrections are made, the workflow links the findings to the new version and routes it to the relevant regression check.
+5. At the gate, the workflow waits for the human decision. When the task is closed with authorization, the workflow preserves the necessary records and forwards the report and references.
 
-O encadeamento sequencial determina a ordem das etapas. Um acionamento ou uma espera assíncrona pode existir sem trabalhos simultâneos na mesma tarefa. A escolha do mecanismo de espera e a capacidade de execuções ativas permanecem abertas.
+Sequential coordination determines the order of the steps. An asynchronous invocation or wait can occur without concurrent work on the same task. The choice of waiting mechanism and the number of supported active executions remain open.
 
-Cabeçalhos Markdown ou metadados estruturados podem registrar a origem declarada de instruções e solicitações. Um campo como `origin: human` registra uma alegação de origem. A comprovação da autorização exige uma fonte ou um procedimento verificável independente da declaração produzida pelo executor. O mecanismo concreto será definido no planejamento, com complexidade proporcional ao uso local.
+Markdown headings or structured metadata can record the declared origin of instructions and requests. A field such as `origin: human` records a claim of origin. Proving authorization requires a verifiable source or procedure independent of the declaration produced by the executor. The specific mechanism will be defined during planning, with complexity proportionate to local use.
 
-## 7. Mensagens curtas e artefatos referenciados
+## 7. Short messages and referenced artifacts
 
-A mensagem informa qual ação está sendo solicitada e permite localizar a tarefa e o artefato correspondente. O orquestrador trata mensagens recebidas como entradas não confiáveis. Os documentos locais mantêm o contexto completo. Antes de usar a referência, o orquestrador verifica se ela pertence ao projeto e à tarefa autorizados, se a versão corresponde à solicitada e se o acesso cabe ao executor. O orquestrador também confere se a solicitação corresponde à etapa ativa. Referências ausentes, discrepantes ou fora de escopo, bem como solicitações duplicadas ou fora de ordem, não autorizam uma transição por si sós. A forma de detectar e conciliar esses casos será definida no planejamento.
+The message identifies the action being requested and makes it possible to locate the relevant task and artifact. The orchestrator treats incoming messages as untrusted inputs. Local documents retain the full context. Before using the reference, the orchestrator verifies that it belongs to the authorized project and task, that the version matches the requested one, and that access is within the executor's authorization. The orchestrator also checks that the request matches the active step. Missing, mismatched, or out-of-scope references, as well as duplicate or out-of-order requests, do not by themselves authorize a transition. How these cases are detected and reconciled will be determined during planning.
 
-Esses elementos descrevem o que a comunicação deve permitir verificar. A forma de representar uma referência, os campos de mensagem, o transporte e seu versionamento serão definidos no planejamento.
+These elements describe what communication must make verifiable. Planning will determine how references are represented, which message fields are used, and how transport is implemented and versioned.
 
-## 8. Versionamento e imutabilidade
+## 8. Versioning and immutability
 
-Cada versão usada em revisão permanece imutável enquanto retida. A versão deve ser recuperável pelo período de retenção aplicável. Uma correção gera nova versão, preserva o vínculo com a versão revisada e permite distinguir quais resultados ainda se aplicam. Um hash pode conferir igualdade de conteúdo, desde que vinculado ao artefato e à versão esperada. A autorização e a procedência dependem de verificação própria. A forma de fixar a versão e armazenar seu conteúdo permanece aberta.
+Each version used in review remains immutable for as long as it is retained. It must be retrievable for the applicable retention period. A correction creates a new version, preserves the link to the reviewed version, and makes it possible to distinguish which results still apply. A hash can verify that content matches, provided it is linked to the artifact and expected version. Authorization and provenance require their own verification. The means of pinning the version and storing its contents remain open.
 
-## 9. Eventos, estado e recuperação
+## 9. Events, state, and recovery
 
-O histórico estruturado deve permitir relacionar operação, responsável, resultado e evidência à tarefa e identificar a última etapa concluída e as operações com conclusão incerta. O orquestrador valida a transição antes de registrá-la como concluída e preserva a distinção entre uma operação solicitada, uma execução observada e um resultado comprovado. A reivindicação na inbox comprova a transição da mensagem e a conclusão da etapa depende de evidência própria. O controle operacional usa os registros estruturados, com texto livre como complemento. O estado atual deve poder ser reconstruído ou reconciliado a partir do histórico autoritativo e das evidências.
+The structured history must make it possible to associate the operation, responsible actor, result, and evidence with the task and to identify the last completed step and any operations whose completion is uncertain. The orchestrator validates the transition before recording it as complete and preserves the distinction among a requested operation, an observed execution, and a verified result. An inbox claim proves the message transition, and completion of the step depends on its own evidence. Operational control uses structured records, supplemented by free text. It must be possible to reconstruct or reconcile the current state from the authoritative event history and evidence.
 
-Quando o histórico e os efeitos observados divergem, a retomada verifica as evidências disponíveis e encaminha ao humano a incerteza que impedir uma próxima ação segura. O formato do registro, seu armazenamento e o mecanismo de reconciliação seguem em aberto.
+When the history and observed effects diverge, recovery checks the available evidence and escalates to the human any uncertainty that prevents a safe next action. Record format, storage, and the reconciliation mechanism remain open.
 
-## 10. Gates de autorização e homologação
+## 10. Authorization and formal approval gates
 
-O gate inicial delimita tarefa, escopo e executor. A mudança de escopo, o avanço que requer decisão humana e a homologação dependem da autorização correspondente. O orquestrador aplica o gate e apresenta ao responsável o que está comprovado ou pendente. Mensagens do AI Memory, pareceres e códigos de saída são insumos para a verificação. O responsável humano decide sobre homologação e efeitos que exijam autorização própria.
+The initial gate defines the task, scope, and executor. Scope changes, advancement that requires a human decision, and formal approval depend on the corresponding authorization. The orchestrator enforces the gate and presents the human owner with what is verified and what remains pending. AI Memory messages, reviews, and exit codes are inputs to verification. The human owner decides on formal approval and on effects that require their own authorization.
 
-### Operações Git e GitHub
+### Git and GitHub operations
 
-A capacidade de executar operações Git e GitHub cabe aos agentes e ao orquestrador quando necessária ao desenvolvimento ou à integração. A autorização operacional delimita cada operação, seu escopo, destino, estratégia e gate. O contrato técnico permanece pendente.
+Agents and the orchestrator can perform Git and GitHub operations when needed for development or integration. Operational authorization defines each operation, its scope, destination, strategy, and gate. The technical contract remains pending.
 
-- Inspeções Git sem escrita podem ocorrer dentro do escopo autorizado. Criação de branches, staging e commits locais exigem cobertura da delegação.
-- Push, criação de PRs, checks, merge e outras operações de integração podem ser automatizados após autorização humana inequívoca que cubra as operações e suas condições. Uma autorização já concedida dispensa reconfirmação por comando dentro desses limites.
-- Force push, operações destrutivas, alteração da estratégia de merge e contorno de proteções exigem autorização específica. Diante de conflitos, checks com falha ou alterações inesperadas, interromper a operação afetada. A integração deve excluir trabalho alheio e alterações que ainda não passaram pela revisão aplicável.
+- Read-only Git inspections may take place within the authorized scope. Branch creation, staging, and local commits must be covered by the delegation.
+- Pushes, PR creation, checks, merges, and other integration operations may be automated after unambiguous human authorization covering the operations and their conditions. Authorization already granted does not require reconfirmation for each command within those limits.
+- Force pushes, destructive operations, changes to the merge strategy, and bypassing protections require specific authorization. In the event of conflicts, failed checks, or unexpected changes, stop the affected operation. Integration must exclude unrelated work and changes that have yet to pass the applicable review.
 
-## 11. Interrupções e handoffs
+## 11. Interruptions and handoffs
 
-Falhas de processo, reinicializações inesperadas e interrupções de contexto, inclusive por limite de tokens, deixam a execução sujeita a verificação. O handoff registra o que foi comprovado, o que ficou incerto, onde estão as versões e evidências e qual é o próximo passo cabível. Na retomada, o orquestrador revalida contexto e escopo e reconcilia o estado com o histórico, os artefatos e os efeitos observáveis. O executor pode conferir o handoff e só prossegue após a validação da retomada pelo orquestrador. Operações potencialmente irreversíveis ficam suspensas se seu efeito anterior não puder ser determinado com segurança. Diante de incerteza material, o orquestrador interrompe o fluxo e solicita intervenção humana.
+Process failures, unexpected restarts, and context interruptions, including those caused by token limits, leave execution subject to verification. The handoff records what was verified, what remains uncertain, where to find the versions and evidence, and the next appropriate step. On resumption, the orchestrator revalidates context and scope and reconciles state against the history, artifacts, and observable effects. The executor may check the handoff and may proceed only after the orchestrator validates resumption. Potentially irreversible operations remain suspended if their prior effect cannot be determined safely. In the event of material uncertainty, the orchestrator stops the workflow and requests human intervention.
 
-## 12. Persistência, promoção e limpeza
+## 12. Persistence, promotion, and cleanup
 
-Uma área de trabalho na raiz do projeto consumidor pode guardar artefatos transitórios segregados por tarefa. O histórico necessário à retomada e as evidências de continuidade devem ter destino durável fora da área temporária. Antes de limpar, o encerramento deve estar autorizado e os registros relevantes precisam estar promovidos aos destinos persistentes. A promoção conserva a ligação entre tarefa, versão, parecer, resultado e evidência. Handoffs, reviews, evidence e documentação técnica servem a finalidades próprias. Destinos concretos, política de retenção e critérios de inclusão em Git ficam para o planejamento.
+A workspace at the root of the consumer project may hold transient artifacts segregated by task. The history needed for recovery and the evidence needed for continuity must have a durable destination outside the temporary workspace. Before cleanup, closure must be authorized and the relevant records must have been promoted to persistent destinations. Promotion preserves the link among the task, version, review, result, and evidence. Handoffs, reviews, evidence, and technical documentation each serve distinct purposes. Specific destinations, retention policy, and criteria for inclusion in Git will be determined during planning.
 
-Uma exclusão Git local e a separação de permissões compatível com o escopo são soluções candidatas, condicionadas à tecnologia escolhida. O planejamento deve buscar o menor mecanismo que impeça inclusão acidental no versionamento e proteja os registros de controle e avaliação.
+A local Git exclusion and separation of permissions consistent with the scope are candidate solutions, subject to the technology selected. Planning must seek the simplest mechanism that prevents accidental inclusion in version control and protects control and evaluation records.
 
-## 13. Invariantes
+## 13. Invariants
 
-- **Preservar** autorização verificável, vínculo com projeto e baseline, escopo do executor, independência da revisão, identidade das versões e associação entre evento, resultado e evidência.
-- **Impedir** escrita ou execução fora do escopo, passagem por gate sem autorização, substituição silenciosa de versão revisada, reuso automático de namespace alheio, repetição insegura quando o efeito anterior é incerto, controle baseado apenas em texto livre e uso da área temporária como destino durável único.
-- **Manter** o AI Memory independente e as regras de domínio nos projetos consumidores. O orquestrador deve usar apenas o contexto autorizado para a tarefa.
+- **Preserve** verifiable authorization, association with the project and baseline, executor scope, review independence, version identity, and the association among event, result, and evidence.
+- **Prevent** out-of-scope writes or execution, passage through a gate without authorization, silent replacement of a reviewed version, automatic reuse of another project's namespace, unsafe repetition when the previous effect is uncertain, control based solely on free text, and use of the temporary workspace as the only durable destination.
+- **Keep** AI Memory independent and domain rules within consumer projects. The orchestrator must use only the context authorized for the task.
 
-## 14. O que as POCs demonstram e onde a evidência termina
+## 14. What the POCs demonstrate and where the evidence ends
 
-- **Resultado reportado** — as POCs 001–004 têm histórico de comunicação por CLI ou MCP e carecem dos registros primários locais. Na POC-005, o script está preservado. O acionamento do Antigravity e a saída `0` foram reportados na sessão, cuja saída original está indisponível.
-- **Resultado demonstrado no ambiente sintético** — nas POCs 006–007, o despachante externo intercalou processos de Codex e Antigravity com `send` e `pop` síncronos. O contexto técnico seguiu principalmente nos prompts CLI. Os pareceres ficaram abaixo dos limites dos scripts. A POC-006 registrou revisão e resposta do Codex. A POC-007 registrou detecção do defeito, RED, correção, GREEN e parecer regressivo. A revisão inicial recebeu o diff, enquanto a injeção e os testes regressivos foram omitidos.
-- **Limites de validade** — os experimentos cobriram uma função Python e árvores Git sintéticas. A correlação usa os IDs de mensagem nos registros de envio e reivindicação e nos manifestos. A inbox associada ao IAS era compartilhada. Os campos `from_agent: "other"` e `from_owner_user: null` e o rótulo `--agent` de reivindicação deixam a identidade autenticada do remetente sem comprovação. A permissão gravável em `/tmp` alcançava artefatos fora da árvore verificada na POC-007. O autoteste de timeout e duplicidade teve alcance local. A evidência deixa em aberto a entrega assíncrona confiável, a recuperação após falha real, a concorrência, a generalização, os gates humanos implementados, o suporte simultâneo a múltiplos projetos e os efeitos fora do demo, inclusive sobre o IAS.
-- **Inferência técnica** — a coordenação local sequencial é uma base plausível para planejar a primeira versão. A automação segura dos gates e da retomada ainda depende de um desenho verificável. [Seções 6–12 do relatório experimental](../001-relatorio-experimental.md)
+- **Reported result** — POCs 001–004 have a history of communication via CLI or MCP but lack local primary records. For POC-005, the script is preserved. The invocation of Antigravity and exit code `0` were reported in the session, whose original output is unavailable.
+- **Result demonstrated in the synthetic environment** — in POCs 006–007, the external dispatcher interleaved Codex and Antigravity processes with synchronous `send` and `pop` calls. Technical context was conveyed primarily through CLI prompts. Reviews stayed below the scripts' limits. POC-006 recorded a review and a response from Codex. POC-007 recorded defect detection, RED, correction, GREEN, and a regression review. The initial review received the diff, while the injection and regression tests were withheld.
+- **Limits of validity** — the experiments covered one Python function and synthetic Git trees. Correlation uses message IDs in send and claim records and in manifests. The inbox associated with IAS was shared. The fields `from_agent: "other"` and `from_owner_user: null` and the `--agent` claim label leave the authenticated identity of the sender unverified. Write access to `/tmp` extended to artifacts outside the tree verified in POC-007. The timeout and duplicate self-test was local in scope. The evidence leaves open reliable asynchronous delivery, recovery after an actual failure, concurrency, generalization, implemented human approval gates, simultaneous support for multiple projects, and effects outside the demo, including on IAS.
+- **Technical inference** — sequential local coordination is a plausible basis for planning the first version. Safe automation of gates and recovery still depends on a verifiable design. [Sections 6–12 of the experimental report](../001-relatorio-experimental.md)
 
-## 15. Questões para planejamento técnico
+## 15. Questions for technical planning
 
-| Tema | Decisões pendentes |
+| Topic | Pending decisions |
 | --- | --- |
-| Implementação e interface | Linguagem, framework, banco ou outra persistência, contratos de API e CLI e decisão sobre inclusão de interface web na V1 após avaliação de custo. |
-| Mensagens e autorização | Transporte por operação, campos e formatos, versionamento dos protocolos, autenticação, comprovação da autorização inicial e validação de referências. |
-| Eventos e estado | Formato dos eventos, nomenclatura dos estados, armazenamento e critérios concretos de transição e reconciliação. |
-| Execução e falhas | Estratégia de subprocessos, sandbox, timeouts, limites de recursos, retry automático, tratamento de efeitos externos, limite de execuções ativas e condições mínimas de integração de executores. |
-| Artefatos | Identificação lógica, versionamento físico, estrutura de diretórios, isolamento da área temporária, retenção, acesso, promoção e limpeza. |
-| Integração Git/GitHub | Contrato das operações, verificação das autorizações, destinos, estratégias e condições de parada. |
+| Implementation and interface | Language, framework, database or other persistence, API and CLI contracts, and whether to include a web interface in V1 after assessing the cost. |
+| Messages and authorization | Transport per operation, fields and formats, protocol versioning, authentication, proof of initial authorization, and reference validation. |
+| Events and state | Event format, state names, storage, and specific criteria for transitions and reconciliation. |
+| Execution and failures | Subprocess strategy, sandbox, timeouts, resource limits, automatic retry, handling of external effects, limits on active executions, and minimum conditions for integrating executors. |
+| Artifacts | Logical identification, physical versioning, directory structure, isolation of the temporary workspace, retention, access, promotion, and cleanup. |
+| Git/GitHub integration | Operation contract, authorization verification, destinations, strategies, and stop conditions. |
 
-**Recomendação para o planejamento** — avaliar primeiro as opções locais de menor complexidade e exigir justificativa vinculada a risco ou requisito aprovado para expandir a solução.
+**Recommendation for planning** — evaluate the least complex local options first and require justification tied to a risk or approved requirement before expanding the solution.
 
-**Proposta recomendada para a V1** — avaliar no planejamento uma interface web local mínima. Se o custo adicional for baixo ou moderado e a inclusão for aprovada, implementá-la ainda na V1 após validar o núcleo operacional via CLI. O escopo candidato é visualizar projetos, tarefas, estado das execuções, executor ativo, histórico de eventos, erros e interrupções, com acesso a relatórios e evidências relevantes. Editor visual de workflows, chat integrado, dashboards avançados, gestão complexa de permissões e funcionalidades comerciais ou multiusuário ficam fora dessa proposta mínima. A estimativa exploratória é de aproximadamente **25–50 horas adicionais**. Ela serve como referência para avaliação. Orçamento e requisitos dependem de aprovação. O planejamento deve validar o custo real antes de recomendar a inclusão ao responsável humano.
+**Recommended proposal for V1** — evaluate a minimal local web interface during planning. If the additional cost is low or moderate and inclusion is approved, implement it in V1 after validating the operational core via CLI. The candidate scope is to display projects, tasks, execution state, the active executor, event history, errors, and interruptions, with access to relevant reports and evidence. A visual workflow editor, integrated chat, advanced dashboards, complex permission management, and commercial or multiuser features are outside this minimal proposal. The exploratory estimate is approximately **25–50 additional hours**. It serves as a reference for evaluation. Budget and requirements depend on approval. Planning must validate the actual cost before recommending inclusion to the human owner.
 
-## 16. Critérios de suficiência da futura arquitetura mínima
+## 16. Sufficiency criteria for the future minimal architecture
 
-O planejamento deverá demonstrar como a solução mínima:
+Planning must demonstrate how the minimal solution:
 
-1. Recebe uma tarefa autorizada, isola o contexto do projeto consumidor e coordena Codex e Antigravity em sequência, com transições verificáveis.
-2. Troca referências curtas com o AI Memory como produto auxiliar independente, verifica a autorização humana por fonte própria e fixa a versão de cada artefato. Mantém a revisão independente da elaboração e da implementação e liga achado, correção e verificação regressiva quando aplicável.
-3. Preserva o histórico estruturado e permite recuperar a última etapa comprovada após interrupção, encaminhando efeitos incertos ao responsável humano.
-4. Respeita os gates, preserva registros antes da limpeza e permite continuidade entre sessões sem recorrer ao histórico da conversa como fonte única.
-5. Mantém operação local simples para Codex e Antigravity, admite futura incorporação de executores e justifica mecanismos adicionais por riscos concretos ou requisitos aprovados.
+1. Receives an authorized task, isolates the consumer project's context, and coordinates Codex and Antigravity sequentially with verifiable transitions.
+2. Exchanges short references with AI Memory as an independent supporting product, verifies human authorization through a source of its own, and pins the version of each artifact. Keeps review independent of drafting and implementation and links findings, corrections, and regression checks where applicable.
+3. Preserves structured history and allows recovery of the last verified step after an interruption, escalating uncertain effects to the human owner.
+4. Respects the gates, preserves records before cleanup, and enables continuity between sessions without relying on conversation history as the sole source.
+5. Keeps local operation simple for Codex and Antigravity, allows additional executors to be integrated later, and justifies additional mechanisms by concrete risks or approved requirements.
 
-Esses critérios orientam a avaliação do plano futuro. A homologação deste documento permanece no gate humano.
+These criteria guide evaluation of the future plan. Formal approval of this document remains at the human approval gate.

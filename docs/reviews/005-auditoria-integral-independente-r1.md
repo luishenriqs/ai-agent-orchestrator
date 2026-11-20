@@ -1,502 +1,502 @@
-# Auditoria Independente Integral do Repositório — AI Agent Orchestrator (R1)
+# Full Independent Repository Audit — AI Agent Orchestrator (R1)
 
-## 1. Identificação e escopo
+## 1. Identification and scope
 
-- **Projeto:** AI Agent Orchestrator
-- **Artefato:** `docs/reviews/005-auditoria-integral-independente-r1.md`
-- **Classificação:** Auditoria arquitetural e documental integral, persistente, anterior à homologação humana das diretrizes arquiteturais
-- **Agente / Papel:** Antigravity — auditor técnico e arquitetural independente
-- **Modo:** AUDITORIA AMPLA INTEGRAL (somente leitura sobre o repositório; criação exclusiva deste relatório)
-- **Data da auditoria:** 2026-11-20
-- **Escopo:** Leitura integral de todos os 9 documentos Markdown do repositório (fundação experimental e consolidação arquitetural pendente de homologação) e inventário/exame efetivo de todos os 72 artefatos experimentais preservados em `evidence/pocs/005/`, `006/` e `007/`.
-- **Restrições respeitadas:** Nenhum arquivo existente foi modificado; nenhum código foi implementado; nenhuma POC foi executada; nenhuma mensagem do AI Memory foi consumida ou alterada; nenhuma operação Git de escrita (`commit`, `push`, `merge`, `tag`) foi realizada; nenhum arquivo externo ao repositório foi consultado.
-
----
-
-## 2. Baseline Git observada
-
-Verificação direta executada em `$HOME/projects/ai-agent-orchestrator`:
-
-- **Branch ativa:** `main` (sincronizada com `origin/main` via `## main...origin/main`)
-- **HEAD:** `eeb3f53a755d7c8b55a6fa606ed3c4ec89d79f91` — `docs: establish AI Agent Orchestrator experimental baseline`
-- **Remoto configurado:** `origin git@github.com:luishenriqs/ai-agent-orchestrator` (fetch e push)
-  - *Nota de divergência menor registrada sem alteração:* a especificação da auditoria cita a URL HTTPS (`https://github.com/luishenriqs/ai-agent-orchestrator`), enquanto o remoto local efetivamente configurado utiliza SSH (`git@github.com:luishenriqs/ai-agent-orchestrator`), apontando para o mesmo repositório.
-- **Arquivos rastreados em `HEAD` (`eeb3f53`):** 78 arquivos (6 documentos Markdown da fundação experimental + 72 artefatos em `evidence/pocs/005/`, `006/` e `007/`).
-- **Arquivos não rastreados (`??` na working tree, pendentes de homologação e commit):**
-  - `docs/architecture/001-diretrizes-arquiteturais.md` (SHA-256 verificado: `b12cb547d861b4515fd9a3d6d6ab5468fb24864ec79db4ea734b7ba072e3d700`)
-  - `docs/reviews/003-revisao-independente-diretrizes-arquiteturais-r1.md` (SHA-256 verificado: `da9cbebfddc934a11e32041f621a0069818e282f580062d400df7baba96fb860`)
-  - `docs/reviews/004-revisao-regressiva-diretrizes-arquiteturais-r2.md` (SHA-256 verificado: `22f9cb971758748d16e3b2c62a92d79f2dadaa748f04f565fb1e55d921a0761c`)
-- **Arquivos modificados/staged:** nenhum.
-- **Arquivos ignorados:** nenhum (não existe `.gitignore` na raiz do repositório).
-- **Separação de baselines:** A fundação experimental (`eeb3f53`) está publicada em `main`/`origin/main`; a consolidação arquitetural (`001-diretrizes-arquiteturais.md` e pareceres `003`/`004`) permanece na working tree como *untracked* e **pendente de homologação humana**.
+- **Project** — AI Agent Orchestrator
+- **Artifact** — `docs/reviews/005-auditoria-integral-independente-r1.md`
+- **Classification** — Full, persistent architectural and documentation audit preceding formal human approval of the architectural directives
+- **Agent / role** — Antigravity, independent technical and architectural auditor
+- **Mode** — FULL-SCOPE AUDIT with read-only access to the repository and creation of this report only
+- **Audit date** — 2026-11-20
+- **Scope** — Full reading of all 9 Markdown documents in the repository (the experimental foundation and architectural consolidation pending formal approval), and inventory and actual examination of all 72 experimental artifacts preserved in `evidence/pocs/005/`, `006/`, and `007/`.
+- **Restrictions observed** — No existing file was modified, no code was implemented, no POC was run, no AI Memory message was consumed or changed, no Git write operation (`commit`, `push`, `merge`, `tag`) was performed, and no file outside the repository was consulted.
 
 ---
 
-## 3. Inventário completo de arquivos examinados
+## 2. Observed Git baseline
 
-Total de arquivos existentes no repositório antes da criação deste relatório: **81 arquivos** (todos texto UTF-8; 0 arquivos binários; 0 arquivos inacessíveis).
+Direct verification performed in `$HOME/projects/ai-agent-orchestrator`:
 
-### 3.1 Documentos normativos, históricos, arquiteturais e de revisão (9 arquivos — leitura integral)
+- **Active branch** — `main` (synchronized with `origin/main` as shown by `## main...origin/main`)
+- **HEAD** — `eeb3f53a755d7c8b55a6fa606ed3c4ec89d79f91` — `docs: establish AI Agent Orchestrator experimental baseline`
+- **Configured remote** — `origin git@github.com:luishenriqs/ai-agent-orchestrator` (fetch and push)
+  - *Minor discrepancy recorded without making a change* — The audit specification gives the HTTPS URL (`https://github.com/luishenriqs/ai-agent-orchestrator`), while the configured local remote uses SSH (`git@github.com:luishenriqs/ai-agent-orchestrator`) and points to the same repository.
+- **Files tracked in `HEAD` (`eeb3f53`)** — 78 files (6 experimental foundation Markdown documents + 72 artifacts in `evidence/pocs/005/`, `006/`, and `007/`).
+- **Untracked files (`??` in the working tree, pending formal approval and commit)**
+  - `docs/architecture/001-diretrizes-arquiteturais.md` (verified SHA-256 `b12cb547d861b4515fd9a3d6d6ab5468fb24864ec79db4ea734b7ba072e3d700`)
+  - `docs/reviews/003-revisao-independente-diretrizes-arquiteturais-r1.md` (verified SHA-256 `da9cbebfddc934a11e32041f621a0069818e282f580062d400df7baba96fb860`)
+  - `docs/reviews/004-revisao-regressiva-diretrizes-arquiteturais-r2.md` (verified SHA-256 `22f9cb971758748d16e3b2c62a92d79f2dadaa748f04f565fb1e55d921a0761c`)
+- **Modified or staged files** — None.
+- **Ignored files** — None (no `.gitignore` at the repository root).
+- **Separate baselines** — The experimental foundation (`eeb3f53`) is published in `main`/`origin/main`. The architectural consolidation (`001-diretrizes-arquiteturais.md` and reviews `003`/`004`) remains *untracked* in the working tree and **pending formal human approval**.
 
-| # | Caminho | Status Git | Linhas | Papel no repositório |
+---
+
+## 3. Complete inventory of files examined
+
+Total number of files present in the repository before creating this report: **81 files** (all UTF-8 text, 0 binary files, 0 inaccessible files).
+
+### 3.1 Normative, historical, architectural, and review documents (9 files read in full)
+
+| # | Path | Git status | Lines | Role in the repository |
 | --- | --- | --- | --- | --- |
-| 1 | `README.md` | Rastreado (`eeb3f53`) | 13 | Apresentação inicial e decisão estratégica humana |
-| 2 | `docs/001-relatorio-experimental.md` | Rastreado (`eeb3f53`) | 175 | Relatório experimental consolidado e saneado (POCs 001–007) |
-| 3 | `docs/reviews/001-revisao-independente-r1.md` | Rastreado (`eeb3f53`) | 253 | Parecer R1 do Antigravity sobre a documentação experimental |
-| 4 | `docs/reviews/002-revisao-regressiva-r2.md` | Rastreado (`eeb3f53`) | 119 | Parecer regressivo R2 do Antigravity (12/12 achados fechados) |
-| 5 | `docs/handoffs/001-handoff-fundacao-experimental.md` | Rastreado (`eeb3f53`) | 92 | Handoff de continuidade da fundação experimental |
-| 6 | `evidence/pocs/MANIFEST.md` | Rastreado (`eeb3f53`) | 104 | Inventário, hashes SHA-256, sanitizações e lacunas das POCs |
-| 7 | `docs/architecture/001-diretrizes-arquiteturais.md` | Não rastreado (`??`) | 128 | Consolidação das 16 diretrizes arquiteturais (v0.2, pendente de homologação) |
-| 8 | `docs/reviews/003-revisao-independente-diretrizes-arquiteturais-r1.md` | Não rastreado (`??`) | 70 | Parecer adversarial R1 sobre `001-diretrizes-arquiteturais.md` (v0.1) |
-| 9 | `docs/reviews/004-revisao-regressiva-diretrizes-arquiteturais-r2.md` | Não rastreado (`??`) | 45 | Parecer regressivo R2 sobre `001-diretrizes-arquiteturais.md` (v0.2) + registro do Codex |
+| 1 | `README.md` | Tracked (`eeb3f53`) | 13 | Initial introduction and human strategic decision |
+| 2 | `docs/001-relatorio-experimental.md` | Tracked (`eeb3f53`) | 175 | Consolidated, remediated experimental report (POCs 001–007) |
+| 3 | `docs/reviews/001-revisao-independente-r1.md` | Tracked (`eeb3f53`) | 253 | Antigravity R1 review of the experimental documentation |
+| 4 | `docs/reviews/002-revisao-regressiva-r2.md` | Tracked (`eeb3f53`) | 119 | Antigravity R2 regression review (12/12 findings closed) |
+| 5 | `docs/handoffs/001-handoff-fundacao-experimental.md` | Tracked (`eeb3f53`) | 92 | Handoff for continuity of the experimental foundation |
+| 6 | `evidence/pocs/MANIFEST.md` | Tracked (`eeb3f53`) | 104 | POC inventory, SHA-256 hashes, sanitization, and gaps |
+| 7 | `docs/architecture/001-diretrizes-arquiteturais.md` | Untracked (`??`) | 128 | Consolidation of the 16 architectural directives (v0.2, pending formal approval) |
+| 8 | `docs/reviews/003-revisao-independente-diretrizes-arquiteturais-r1.md` | Untracked (`??`) | 70 | Adversarial R1 review of `001-diretrizes-arquiteturais.md` (v0.1) |
+| 9 | `docs/reviews/004-revisao-regressiva-diretrizes-arquiteturais-r2.md` | Untracked (`??`) | 45 | R2 regression review of `001-diretrizes-arquiteturais.md` (v0.2) + Codex record |
 
-### 3.2 Artefatos experimentais preservados (72 arquivos — 100% inventariados e verificados)
+### 3.2 Preserved experimental artifacts (72 files, 100% inventoried and verified)
 
-Todos os 72 arquivos em `evidence/pocs/005/`, `006/` e `007/` foram verificados quanto a existência, tipo (todos UTF-8 texto), tamanho total (**96.180 bytes**, idêntico ao declarado em `MANIFEST.md` L5), integridade SHA-256 (**72/72 hashes conferem exatamente** com a coluna `SHA-256 preservado` de `MANIFEST.md`), conteúdo dos 12 arquivos sanitizados e varredura contra vazamento de caminhos pessoais (`/home/...`, `/mnt/c/Users/...`), tokens ou endereços locais (`0` vazamentos):
+All 72 files in `evidence/pocs/005/`, `006/`, and `007/` were checked for existence, type (all UTF-8 text), total size (**96,180 bytes**, identical to the value declared in `MANIFEST.md` L5), and SHA-256 integrity (**72/72 hashes exactly match** the preserved hash column (`SHA-256 preservado`) of `MANIFEST.md`). The audit reviewed the contents of the 12 sanitized files and scanned for leaks of personal paths (`/home/...`, `/mnt/c/Users/...`), tokens, or local addresses (`0` leaks).
 
-- **`evidence/pocs/005/` (1 arquivo, integral):** `poc_ai_memory_005.py`.
-- **`evidence/pocs/006/` (28 arquivos: 23 integrais, 5 sanitizados):**
-  - Raiz e `demo/` (5): `poc_ai_memory_006.py`, `result.json`, `demo/labels.py`, `demo/tests/test_labels.py`, `demo/REVIEW_RESPONSE.md`.
-  - `_poc_logs/` (23): `git-status.{stdout,exit}.txt`, `POC-006-cd85b48a2fc5-{REVIEW,RESPONSE}-{send,pop}.{stdout,exit}.txt` (sendo os 2 `*-pop.stdout.txt` sanitizados), `POC-006-cd85b48a2fc5-RESPONSE-send.stderr.txt` (sanitizado), `codex-{implement,response}.{stdout,stderr,exit}.txt` (sendo os 2 `*.stderr.txt` sanitizados), `antigravity-review.{stdout,exit}.txt`, `tests-{before-review,final}.{stderr,exit}.txt`.
-- **`evidence/pocs/007/` (43 arquivos: 36 integrais, 7 sanitizados):**
-  - Raiz e `demo/` (5): `poc_ai_memory_007.py`, `result.json`, `regression_tests.py`, `demo/labels.py`, `demo/tests/test_labels.py`.
-  - `_poc_logs/` (38): `fault-injection.json`, `REVIEW{1,2}-{send,pop}.{stdout,exit}.txt` e `REVIEW{1,2}-RESPONSE-{send,pop}.{stdout,exit}.txt` (sendo os 4 `*-pop.stdout.txt` sanitizados), `REVIEW1-RESPONSE-send.stderr.txt` (sanitizado), `codex-{initial,correct}.{stdout,stderr,exit}.txt` (sendo os 2 `*.stderr.txt` sanitizados), `antigravity-review{1,2}.{stdout,exit}.txt`, `tests-{initial,faulty-public,red,green,final-public}.{stderr,exit}.txt`.
-
----
-
-## 4. Metodologia de auditoria
-
-1. **Verificação da baseline Git e inventário físico:** confirmação de `HEAD`, branch, remoto, arquivos rastreados, não rastreados e ignorados, sem mutação do repositório.
-2. **Leitura integral sequencial:** leitura completa dos 9 documentos Markdown sem depender de resumos ou buscas parciais.
-3. **Auditoria automatizada somente-leitura do acervo experimental:** validação de contagem (72/72), tipo UTF-8, soma de bytes (96.180), hashes SHA-256 (72/72) contra `MANIFEST.md`, inspeção dos 12 arquivos sanitizados e busca por vazamentos de dados sensíveis.
-4. **Confronto cruzado e adversarial:** comparação sistemática das 16 diretrizes (`DEC-01` a `DEC-16`), das seções normativas de `001-diretrizes-arquiteturais.md`, dos pareceres `001`–`004`, do relatório experimental e das evidências das POCs, separando rigorosamente decisões humanas, fatos verificados, relatos, propostas e inferências.
-5. **Calibração de achados:** distinção entre questões deliberadamente abertas para o planejamento (Seção 15 das diretrizes) e lacunas/ambiguidades concretas que impactam a homologação ou a abertura do planejamento técnico.
+- **`evidence/pocs/005/` (1 file, complete)** — `poc_ai_memory_005.py`.
+- **`evidence/pocs/006/` (28 files, 23 complete and 5 sanitized)**
+  - Root and `demo/` (5): `poc_ai_memory_006.py`, `result.json`, `demo/labels.py`, `demo/tests/test_labels.py`, `demo/REVIEW_RESPONSE.md`.
+  - `_poc_logs/` (23): `git-status.{stdout,exit}.txt`, `POC-006-cd85b48a2fc5-{REVIEW,RESPONSE}-{send,pop}.{stdout,exit}.txt` (the 2 `*-pop.stdout.txt` logs were sanitized), `POC-006-cd85b48a2fc5-RESPONSE-send.stderr.txt` (sanitized), `codex-{implement,response}.{stdout,stderr,exit}.txt` (the 2 `*.stderr.txt` logs were sanitized), `antigravity-review.{stdout,exit}.txt`, `tests-{before-review,final}.{stderr,exit}.txt`.
+- **`evidence/pocs/007/` (43 files, 36 complete and 7 sanitized)**
+  - Root and `demo/` (5): `poc_ai_memory_007.py`, `result.json`, `regression_tests.py`, `demo/labels.py`, `demo/tests/test_labels.py`.
+  - `_poc_logs/` (38): `fault-injection.json`, `REVIEW{1,2}-{send,pop}.{stdout,exit}.txt` and `REVIEW{1,2}-RESPONSE-{send,pop}.{stdout,exit}.txt` (the 4 `*-pop.stdout.txt` logs were sanitized), `REVIEW1-RESPONSE-send.stderr.txt` (sanitized), `codex-{initial,correct}.{stdout,stderr,exit}.txt` (the 2 `*.stderr.txt` logs were sanitized), `antigravity-review{1,2}.{stdout,exit}.txt`, `tests-{initial,faulty-public,red,green,final-public}.{stderr,exit}.txt`.
 
 ---
 
-## 5. Hierarquia e confiabilidade das fontes
+## 4. Audit methodology
 
-| Nível | Categoria | Fontes no repositório | Confiabilidade e limite |
+1. **Git baseline and physical inventory verification** — Confirmed `HEAD`, branch, remote, and tracked, untracked, and ignored files without mutating the repository.
+2. **Full sequential reading** — Read all 9 Markdown documents without relying on summaries or partial searches.
+3. **Automated read-only audit of the experimental collection** — Validated the count (72/72), UTF-8 type, byte total (96,180), and SHA-256 hashes (72/72) against `MANIFEST.md`, inspected the 12 sanitized files, and searched for sensitive data leaks.
+4. **Cross-check and adversarial comparison** — Systematically compared the 16 directives (`DEC-01` through `DEC-16`), normative sections of `001-diretrizes-arquiteturais.md`, reviews `001`–`004`, the experimental report, and POC evidence, strictly distinguishing human decisions, verified facts, reports, proposals, and inferences.
+5. **Finding calibration** — Distinguished questions deliberately left open for planning (section 15 of the directives) from concrete gaps or ambiguities affecting formal approval or the start of technical planning.
+
+---
+
+## 5. Source hierarchy and reliability
+
+| Level | Category | Sources in the repository | Reliability and limits |
 | --- | --- | --- | --- |
-| 1 | **Decisões humanas expressamente aprovadas** | Diretrizes estratégicas em `README.md` (L7–9), `001-relatorio-experimental.md` (L17, L23), `001-handoff-fundacao-experimental.md` (Seção 6); diretrizes `DEC-01`–`DEC-16` consolidadas em `001-diretrizes-arquiteturais.md` (Seção 4). | **Ressalva importante:** `001-diretrizes-arquiteturais.md` ainda está **pendente de homologação humana** (Seção 1, L6), e a fonte temporária `decisoes-delegacao.md` citada em `003` (L12) não está no repositório. A fidelidade das `DEC-01`–`DEC-16` ao texto original foi atestada pelos pareceres `003`/`004`, mas sua vigência normativa formal depende do ato de homologação humana. |
-| 2 | **Evidências experimentais primárias verificáveis** | 72 artefatos em `evidence/pocs/005/`, `006/`, `007/` e hashes em `MANIFEST.md`. | **Alta** dentro do escopo sintético (72/72 SHA-256 conferidos). Limitada à função `normalize_label`, repositórios temporários sem commits e 12 arquivos com sanitização documentada. |
-| 3 | **Consolidação experimental auditada** | `docs/001-relatorio-experimental.md`, `docs/handoffs/001-handoff-fundacao-experimental.md`. | **Alta** — verificadas contra os artefatos primários e aprovadas em R2 (`002`). |
-| 4 | **Pareceres independentes (recomendações)** | `docs/reviews/001`, `002`, `003`, `004`. | **Insumos técnicos independentes**, não equivalentes a homologação humana. `004` foi executada sobre texto no prompt sem ferramentas, com hash final confirmado nesta auditoria. |
-| 5 | **Resultados reportados sem evidência primária completa** | POCs 001–004 (cronologia) e execução/PASS da POC-005 (em `001-relatorio-experimental.md` Seções 6 e 8; `MANIFEST.md` L100–101). | **Moderada/limitada** — atribuídos ao relato da sessão experimental acompanhada pelo GPT; impossível auditar comandos ou saídas originais. |
-| 6 | **Propostas técnicas, inferências e hipóteses** | Seções 10, 11, 13–15 do relatório experimental; Seções 6–12 e 15–16 de `001-diretrizes-arquiteturais.md`; `evidence/pocs/` como contrato definitivo. | **Pendentes de deliberação/planejamento** — não constituem compromissos de implementação nem arquitetura definitiva. |
+| 1 | **Expressly approved human decisions** | Strategic directives in `README.md` (L7–9), `001-relatorio-experimental.md` (L17, L23), and `001-handoff-fundacao-experimental.md` (section 6). Directives `DEC-01`–`DEC-16` consolidated in `001-diretrizes-arquiteturais.md` (section 4). | **Important qualification** — `001-diretrizes-arquiteturais.md` is still **pending formal human approval** (section 1, L6), and the temporary source `decisoes-delegacao.md` cited in `003` (L12) is absent from the repository. Reviews `003`/`004` attested to the fidelity of `DEC-01`–`DEC-16` to the original text. Their formal normative force depends on the act of human approval. |
+| 2 | **Verifiable primary experimental evidence** | 72 artifacts in `evidence/pocs/005/`, `006/`, and `007/`, and hashes in `MANIFEST.md`. | **High** within the synthetic scope (72/72 SHA-256 hashes checked). Limited to the `normalize_label` function, temporary repositories with no commits, and 12 files with documented sanitization. |
+| 3 | **Audited experimental consolidation** | `docs/001-relatorio-experimental.md`, `docs/handoffs/001-handoff-fundacao-experimental.md`. | **High** — checked against primary artifacts and approved in R2 (`002`). |
+| 4 | **Independent reviews (recommendations)** | `docs/reviews/001`, `002`, `003`, `004`. | **Independent technical input** that does not constitute formal human approval. `004` was performed on text in the prompt without tools, with the final hash confirmed in this audit. |
+| 5 | **Reported results without complete primary evidence** | POCs 001–004 (chronology) and POC-005 execution/PASS (in `001-relatorio-experimental.md` sections 6 and 8 and `MANIFEST.md` L100–101). | **Moderate/limited** — attributed to the experimental session account tracked by GPT. Original commands or outputs cannot be audited. |
+| 6 | **Technical proposals, inferences, and hypotheses** | Sections 10, 11, and 13–15 of the experimental report. Sections 6–12 and 15–16 of `001-diretrizes-arquiteturais.md`. `evidence/pocs/` as the definitive contract. | **Pending deliberation/planning** — they do not constitute implementation commitments or a final architecture. |
 
 ---
 
-## 6. Resumo executivo
+## 6. Executive summary
 
-A auditoria integral confirmou que o repositório `ai-agent-orchestrator` apresenta uma fundação experimental excepcionalmente bem documentada e auditável (`eeb3f53`, 72/72 artefatos íntegros, 96.180 bytes exatos, zero vazamentos de dados sensíveis) e uma consolidação arquitetural (`docs/architecture/001-diretrizes-arquiteturais.md`, v0.2, SHA-256 `b12cb547...`) concisa, coerente, fiel ao princípio de simplicidade (`DEC-01`) e livre de contradições graves ou sobreengenharia prematura.
+The full audit confirmed that the `ai-agent-orchestrator` repository has an exceptionally well-documented, auditable experimental foundation (`eeb3f53`, 72/72 intact artifacts, exactly 96,180 bytes, zero leaks of sensitive data) and a concise, coherent architectural consolidation (`docs/architecture/001-diretrizes-arquiteturais.md`, v0.2, SHA-256 `b12cb547...`) that is faithful to the principle of simplicity (`DEC-01`) and free from serious contradictions or premature overengineering.
 
-Não foram identificados achados **`BLOCKER`** nem **`MAJOR`**. Foram identificados **6 achados** (**4 `MINOR`** e **2 `EDITORIAL`**):
-- **`AUD-001` (MINOR):** Necessidade de contrato explícito de isolamento Git e de sandbox para a área temporária na raiz do projeto consumidor (`DEC-06` vs. `DEC-16` e risco observado na POC-007).
-- **`AUD-002` (MINOR):** Ambiguidade operacional residual no ponto de entrada canônico do gate inicial entre prompt manual direto ao executor (`DEC-02`) e validação prévia pelo orquestrador (`DEC-09`, Seção 6 passo 1).
-- **`AUD-003` (MINOR):** Ausência no repositório do documento temporário `decisoes-delegacao.md` citado em `003`, tornando o ato explícito de homologação humana de `001-diretrizes-arquiteturais.md` essencial para consolidar a fonte normativa primária.
-- **`AUD-004` (MINOR):** Fronteira de V1 não explicitamente fechada para *interface web* e *automação de operações Git/GitHub*, que constam em aberto sem indicar se pertencem à V1 ou a versões posteriores.
-- **`AUD-005` (EDITORIAL):** O relatório experimental classifica a versão `3.4.7` do AI Memory como apenas informada na tarefa, embora 2 logs preservados em `evidence/pocs/` comprovem diretamente `version="3.4.7"`.
-- **`AUD-006` (EDITORIAL):** `README.md` ainda exibe o status de 2026-11-19 pré-commit/pré-R2 (esperado pelo congelamento histórico de `eeb3f53`, devendo ser atualizado após a homologação das diretrizes).
+The audit identified no **`BLOCKER`** or **`MAJOR`** findings. It identified **6 findings** (**4 `MINOR`** and **2 `EDITORIAL`**):
+- **`AUD-001` (MINOR)** — An explicit contract for Git and sandbox isolation is needed for the temporary workspace at the consumer project's root (`DEC-06` vs. `DEC-16` and the risk observed in POC-007).
+- **`AUD-002` (MINOR)** — Residual operational ambiguity in the canonical entry point to the initial gate between the manual prompt sent directly to the executor (`DEC-02`) and prior orchestrator validation (`DEC-09`, section 6 step 1).
+- **`AUD-003` (MINOR)** — The repository lacks the temporary `decisoes-delegacao.md` document cited in `003`, making explicit formal human approval of `001-diretrizes-arquiteturais.md` essential to consolidating the primary normative source.
+- **`AUD-004` (MINOR)** — The V1 boundary is not explicitly settled for a *web interface* or *automation of Git/GitHub operations*. Both are open, without an indication of whether they belong in V1 or later versions.
+- **`AUD-005` (EDITORIAL)** — The experimental report classifies AI Memory version `3.4.7` as merely reported in the task, although 2 preserved logs in `evidence/pocs/` directly prove `version="3.4.7"`.
+- **`AUD-006` (EDITORIAL)** — `README.md` still shows the 2026-11-19 pre-commit/pre-R2 status (expected due to the historical freeze of `eeb3f53` and to be updated after formal approval of the directives).
 
-**Veredito independente:** **`SUFICIENTE COM RESSALVAS — RECOMENDO HOMOLOGAÇÃO CONDICIONADA`**. As diretrizes arquiteturais estão prontas para homologação humana, condicionada a que as 4 ressalvas `MINOR` sejam explicitamente endereçadas na homologação e na abertura do planejamento técnico.
-
----
-
-## 7. Reconstrução completa dos objetivos do projeto
-
-Com base em `README.md` (L3–9), `001-relatorio-experimental.md` (Seções 2–3), `001-handoff-fundacao-experimental.md` (Seções 2–3) e `001-diretrizes-arquiteturais.md` (Seções 1–2, 4 e 16):
-
-- **Problema a resolver:** No desenvolvimento assistido por múltiplos agentes de IA (como Codex e Antigravity), o responsável humano precisa manualmente transferir contexto, acionar o executor adequado, encaminhar alterações para revisão independente, acompanhar correções e reunir evidências para tomada de decisão. Um canal de mensageria isolado (como o AI Memory) resolve a troca de informações, mas não controla sequência, estado operacional, escopo, integridade de versões nem gates de autorização (`001-relatorio-experimental.md` L15; `001-diretrizes-arquiteturais.md` L13).
-- **Atividades humanas a reduzir/automatizar:** Transporte manual de solicitações, contexto, artefatos e pareceres entre agentes; acionamento sequencial de executores e revisores; coleta e correlação de evidências por etapa; preparação de relatórios e referências para decisão humana (`001-handoff-fundacao-experimental.md` L14; `001-diretrizes-arquiteturais.md` L13, L29, L61).
-- **Benefício operacional esperado:** Fluxo sequencial local, simples, seguro, auditável e reutilizável em diferentes projetos (IAS, Jungle e projetos futuros), reduzindo atrito manual sem sacrificar controle humano nem introduzir infraestrutura distribuída desnecessária (`DEC-01`, `DEC-08`, `DEC-16`).
-- **Limite de autonomia dos agentes:** Agentes atuam estritamente dentro do papel, repositório, baseline e escopo autorizados; podem solicitar a próxima operação e entregar resultados verificáveis, mas **não** podem ampliar escopo, ultrapassar gates, autoautorizar execuções, homologar entregas ou repetir operações potencialmente irreversíveis sob incerteza material (`DEC-03`, `DEC-09`, `DEC-12`, `DEC-14`; `001-diretrizes-arquiteturais.md` Seções 5, 10 e 13).
-- **Critérios de sucesso da primeira versão (planejamento/arquitetura mínima — `001-diretrizes-arquiteturais.md` Seção 16, L120–126):**
-  1. Receber tarefa autorizada, isolar contexto do projeto consumidor e coordenar Codex e Antigravity em sequência com transições verificáveis.
-  2. Trocar referências curtas com o AI Memory (produto auxiliar independente), verificar autorização humana por fonte própria, fixar versões imutáveis de artefatos e manter revisão independente com vínculo achado–correção–regressão.
-  3. Preservar histórico estruturado, permitir recuperação da última etapa comprovada após interrupção e encaminhar efeitos incertos ao humano.
-  4. Respeitar gates humanos, promover/preservar registros antes de limpar áreas temporárias e permitir continuidade entre sessões via handoff sem depender do histórico conversacional.
-  5. Operar localmente de forma simples para Codex e Antigravity, admitindo futura incorporação controlada de novos executores sem framework prematuro.
+**Independent verdict** — **`SUFICIENTE COM RESSALVAS — RECOMENDO HOMOLOGAÇÃO CONDICIONADA`** (sufficient with qualifications — conditional formal approval recommended). The architectural directives are ready for formal human approval, provided the 4 `MINOR` qualifications are explicitly addressed at formal approval and the start of technical planning.
 
 ---
 
-## 8. Matriz das decisões humanas
+## 7. Full reconstruction of project objectives
 
-### 8.1 Decisões estratégicas da fundação experimental (já estabelecidas e publicadas em `eeb3f53`)
+Based on `README.md` (L3–9), `001-relatorio-experimental.md` (sections 2–3), `001-handoff-fundacao-experimental.md` (sections 2–3), and `001-diretrizes-arquiteturais.md` (sections 1–2, 4, and 16):
 
-| ID | Enunciado fiel | Fonte e seção | Status de aprovação |
+- **Problem to solve** — In development assisted by multiple AI agents such as Codex and Antigravity, the human owner must manually transfer context, invoke the appropriate executor, route changes for independent review, track corrections, and collect evidence for decisions. A standalone messaging channel such as AI Memory handles information exchange but does not control sequencing, operational state, scope, version integrity, or authorization gates (`001-relatorio-experimental.md` L15 and `001-diretrizes-arquiteturais.md` L13).
+- **Human activities to reduce or automate** — Manual transfer of requests, context, artifacts, and reviews between agents. Sequential invocation of executors and reviewers. Collection and correlation of evidence by step. Preparation of reports and references for human decisions (`001-handoff-fundacao-experimental.md` L14 and `001-diretrizes-arquiteturais.md` L13, L29, L61).
+- **Expected operational benefit** — A sequential, local, simple, secure, auditable workflow reusable across different projects (IAS, Jungle, and future projects), reducing manual friction without sacrificing human control or introducing unnecessary distributed infrastructure (`DEC-01`, `DEC-08`, `DEC-16`).
+- **Limit of agent autonomy** — Agents operate strictly within the authorized role, repository, baseline, and scope. They may request the next operation and deliver verifiable results but **may not** expand scope, bypass gates, authorize their own executions, formally approve deliverables, or repeat potentially irreversible operations under material uncertainty (`DEC-03`, `DEC-09`, `DEC-12`, `DEC-14`, and `001-diretrizes-arquiteturais.md` sections 5, 10, and 13).
+- **Success criteria for the first version (planning/minimal architecture — `001-diretrizes-arquiteturais.md` section 16, L120–126)**
+  1. Receive an authorized task, isolate the consumer project's context, and coordinate Codex and Antigravity sequentially with verifiable transitions.
+  2. Exchange short references with AI Memory (an independent supporting product), verify human authorization through a separate source, pin immutable artifact versions, and maintain independent review with links between findings, corrections, and regression checks.
+  3. Preserve structured history, allow recovery of the last verified step after an interruption, and escalate uncertain effects to the human.
+  4. Respect human approval gates, promote and preserve records before cleaning up temporary workspaces, and enable continuity between sessions via handoff without relying on conversation history.
+  5. Operate locally with simplicity for Codex and Antigravity, allowing controlled integration of new executors later without a premature framework.
+
+---
+
+## 8. Human decision matrix
+
+### 8.1 Strategic decisions of the experimental foundation (already established and published in `eeb3f53`)
+
+| ID | Faithful statement | Source and section | Approval status |
 | --- | --- | --- | --- |
-| **EST-01** | Desenvolver o AI Agent Orchestrator como aplicação independente, reutilizável em diferentes projetos (IAS, Jungle e futuros) e complementar ao AI Memory. | `README.md` L3–7; `001-handoff-fundacao-experimental.md` Seção 6 (L47) | **Decisão humana estabelecida** |
-| **EST-02** | Preservar autoridade humana final sobre escopo, execução, decisões, homologação e integração; mensagens no AI Memory são insumo técnico. | `README.md` L5; `001-handoff-fundacao-experimental.md` Seção 6 (L48) | **Decisão humana estabelecida** |
-| **EST-03** | Concentrar desenvolvimento futuro no AI Agent Orchestrator em parceria com o AI Memory; preservar o AI Orchestration Lab como referência histórica sem continuidade ativa prevista. | `README.md` L9; `001-relatorio-experimental.md` Seção 2 (L17); `001-handoff-fundacao-experimental.md` Seção 6 (L49) | **Decisão humana estabelecida** |
-| **EST-04** | Condicionar exclusão, alteração ou migração de artefatos/contratos do AI Orchestration Lab a autorização específica, sem presumir equivalência funcional. | `README.md` L9; `001-relatorio-experimental.md` L17; `001-handoff-fundacao-experimental.md` Seção 6 (L50) | **Decisão humana estabelecida** |
+| **EST-01** | Develop AI Agent Orchestrator as an independent application, reusable across projects (IAS, Jungle, and future projects) and complementary to AI Memory. | `README.md` L3–7 and `001-handoff-fundacao-experimental.md` section 6 (L47) | **Established human decision** |
+| **EST-02** | Preserve final human authority over scope, execution, decisions, formal approval, and integration. AI Memory messages are technical inputs. | `README.md` L5 and `001-handoff-fundacao-experimental.md` section 6 (L48) | **Established human decision** |
+| **EST-03** | Focus future development on AI Agent Orchestrator in partnership with AI Memory. Preserve AI Orchestration Lab as a historical reference with no continued active work planned. | `README.md` L9, `001-relatorio-experimental.md` section 2 (L17), and `001-handoff-fundacao-experimental.md` section 6 (L49) | **Established human decision** |
+| **EST-04** | Make deletion, modification, or migration of AI Orchestration Lab artifacts and contracts subject to specific authorization, without assuming functional equivalence. | `README.md` L9, `001-relatorio-experimental.md` L17, and `001-handoff-fundacao-experimental.md` section 6 (L50) | **Established human decision** |
 
-### 8.2 As 16 diretrizes arquiteturais (`DEC-01` a `DEC-16`)
+### 8.2 The 16 architectural directives (`DEC-01` through `DEC-16`)
 
-*Nota de status:* Todas as 16 diretrizes abaixo constam em `docs/architecture/001-diretrizes-arquiteturais.md` (Seção 4, L26–43) como consolidação das diretrizes comunicadas pelo responsável humano, com parecer favorável em `004` (R2), mas o documento inteiro permanece **pendente de homologação documental humana** (Seção 1, L6).
+*Status note* — All 16 directives below appear in `docs/architecture/001-diretrizes-arquiteturais.md` (section 4, L26–43) as a consolidation of directives communicated by the human owner, with a favorable review in `004` (R2). The entire document remains **pending formal human approval** (section 1, L6).
 
-| ID | Enunciado fiel (síntese fiel à Seção 4) | Fonte e seção | Status de aprovação | Motivação técnica | Consequência operacional | Dependências / questões pendentes |
+| ID | Faithful statement (summary faithful to section 4) | Source and section | Approval status | Technical rationale | Operational consequence | Dependencies / open questions |
 | --- | --- | --- | --- | --- | --- | --- |
-| **DEC-01** | Começar com ferramenta local, simples de projetar, implementar, manter e operar, evitando abstrações prematuras, infraestrutura distribuída e funcionalidades especulativas, mantendo controles mínimos de integridade, segurança, autorização e rastreabilidade. | `001-diretrizes-arquiteturais.md` Seção 4 (L28), Seção 2 (L15), Seção 16 (L126) | Comunicada pelo humano; **homologação documental pendente** | Reduzir custo de construção/operação e evitar sobreengenharia antes de validar o fluxo real. | Arquitetura local-first; toda complexidade extra exige justificativa por risco concreto ou requisito aprovado. | Escolha de linguagem, persistência local e interface mínima (Seção 15). |
-| **DEC-02** | ChatGPT apoia o humano no planejamento, análise e gates. Início manual com prompt autorizado e autocontido (escopo, baseline, fontes, responsabilidades, limites, critérios) para executor designado; retorno ao ChatGPT pode ser manual; V1 dispensa integração automática obrigatória ao ChatGPT. | `001-diretrizes-arquiteturais.md` Seção 4 (L29), Seção 5 (L50), Seção 6 (L57) | Comunicada pelo humano; **homologação documental pendente** | Manter humano e ChatGPT na camada estratégica sem acoplar V1 à API/UI do ChatGPT. | Elimina dependência de integração automática com ChatGPT na V1; exige formato claro de prompt autorizado e relatório final. | Articulação exata entre prompt manual e registro prévio no orquestrador (`AUD-002`). |
-| **DEC-03** | AI Memory permanece independente e auxilia em comunicação e memória persistente; orquestrador coordena e verifica contexto/autorização antes de agir; mensagens isoladas não autorizam execução; entrega assíncrona confiável em produção segue por demonstrar. | `001-diretrizes-arquiteturais.md` Seção 4 (L30), Seção 5 (L51), Seção 7 (L67), Seção 13 (L97), Seção 16 (L123) | Comunicada pelo humano; **homologação documental pendente** | Evitar acoplamento ao produto de terceiros e impedir escalada de privilégio via prompt injection em mensagens. | Orquestrador mantém fonte própria de autorização/estado; mensagens do AI Memory são tratadas como entrada não confiável. | Contratos CLI vs. MCP e estratégia de verificação de proveniência (Seção 15). |
-| **DEC-04** | Privilegiar mensagens pequenas e estruturadas indicando ação solicitada e referenciando artefatos locais vinculados à tarefa; conteúdo técnico completo fica nos documentos. | `001-diretrizes-arquiteturais.md` Seção 4 (L31), Seção 7 (L67–69), Seção 16 (L123) | Comunicada pelo humano; **homologação documental pendente** | Superar limites de payload/truncamento (20k/25k chars nas POCs) e manter documentos como fonte completa. | Mensagens da inbox servem como ponteiros/sinais estruturados; validação prévia de referências antes do uso. | Schema, campos obrigatórios, versionamento de payload e protocolo (Seção 15). |
-| **DEC-05** | Dar identidade verificável aos documentos usados na coordenação e preservar imutabilidade das versões empregadas em revisão; cada parecer aponta a versão exata examinada; hashes comprovam identidade/integridade de conteúdo. | `001-diretrizes-arquiteturais.md` Seção 4 (L32), Seção 8 (L73), Seção 13 (L95–96) | Comunicada pelo humano; **homologação documental pendente** | Evitar divergência entre código testado, versão revisada e versão corrigida (risco identificado nas POCs). | Toda correção gera nova versão vinculada à anterior; versões revisadas ficam imutáveis enquanto retidas. | Identificação lógica, snapshot pré-commit e armazenamento físico (Seção 15). |
-| **DEC-06** | Admitir área temporária na raiz do projeto consumidor, segregada por tarefa, para instruções, intermediários, revisões e artefatos; limpar só após encerramento autorizado e preservação dos registros necessários; registros de retomada/auditoria devem ter destino durável fora dela. | `001-diretrizes-arquiteturais.md` Seção 4 (L33), Seção 12 (L91), Seção 13 (L96) | Comunicada pelo humano; **homologação documental pendente** | Organizar artefatos transitórios perto do projeto sem perder rastreabilidade nem poluir o repositório permanentemente. | Separação obrigatória entre área transitória e destino durável; limpeza condicionada a gate e promoção. | Nomenclatura, estrutura interna, retenção e isolamento Git/sandbox (`AUD-001`, Seção 15). |
-| **DEC-07** | Promover artefatos relevantes a destinos persistentes do projeto (handoffs, reviews, evidence, documentação técnica), preservando associação tarefa–versões–resultados–evidências; inclusão em Git é seletiva. | `001-diretrizes-arquiteturais.md` Seção 4 (L34), Seção 12 (L91) | Comunicada pelo humano; **homologação documental pendente** | Garantir auditabilidade durável sem versionar ruído transitório no Git. | Pipeline explícito de promoção antes da limpeza da área temporária. | Destinos concretos, critérios de seleção Git e política de retenção/acesso (Seção 15). |
-| **DEC-08** | Favorecer execução sequencial na V1 e evitar concorrência na mesma tarefa; executor solicita próxima operação e orquestrador valida transição antes de acionar próximo executor; uma única execução ativa global é opção inicial a considerar. | `001-diretrizes-arquiteturais.md` Seção 4 (L35), Seção 6 (L63), Seção 16 (L122) | Comunicada pelo humano; **homologação documental pendente** | Minimizar condições de corrida e simplificar controle de estado na V1. | Sem paralelismo intra-tarefa; espera assíncrona pode existir sem concorrência na mesma tarefa. | Limite de execuções ativas no orquestrador e mecanismo de espera (Seção 15). |
-| **DEC-09** | Centralizar no orquestrador estado operacional, sequência, executor designado, validação de transições, cumprimento do escopo e encaminhamento a gates; ampliação de escopo e passagem por gates exigem autorização aplicável. | `001-diretrizes-arquiteturais.md` Seção 4 (L36), Seção 5 (L52), Seção 6 (L57–59), Seção 10 (L83) | Comunicada pelo humano; **homologação documental pendente** | Evitar autoridade difusa entre agentes e garantir ponto único de controle normativo. | Agentes propõem/executam; apenas o orquestrador valida e avança transições. | Mecanismo concreto de verificação de escopo e autorização inicial (`AUD-002`, Seção 15). |
-| **DEC-10** | Manter histórico estruturado por tarefa; orquestrador centraliza e valida transições; histórico identifica última etapa comprovadamente concluída e operações com conclusão incerta; texto livre apenas complementa registros estruturados. | `001-diretrizes-arquiteturais.md` Seção 4 (L37), Seção 9 (L77), Seção 13 (L96) | Comunicada pelo humano; **homologação documental pendente** | Eliminar fragilidade de controle baseado em parsing de texto livre (limitação observada nas POCs). | Toda decisão de transição e retomada lê registros estruturados, não prose livre. | Schema de eventos e nomenclatura de estados (Seção 15). |
-| **DEC-11** | Preservar estado suficiente para analisar e retomar interrupções; adotar histórico autoritativo de eventos e estado atual reconstruível/reconciliável; arquivos locais são opção a avaliar; banco/mensageria/infra distribuída fora das decisões desta etapa. | `001-diretrizes-arquiteturais.md` Seção 4 (L38), Seção 9 (L77–79), Seção 16 (L124) | Comunicada pelo humano; **homologação documental pendente** | Permitir auditoria e retomada determinística mantendo simplicidade local. | Fonte de verdade baseada em log autoritativo de eventos + estado derivável/reconciliável. | Escolha de armazenamento local (ex.: JSONL/SQLite) e algoritmo de reconciliação (Seção 15). |
-| **DEC-12** | Tornar reconhecíveis falhas de processo, reinicializações inesperadas, limites de tokens e interrupções de contexto; na retomada consultar eventos, artefatos e efeitos comprovados; ausência de registro de conclusão não autoriza repetir operação irreversível; incerteza material interrompe e escala ao humano. | `001-diretrizes-arquiteturais.md` Seção 4 (L39), Seção 11 (L87), Seção 13 (L96), Seção 16 (L124) | Comunicada pelo humano; **homologação documental pendente** | Impedir corrupção silenciosa ou repetição perigosa após crashes/timeouts/limites de contexto. | Política fail-closed sob incerteza material; recuperação automática deliberadamente limitada. | Classificação de operações irreversíveis, detecção de processos órfãos e timeouts (Seção 15). |
-| **DEC-13** | Preservar continuidade entre sessões por handoff com estado comprovado, artefatos, evidências e próximo passo, validável a partir dos registros persistidos mesmo sem contexto conversacional anterior. | `001-diretrizes-arquiteturais.md` Seção 4 (L40), Seção 11 (L87), Seção 16 (L125) | Comunicada pelo humano; **homologação documental pendente** | Garantir resiliência à perda de janela de contexto ou troca de instância de agente. | Handoffs estruturados e validados pelo orquestrador na retomada. | Formato e ciclo de vida dos handoffs por tarefa (Seção 15). |
-| **DEC-14** | Preservar independência entre elaboração, implementação e revisão; Codex e Antigravity podem assumir papéis distintos conforme designação; parecer identifica versão analisada e traz achados verificáveis; correções vinculadas a achados e revisão regressiva; homologação é humana. | `001-diretrizes-arquiteturais.md` Seção 4 (L41), Seção 5 (L53), Seção 6 (L60), Seção 13 (L95), Seção 16 (L123) | Comunicada pelo humano; **homologação documental pendente** | Evitar viés de autorrevisão e assegurar rastreabilidade achado → correção → regressão (demonstrada na POC-007). | Separação de papéis por etapa; revisor nunca é o mesmo executor da versão analisada. | Formato estruturado mínimo de achados e pareceres (Seção 15). |
-| **DEC-15** | Permitir futura incorporação de executores com extensibilidade controlada; planejar inicialmente para Codex e Antigravity (exercitados nas POCs) e evitar framework genérico prematuro. | `001-diretrizes-arquiteturais.md` Seção 4 (L42), Seção 15 (L113), Seção 16 (L126) | Comunicada pelo humano; **homologação documental pendente** | Evitar lock-in nos dois agentes atuais sem pagar custo de abstração prematura. | Adaptadores simples para Codex e Antigravity com contrato mínimo de entrada/saída. | Condições mínimas de integração de executores (Seção 15). |
-| **DEC-16** | Manter o orquestrador independente dos projetos consumidores e de suas regras de domínio; vincular cada integração ao contexto, repositório e autorizações da tarefa; namespace do IAS é apenas registro histórico das POCs e fica fora da seleção automática. | `001-diretrizes-arquiteturais.md` Seção 4 (L43), Seção 13 (L96–97), Seção 16 (L122) | Comunicada pelo humano; **homologação documental pendente** | Garantir reutilização limpa em IAS, Jungle e projetos futuros, evitando vazamento entre projetos. | Nenhum default hardcoded de projeto consumidor (proibindo repetição do padrão das POCs 005–007). | Registro de projetos autorizados e mapeamento de namespaces/workspaces (Seção 15). |
+| **DEC-01** | Start with a local tool that is simple to design, implement, maintain, and operate, avoiding premature abstractions, distributed infrastructure, and speculative features while maintaining minimum controls for integrity, security, authorization, and traceability. | `001-diretrizes-arquiteturais.md` section 4 (L28), section 2 (L15), section 16 (L126) | Communicated by the human. **Formal document approval pending** | Reduce build and operating costs and avoid overengineering before validating the real workflow. | Local-first architecture. Any additional complexity requires justification based on a concrete risk or approved requirement. | Choice of language, local persistence, and minimal interface (section 15). |
+| **DEC-02** | ChatGPT assists the human with planning, analysis, and gates. Start manually with an authorized, self-contained prompt (scope, baseline, sources, responsibilities, limits, criteria) for the designated executor. Results may be returned manually to ChatGPT. V1 has no mandatory automatic ChatGPT integration. | `001-diretrizes-arquiteturais.md` section 4 (L29), section 5 (L50), section 6 (L57) | Communicated by the human. **Formal document approval pending** | Keep the human and ChatGPT at the strategic level without coupling V1 to the ChatGPT API/UI. | Removes dependence on automatic ChatGPT integration in V1 and requires a clear format for the authorized prompt and final report. | Exact relationship between the manual prompt and prior registration in the orchestrator (`AUD-002`). |
+| **DEC-03** | AI Memory remains independent and assists with communication and persistent memory. The orchestrator coordinates and verifies context and authorization before acting. Individual messages do not authorize execution. Reliable asynchronous delivery in production remains to be demonstrated. | `001-diretrizes-arquiteturais.md` section 4 (L30), section 5 (L51), section 7 (L67), section 13 (L97), section 16 (L123) | Communicated by the human. **Formal document approval pending** | Avoid coupling to a third-party product and prevent privilege escalation through prompt injection in messages. | The orchestrator maintains its own source of authorization and state. AI Memory messages are treated as untrusted input. | CLI vs. MCP contracts and provenance verification strategy (section 15). |
+| **DEC-04** | Favor small, structured messages that identify the requested action and reference local artifacts tied to the task. Full technical content stays in the documents. | `001-diretrizes-arquiteturais.md` section 4 (L31), section 7 (L67–69), section 16 (L123) | Communicated by the human. **Formal document approval pending** | Address payload and truncation limits (20k/25k chars in the POCs) and keep documents as the complete source. | Inbox messages serve as structured pointers or signals, with references validated before use. | Schema, required fields, payload versioning, and protocol (section 15). |
+| **DEC-05** | Give documents used in coordination a verifiable identity and preserve the immutability of versions used in review. Each review identifies the exact version examined. Hashes prove content identity and integrity. | `001-diretrizes-arquiteturais.md` section 4 (L32), section 8 (L73), section 13 (L95–96) | Communicated by the human. **Formal document approval pending** | Avoid divergence between tested code, the reviewed version, and the corrected version (a risk identified in the POCs). | Each correction creates a new version linked to the previous one. Reviewed versions remain immutable while retained. | Logical identification, pre-commit snapshot, and physical storage (section 15). |
+| **DEC-06** | Allow a temporary workspace at the consumer project's root, segregated by task, for instructions, intermediate files, reviews, and artifacts. Clean up only after authorized closure and preservation of the necessary records. Recovery and audit records must have a durable destination outside it. | `001-diretrizes-arquiteturais.md` section 4 (L33), section 12 (L91), section 13 (L96) | Communicated by the human. **Formal document approval pending** | Organize transient artifacts near the project without losing traceability or permanently cluttering the repository. | Mandatory separation of the transient area and durable destination. Cleanup depends on the approval gate and promotion. | Naming, internal structure, retention, and Git/sandbox isolation (`AUD-001`, section 15). |
+| **DEC-07** | Promote relevant artifacts to persistent project destinations (handoffs, reviews, evidence, technical documentation), preserving the association among task, versions, results, and evidence. Inclusion in Git is selective. | `001-diretrizes-arquiteturais.md` section 4 (L34), section 12 (L91) | Communicated by the human. **Formal document approval pending** | Provide durable auditability without versioning transient noise in Git. | Explicit promotion pipeline before temporary workspace cleanup. | Specific destinations, Git selection criteria, and retention/access policy (section 15). |
+| **DEC-08** | Favor sequential execution in V1 and avoid concurrency within the same task. The executor requests the next operation, and the orchestrator validates the transition before invoking the next executor. A single active execution globally is an initial option to consider. | `001-diretrizes-arquiteturais.md` section 4 (L35), section 6 (L63), section 16 (L122) | Communicated by the human. **Formal document approval pending** | Minimize race conditions and simplify state control in V1. | No parallelism within a task. Asynchronous waiting can occur without concurrency in the same task. | Limit on active executions in the orchestrator and waiting mechanism (section 15). |
+| **DEC-09** | Centralize operational state, sequencing, designated executor, transition validation, scope enforcement, and routing to gates in the orchestrator. Scope expansion and passage through gates require the applicable authorization. | `001-diretrizes-arquiteturais.md` section 4 (L36), section 5 (L52), section 6 (L57–59), section 10 (L83) | Communicated by the human. **Formal document approval pending** | Avoid diffuse authority among agents and ensure a single point of normative control. | Agents propose and execute. Only the orchestrator validates and advances transitions. | Specific mechanism for scope and initial authorization verification (`AUD-002`, section 15). |
+| **DEC-10** | Maintain structured history per task. The orchestrator centralizes and validates transitions. The history identifies the last verified completed step and operations whose completion is uncertain. Free text only supplements structured records. | `001-diretrizes-arquiteturais.md` section 4 (L37), section 9 (L77), section 13 (L96) | Communicated by the human. **Formal document approval pending** | Eliminate the fragility of control based on parsing free text (a limitation observed in the POCs). | All transition and recovery decisions use structured records instead of free prose. | Event schema and state names (section 15). |
+| **DEC-11** | Preserve sufficient state to analyze and recover from interruptions. Adopt an authoritative event history and a reconstructible or reconcilable current state. Local files are an option to evaluate. Distributed databases, messaging, and infrastructure are outside the decisions at this stage. | `001-diretrizes-arquiteturais.md` section 4 (L38), section 9 (L77–79), section 16 (L124) | Communicated by the human. **Formal document approval pending** | Enable auditing and deterministic recovery while keeping local operation simple. | Source of truth based on an authoritative event log and derivable or reconcilable state. | Choice of local storage (e.g., JSONL/SQLite) and reconciliation algorithm (section 15). |
+| **DEC-12** | Make process failures, unexpected restarts, token limits, and context interruptions identifiable. On resumption, consult events, artifacts, and verified effects. Absence of a completion record does not authorize repetition of an irreversible operation. Material uncertainty stops the workflow and triggers escalation to the human. | `001-diretrizes-arquiteturais.md` section 4 (L39), section 11 (L87), section 13 (L96), section 16 (L124) | Communicated by the human. **Formal document approval pending** | Prevent silent corruption or dangerous repetition after crashes, timeouts, or context limits. | Fail-closed policy under material uncertainty. Automatic recovery is deliberately limited. | Classification of irreversible operations, orphan process detection, and timeouts (section 15). |
+| **DEC-13** | Preserve continuity between sessions through a handoff with verified state, artifacts, evidence, and the next step, verifiable from persisted records even without prior conversation context. | `001-diretrizes-arquiteturais.md` section 4 (L40), section 11 (L87), section 16 (L125) | Communicated by the human. **Formal document approval pending** | Ensure resilience to loss of the context window or a change of agent instance. | Structured handoffs validated by the orchestrator on resumption. | Per-task handoff format and lifecycle (section 15). |
+| **DEC-14** | Preserve independence among drafting, implementation, and review. Codex and Antigravity may assume distinct roles as assigned. The review identifies the version analyzed and provides verifiable findings. Corrections are linked to findings and regression review. The human gives formal approval. | `001-diretrizes-arquiteturais.md` section 4 (L41), section 5 (L53), section 6 (L60), section 13 (L95), section 16 (L123) | Communicated by the human. **Formal document approval pending** | Avoid self-review bias and ensure traceability from finding → correction → regression check (demonstrated in POC-007). | Separate roles by step. The reviewer is never the executor of the version under analysis. | Minimum structured format for findings and reviews (section 15). |
+| **DEC-15** | Allow future integration of executors through controlled extensibility. Plan initially for Codex and Antigravity (exercised in the POCs) and avoid a premature generic framework. | `001-diretrizes-arquiteturais.md` section 4 (L42), section 15 (L113), section 16 (L126) | Communicated by the human. **Formal document approval pending** | Avoid lock-in to the two current agents without incurring the cost of premature abstraction. | Simple adapters for Codex and Antigravity with a minimal input/output contract. | Minimum conditions for integrating executors (section 15). |
+| **DEC-16** | Keep the orchestrator independent of consumer projects and their domain rules. Tie each integration to the task's context, repository, and authorizations. The IAS namespace is solely a historical record of the POCs and is excluded from automatic selection. | `001-diretrizes-arquiteturais.md` section 4 (L43), section 13 (L96–97), section 16 (L122) | Communicated by the human. **Formal document approval pending** | Enable clean reuse in IAS, Jungle, and future projects while preventing cross-project leakage. | No hardcoded consumer-project default, preventing a repeat of the POC 005–007 pattern. | Registry of authorized projects and mapping of namespaces/workspaces (section 15). |
 
 ---
 
-## 9. Matriz de requisitos e invariantes
+## 9. Requirements and invariants matrix
 
-| Categoria | Descrição | Origem (Explícito / Inferido) | Referência documental |
+| Category | Description | Origin (Explicit / Inferred) | Documentation reference |
 | --- | --- | --- | --- |
-| **Requisito funcional** | Vincular cada tarefa a ID, projeto autorizado, repositório, baseline, escopo, papel/executor, limites e autorização humana verificável. | **Explícito** | `001-relatorio-experimental.md` Seção 13 #1; `001-diretrizes-arquiteturais.md` Seção 6 #1, Seção 13 |
-| **Requisito funcional** | Coordenar execução sequencial entre Codex e Antigravity com validação de transição, revisão independente, correção vinculada a achados e verificação regressiva. | **Explícito** | `001-diretrizes-arquiteturais.md` `DEC-08`, `DEC-14`, Seção 6, Seção 16 #1–2 |
-| **Requisito funcional** | Trocar mensagens curtas estruturadas com referências a artefatos locais imutáveis, validando pertencimento ao projeto/tarefa, versão e etapa ativa. | **Explícito** | `001-diretrizes-arquiteturais.md` `DEC-04`, `DEC-05`, Seção 7 |
-| **Requisito funcional** | Promover artefatos relevantes (`handoffs`, `reviews`, `evidence`, docs) antes de limpar área temporária segregada por tarefa. | **Explícito** | `001-diretrizes-arquiteturais.md` `DEC-06`, `DEC-07`, Seção 12 |
-| **Requisito funcional** | Gerar handoff validável a partir de registros persistidos para continuidade entre sessões. | **Explícito** | `001-diretrizes-arquiteturais.md` `DEC-13`, Seção 11 |
-| **Requisito não funcional** | Simplicidade operacional e estrutural local-first, sem infraestrutura distribuída ou framework genérico prematuro. | **Explícito** | `001-diretrizes-arquiteturais.md` `DEC-01`, `DEC-11`, `DEC-15`, Seção 2 |
-| **Requisito não funcional** | Extensibilidade controlada para inclusão futura de outros executores além de Codex e Antigravity. | **Explícito** | `001-diretrizes-arquiteturais.md` `DEC-15`, Seção 15, Seção 16 #5 |
-| **Segurança** | Tratar mensagens recebidas e pareceres como entradas não confiáveis; verificar origem, destino, correlação, duplicidade e ordenação. | **Explícito** | `001-relatorio-experimental.md` Seção 12–13; `001-diretrizes-arquiteturais.md` `DEC-03`, Seção 7 |
-| **Segurança** | Reduzir dados sensíveis em cópias compartilhadas de evidências, mantendo rastreabilidade de supressões e hashes. | **Explícito** | `001-relatorio-experimental.md` Seção 13 #7, Seção 15; `MANIFEST.md` L11–12 |
-| **Segurança** | Proteger artefatos de controle/avaliação (logs, estado, testes regressivos) contra escrita acidental pelo sandbox do executor. | **Inferido** (a partir do risco documentado da POC-007) | `001-relatorio-experimental.md` Seção 12 (L144); `001-diretrizes-arquiteturais.md` Seção 14 (L103) |
-| **Autorização** | Autorização humana verificável por fonte própria (não por mensagem isolada do AI Memory) para início, mudança de escopo, gates e homologação. | **Explícito** | `001-diretrizes-arquiteturais.md` `DEC-03`, `DEC-09`, Seção 10, Seção 16 #2 |
-| **Restrição arquitetural** | AI Memory permanece produto independente; banco, mensageria e infraestrutura distribuídos fora desta etapa; regras de domínio fora do núcleo do orquestrador. | **Explícito** | `001-diretrizes-arquiteturais.md` `DEC-03`, `DEC-11`, `DEC-16`, Seção 13 |
-| **Rastreabilidade** | Histórico estruturado por tarefa ligando operação, responsável, versão examinada (imutável, verificável por hash), resultado e evidência; distinção entre reivindicação e conclusão. | **Explícito** | `001-diretrizes-arquiteturais.md` `DEC-05`, `DEC-10`, Seções 8–9 |
-| **Persistência** | Histórico autoritativo de eventos + estado atual reconstruível ou reconciliável; destino durável obrigatório fora da área temporária. | **Explícito** | `001-diretrizes-arquiteturais.md` `DEC-06`, `DEC-11`, Seções 9 e 12 |
-| **Isolamento entre projetos** | Contexto, repositório, namespace e autorizações segregados por tarefa; proibição de reuso automático do namespace do IAS. | **Explícito** | `001-diretrizes-arquiteturais.md` `DEC-16`, Seção 13 |
-| **Condições de parada** | Interromper e escalar ao humano diante de incerteza material, efeito anterior indeterminado em operação potencialmente irreversível, referência fora de escopo ou gate obrigatório. | **Explícito** | `001-diretrizes-arquiteturais.md` `DEC-12`, Seções 7, 10 e 11 |
-| **Condições de recuperação** | Na retomada, o orquestrador revalida contexto/escopo e reconcilia histórico autoritativo, artefatos e efeitos observáveis antes de autorizar o executor a prosseguir. | **Explícito** | `001-diretrizes-arquiteturais.md` `DEC-11`, `DEC-12`, `DEC-13`, Seção 11 |
-| **Invariantes positivas** | Preservar autorização verificável, vínculo projeto/baseline, escopo do executor, independência da revisão, identidade/imutabilidade das versões e vínculo evento–resultado–evidência. | **Explícito** | `001-diretrizes-arquiteturais.md` Seção 13 (L95) |
-| **Invariantes negativas** | Impedir escrita/execução fora de escopo, passagem por gate sem autorização, substituição silenciosa de versão revisada, reuso automático de namespace alheio, repetição insegura sob efeito incerto, controle só por texto livre e área temporária como destino durável único. | **Explícito** | `001-diretrizes-arquiteturais.md` Seção 13 (L96) |
+| **Functional requirement** | Bind each task to an ID, authorized project, repository, baseline, scope, role/executor, limits, and verifiable human authorization. | **Explicit** | `001-relatorio-experimental.md` section 13 #1 and `001-diretrizes-arquiteturais.md` section 6 #1, section 13 |
+| **Functional requirement** | Coordinate sequential execution between Codex and Antigravity with transition validation, independent review, corrections linked to findings, and regression checks. | **Explicit** | `001-diretrizes-arquiteturais.md` `DEC-08`, `DEC-14`, section 6, section 16 #1–2 |
+| **Functional requirement** | Exchange short structured messages with references to immutable local artifacts, validating project and task membership, version, and active step. | **Explicit** | `001-diretrizes-arquiteturais.md` `DEC-04`, `DEC-05`, section 7 |
+| **Functional requirement** | Promote relevant artifacts (`handoffs`, `reviews`, `evidence`, docs) before cleaning up the task-segregated temporary workspace. | **Explicit** | `001-diretrizes-arquiteturais.md` `DEC-06`, `DEC-07`, section 12 |
+| **Functional requirement** | Generate a handoff verifiable using persisted records for continuity between sessions. | **Explicit** | `001-diretrizes-arquiteturais.md` `DEC-13`, section 11 |
+| **Non-functional requirement** | Local-first operational and structural simplicity without distributed infrastructure or a premature generic framework. | **Explicit** | `001-diretrizes-arquiteturais.md` `DEC-01`, `DEC-11`, `DEC-15`, section 2 |
+| **Non-functional requirement** | Controlled extensibility for future executors beyond Codex and Antigravity. | **Explicit** | `001-diretrizes-arquiteturais.md` `DEC-15`, section 15, section 16 #5 |
+| **Security** | Treat incoming messages and reviews as untrusted inputs. Verify source, destination, correlation, duplication, and ordering. | **Explicit** | `001-relatorio-experimental.md` sections 12–13 and `001-diretrizes-arquiteturais.md` `DEC-03`, section 7 |
+| **Security** | Minimize sensitive data in shared copies of evidence while preserving traceability of redactions and hashes. | **Explicit** | `001-relatorio-experimental.md` section 13 #7, section 15, and `MANIFEST.md` L11–12 |
+| **Security** | Protect control and evaluation artifacts (logs, state, regression tests) from accidental writes by the executor sandbox. | **Inferred** (from the documented POC-007 risk) | `001-relatorio-experimental.md` section 12 (L144) and `001-diretrizes-arquiteturais.md` section 14 (L103) |
+| **Authorization** | Verifiable human authorization through its own source, independent of any individual AI Memory message, for initiation, scope changes, gates, and formal approval. | **Explicit** | `001-diretrizes-arquiteturais.md` `DEC-03`, `DEC-09`, section 10, section 16 #2 |
+| **Architectural constraint** | AI Memory remains an independent product. Distributed databases, messaging, and infrastructure are outside this stage. Domain rules stay outside the orchestrator core. | **Explicit** | `001-diretrizes-arquiteturais.md` `DEC-03`, `DEC-11`, `DEC-16`, section 13 |
+| **Traceability** | Structured history per task linking operation, responsible actor, examined version (immutable, verifiable by hash), result, and evidence. Distinguish a claim from completion. | **Explicit** | `001-diretrizes-arquiteturais.md` `DEC-05`, `DEC-10`, sections 8–9 |
+| **Persistence** | Authoritative event history plus reconstructible or reconcilable current state. A durable destination outside the temporary workspace is mandatory. | **Explicit** | `001-diretrizes-arquiteturais.md` `DEC-06`, `DEC-11`, sections 9 and 12 |
+| **Cross-project isolation** | Segregate context, repository, namespace, and authorizations by task. Prohibit automatic reuse of the IAS namespace. | **Explicit** | `001-diretrizes-arquiteturais.md` `DEC-16`, section 13 |
+| **Stop conditions** | Stop and escalate to the human in the event of material uncertainty, an indeterminate prior effect of a potentially irreversible operation, an out-of-scope reference, or a mandatory gate. | **Explicit** | `001-diretrizes-arquiteturais.md` `DEC-12`, sections 7, 10, and 11 |
+| **Recovery conditions** | On resumption, the orchestrator revalidates context and scope and reconciles the authoritative history, artifacts, and observable effects before authorizing the executor to proceed. | **Explicit** | `001-diretrizes-arquiteturais.md` `DEC-11`, `DEC-12`, `DEC-13`, section 11 |
+| **Positive invariants** | Preserve verifiable authorization, the link to project and baseline, executor scope, review independence, version identity and immutability, and the link among event, result, and evidence. | **Explicit** | `001-diretrizes-arquiteturais.md` section 13 (L95) |
+| **Negative invariants** | Prevent out-of-scope writes or execution, passage through gates without authorization, silent replacement of a reviewed version, automatic reuse of another project's namespace, unsafe repetition when the effect is uncertain, control based solely on free text, and use of the temporary workspace as the only durable destination. | **Explicit** | `001-diretrizes-arquiteturais.md` section 13 (L96) |
 
 ---
 
-## 10. Descrição integral do fluxo operacional
+## 10. Full description of the operational workflow
 
-Reconstrução do ciclo completo a partir de `001-diretrizes-arquiteturais.md` (Seções 4, 6–12) e `001-relatorio-experimental.md` (Seções 6 e 10):
+Reconstruction of the complete cycle from `001-diretrizes-arquiteturais.md` (sections 4, 6–12) and `001-relatorio-experimental.md` (sections 6 and 10):
 
-| Passo | Etapa do fluxo | Status empírico | Descrição e referências |
+| Step | Workflow stage | Empirical status | Description and references |
 | --- | --- | --- | --- |
-| 1 | **Preparação da tarefa (Humano + ChatGPT)** | **Manual / fora do orquestrador** | Humano e ChatGPT definem escopo, baseline, fontes, responsabilidades, limites e critérios de conclusão (`DEC-02`, Seção 5). |
-| 2 | **Emissão do prompt inicial autorizado** | **Planejado (gate inicial)** | Humano emite prompt autorizado autocontido. Antes de qualquer ação coordenada, o orquestrador registra e valida tarefa, escopo, repositório, baseline, executor, limites e critérios a partir de autorização verificável (`001-diretrizes-arquiteturais.md` Seção 6 #1, Seção 10). *Ver `AUD-002`.* |
-| 3 | **Recebimento pelo executor inicial** | **Demonstrado em POC sintética (006/007)** | Executor (ex.: Codex) é acionado em modo não interativo dentro do escopo autorizado (`poc_ai_memory_006.py`, `007.py`; `DEC-08`). |
-| 4 | **Verificação do escopo e das fontes** | **Parcialmente demonstrado (POC-007 `guard_tree`) / Planejado** | Conferência de baseline, arquivos permitidos e integridade. Nas POCs 006–007, cobertura parcial (apenas árvore `demo/`); no orquestrador, validação centralizada antes e depois da etapa (`DEC-09`, Seção 6 #3). |
-| 5 | **Produção dos artefatos** | **Demonstrado em POC sintética (006/007)** | Executor produz alterações/documentos, versão imutável dos artefatos e evidências de validação local (`001-diretrizes-arquiteturais.md` Seção 6 #2, Seção 8). |
-| 6 | **Solicitação de revisão independente** | **Parcialmente demonstrado (POCs 006/007 via CLI síncrono) / Planejado (referências curtas)** | Executor ou orquestrador registra solicitação estruturada curta apontando tarefa e versão exata fixada; orquestrador valida transição e referências (`DEC-04`, `DEC-05`, `DEC-08`, Seção 7). |
-| 7 | **Encaminhamento ao próximo executor (Revisor)** | **Demonstrado em POC sintética (006/007)** | Orquestrador aciona revisor independente (ex.: Antigravity em modo somente leitura/plan) sobre a versão fixada (`DEC-14`, Seção 6 #4). |
-| 8 | **Tratamento dos achados** | **Demonstrado em POC sintética (006 resposta / 007 correção)** | Parecer identifica versão e achados verificáveis (com contraprovas quando aplicável); orquestrador valida transição e encaminha ao executor responsável pela correção (`DEC-14`, `001-relatorio-experimental.md` Seção 6). |
-| 9 | **Correção e revisão regressiva** | **Demonstrado em POC sintética (007 RED/GREEN + review2)** | Correção gera nova versão vinculada à versão revisada e aos achados; testes e revisor independente executam verificação regressiva (`DEC-05`, `DEC-14`, Seção 6 #4, Seção 8). |
-| 10 | **Geração dos relatórios finais** | **Planejado** | Orquestrador consolida histórico estruturado, versões, pareceres, evidências e pendências em relatório rastreável (`DEC-02`, `DEC-10`, Seção 6 #5). |
-| 11 | **Encaminhamento ao gate humano** | **Planejado (não demonstrado nas POCs)** | Fluxo pausa no gate e apresenta ao responsável humano (com apoio manual do ChatGPT, se desejado) o que está comprovado ou pendente (`DEC-02`, `DEC-09`, Seção 10). |
-| 12 | **Homologação e eventual integração Git** | **Planejado (não demonstrado nas POCs)** | Humano decide homologação e autoriza explicitamente efeitos externos ou operações Git (`DEC-09`, `DEC-14`, `README.md` L5). *Ver `AUD-004`.* |
-| 13 | **Preservação das evidências e encerramento** | **Parcialmente demonstrado (preservação manual em `evidence/pocs/`) / Planejado (automação)** | Promoção dos registros relevantes a destinos duráveis (`handoffs`, `reviews`, `evidence`, docs), limpeza da área temporária somente após encerramento autorizado e emissão de handoff se necessário (`DEC-06`, `DEC-07`, `DEC-13`, Seção 12). |
+| 1 | **Task preparation (human + ChatGPT)** | **Manual / outside the orchestrator** | The human and ChatGPT define scope, baseline, sources, responsibilities, limits, and completion criteria (`DEC-02`, section 5). |
+| 2 | **Issuing the authorized initial prompt** | **Planned (initial gate)** | The human issues an authorized, self-contained prompt. Before any coordinated action, the orchestrator registers and validates task, scope, repository, baseline, executor, limits, and criteria using verifiable authorization (`001-diretrizes-arquiteturais.md` section 6 #1, section 10). *See `AUD-002`.* |
+| 3 | **Receipt by the initial executor** | **Demonstrated in synthetic POCs (006/007)** | The executor (e.g., Codex) is invoked non-interactively within the authorized scope (`poc_ai_memory_006.py`, `007.py`, `DEC-08`). |
+| 4 | **Scope and source verification** | **Partially demonstrated (POC-007 `guard_tree`) / Planned** | Check baseline, permitted files, and integrity. POCs 006–007 provided partial coverage (only the `demo/` tree). The orchestrator centralizes validation before and after the step (`DEC-09`, section 6 #3). |
+| 5 | **Artifact production** | **Demonstrated in synthetic POCs (006/007)** | The executor produces changes or documents, an immutable artifact version, and local validation evidence (`001-diretrizes-arquiteturais.md` section 6 #2, section 8). |
+| 6 | **Independent review request** | **Partially demonstrated (POCs 006/007 via synchronous CLI) / Planned (short references)** | The executor or orchestrator records a short, structured request pointing to the task and the exact pinned version. The orchestrator validates the transition and references (`DEC-04`, `DEC-05`, `DEC-08`, section 7). |
+| 7 | **Routing to the next executor (reviewer)** | **Demonstrated in synthetic POCs (006/007)** | The orchestrator invokes an independent reviewer (e.g., Antigravity in read-only/plan mode) on the pinned version (`DEC-14`, section 6 #4). |
+| 8 | **Handling the findings** | **Demonstrated in synthetic POCs (006 response / 007 correction)** | The review identifies the version and verifiable findings, with counterexamples where applicable. The orchestrator validates the transition and forwards the review to the executor responsible for correction (`DEC-14`, `001-relatorio-experimental.md` section 6). |
+| 9 | **Correction and regression review** | **Demonstrated in a synthetic POC (007 RED/GREEN + review2)** | The correction creates a new version linked to the reviewed version and findings. Tests and an independent reviewer perform regression checks (`DEC-05`, `DEC-14`, section 6 #4, section 8). |
+| 10 | **Final report generation** | **Planned** | The orchestrator consolidates structured history, versions, reviews, evidence, and open items in a traceable report (`DEC-02`, `DEC-10`, section 6 #5). |
+| 11 | **Routing to the human approval gate** | **Planned (undemonstrated in the POCs)** | The workflow pauses at the gate and presents the human owner with what is verified or pending, with manual ChatGPT support if desired (`DEC-02`, `DEC-09`, section 10). |
+| 12 | **Formal approval and potential Git integration** | **Planned (undemonstrated in the POCs)** | The human decides on formal approval and explicitly authorizes external effects or Git operations (`DEC-09`, `DEC-14`, `README.md` L5). *See `AUD-004`.* |
+| 13 | **Evidence preservation and closure** | **Partially demonstrated (manual preservation in `evidence/pocs/`) / Planned (automation)** | Promote relevant records to durable destinations (`handoffs`, `reviews`, `evidence`, docs), clean up the temporary workspace only after authorized closure, and issue a handoff if needed (`DEC-06`, `DEC-07`, `DEC-13`, section 12). |
 
 ---
 
-## 11. Responsabilidades dos atores
+## 11. Actor responsibilities
 
-| Ator | Responsabilidades previstas | Fontes | Sobreposições ou ambiguidades identificadas |
+| Actor | Planned responsibilities | Sources | Identified overlaps or ambiguities |
 | --- | --- | --- | --- |
-| **Responsável humano** | Autoridade final: autorizar escopo e início, decidir gates e exceções, homologar entregas, autorizar integração Git e deliberações sobre o Lab. | `README.md` L5; `001-diretrizes-arquiteturais.md` Seção 5 (L49), Seção 10 | Nenhuma sobreposição de autoridade. Apenas definir no planejamento o formato verificável da autorização humana no gate inicial (`AUD-002`). |
-| **ChatGPT** | Apoiar o humano no planejamento, preparação de prompts, análise de entregas e decisão nos gates; recebe relatórios/referências manualmente. Fora do ciclo automático na V1. | `001-diretrizes-arquiteturais.md` `DEC-02`, Seção 5 (L50) | Fronteira clara. Não possui autoridade de execução nem integração automática na V1. |
-| **AI Agent Orchestrator** | Centro operacional: validar contexto e autorização, designar executores, validar transições e escopo, manter histórico autoritativo e estado, gerenciar interrupções/retomada, promover evidências e aplicar gates. | `001-diretrizes-arquiteturais.md` `DEC-09`, Seção 5 (L52), Seções 6–12 | Fronteira coerente com os demais atores após o saneamento R2 (`004`). Resta precisar o mecanismo de entrada da tarefa inicial (`AUD-002`). |
-| **AI Memory** | Produto independente (Fábio Akita) para memória persistente, contexto histórico e mensageria auxiliar entre agentes. Não é fonte de autorização nem dono do estado operacional. | `README.md` L5; `001-diretrizes-arquiteturais.md` `DEC-03`, Seção 5 (L51) | Fronteira muito bem definida. Nenhum acoplamento normativo indevido. |
-| **Codex** | Agente executor ou revisor conforme designação (nas POCs atuou como implementador, corretor e consolidador documental); atua no escopo autorizado, entrega evidências e solicita próxima operação. | `001-relatorio-experimental.md` Seção 11; `001-diretrizes-arquiteturais.md` `DEC-14`, `DEC-15`, Seção 5 (L53) | Sem ambiguidade de papel (papéis são intercambiáveis por designação, mantendo independência entre elaboração/implementação e revisão). |
-| **Antigravity** | Agente revisor ou executor conforme designação (nas POCs atuou como revisor independente adversarial/regressivo); examina versão fixada com independência e emite parecer verificável. | `001-relatorio-experimental.md` Seção 11; `001-diretrizes-arquiteturais.md` `DEC-14`, `DEC-15`, Seção 5 (L53) | Sem ambiguidade de papel. |
-| **Futuros agentes executores/revisores** | Incorporação futura controlada sob o mesmo contrato mínimo de papel, escopo e evidência, sem construir framework genérico prematuro na V1. | `001-diretrizes-arquiteturais.md` `DEC-15`, Seção 15 (L113), Seção 16 (L126) | Bem delimitado; condições mínimas de integração remetidas ao planejamento. |
+| **Human owner** | Has final authority to authorize scope and initiation, decide on gates and exceptions, formally approve deliverables, authorize Git integration, and decide on Lab matters. | `README.md` L5 and `001-diretrizes-arquiteturais.md` section 5 (L49), section 10 | No overlap of authority. Planning only needs to define the verifiable format for human authorization at the initial gate (`AUD-002`). |
+| **ChatGPT** | Assists the human with planning, prompt preparation, deliverable analysis, and gate decisions. Receives reports and references manually. Outside the automated cycle in V1. | `001-diretrizes-arquiteturais.md` `DEC-02`, section 5 (L50) | Clear boundary. No execution authority or automatic integration in V1. |
+| **AI Agent Orchestrator** | Operational hub that validates context and authorization, assigns executors, validates transitions and scope, maintains authoritative history and state, handles interruptions and recovery, promotes evidence, and enforces gates. | `001-diretrizes-arquiteturais.md` `DEC-09`, section 5 (L52), sections 6–12 | Boundary consistent with the other actors after R2 remediation (`004`). The mechanism for initial task intake still needs clarification (`AUD-002`). |
+| **AI Memory** | Independent product (Fábio Akita) for persistent memory, historical context, and supporting messaging between agents. It provides no authorization and does not own operational state. | `README.md` L5 and `001-diretrizes-arquiteturais.md` `DEC-03`, section 5 (L51) | Very well-defined boundary. No improper normative coupling. |
+| **Codex** | Executor or reviewer as assigned (acted as implementer, fixer, and documentation consolidator in the POCs). Works within authorized scope, delivers evidence, and requests the next operation. | `001-relatorio-experimental.md` section 11 and `001-diretrizes-arquiteturais.md` `DEC-14`, `DEC-15`, section 5 (L53) | No role ambiguity. Roles are interchangeable by assignment, while preserving independence between drafting or implementation and review. |
+| **Antigravity** | Reviewer or executor as assigned (acted as independent adversarial and regression reviewer in the POCs). Independently examines the pinned version and issues a verifiable review. | `001-relatorio-experimental.md` section 11 and `001-diretrizes-arquiteturais.md` `DEC-14`, `DEC-15`, section 5 (L53) | No role ambiguity. |
+| **Future executor or reviewer agents** | Controlled future integration under the same minimum contract for role, scope, and evidence, without building a premature generic framework in V1. | `001-diretrizes-arquiteturais.md` `DEC-15`, section 15 (L113), section 16 (L126) | Well defined, with minimum integration conditions deferred to planning. |
 
 ---
 
-## 12. Limites e exclusões da primeira versão
+## 12. Limits and exclusions of the first version
 
-Reconstrução estrita do que a documentação efetivamente estabelece (sem inventar escopos não documentados):
+Strict reconstruction of what the documentation actually establishes, without inventing undocumented scope:
 
-| Tema | Status na documentação | Referência |
+| Topic | Status in the documentation | Reference |
 | --- | --- | --- |
-| **Coordenação local sequencial de Codex e Antigravity** | **Incluído** | `DEC-01`, `DEC-08`, `DEC-15`, Seção 16 #1 e #5 |
-| **Mensagens curtas estruturadas + artefatos locais imutáveis com hash** | **Incluído** (contratos detalhados no planejamento) | `DEC-04`, `DEC-05`, Seção 16 #2 |
-| **Histórico estruturado autoritativo + estado reconstruível/reconciliável** | **Incluído** (armazenamento local a escolher no planejamento) | `DEC-10`, `DEC-11`, Seção 16 #3 |
-| **Gates humanos e handoffs entre sessões** | **Incluído** | `DEC-09`, `DEC-13`, `DEC-14`, Seção 16 #4 |
-| **Suporte a múltiplos projetos consumidores (independência de domínio)** | **Incluído (isolamento por tarefa)**; execução simultânea multi-projeto **não decidida** | `DEC-16`, Seção 4 (L35), Seção 15 (L113) |
-| **Integração automática com ChatGPT (UI/API)** | **Expressamente dispensada/excluída na V1** | `DEC-02` (L29) |
-| **Execução paralela na mesma tarefa** | **Expressamente excluída na V1** | `DEC-08` (L35), Seção 6 (L63) |
-| **Infraestrutura distribuída (banco/mensageria/infra distribuídos)** | **Expressamente excluída desta etapa** | `DEC-01` (L28), `DEC-11` (L38) |
-| **Framework genérico prematuro para múltiplos agentes** | **Expressamente excluído** (inclusão futura de agentes **adiada** com extensibilidade controlada) | `DEC-15` (L42) |
-| **Recuperação automática irrestrita** | **Expressamente limitada** (proibida repetição insegura sob efeito incerto; retry automático em aberto no planejamento) | `DEC-12` (L39), Seção 15 (L113) |
-| **Interface web** | **Ainda não decidido** (listada na Seção 15 sem explicitar se entra na V1 ou se V1 é CLI-only — ver `AUD-004`) | Seção 15 (L110) |
-| **Integração com GitHub / automação Git** | **Ainda não decidido** (operações Git condicionadas a gate humano, mas não está delimitado se V1 executa comandos Git/GitHub ou se ficam manuais — ver `AUD-004`) | `README.md` L5; `001-relatorio-experimental.md` L153, L167, L175 |
-| **Persistência de estado (mecanismo concreto)** | **Ainda não decidido** (arquivos locais como opção a avaliar vs. outras soluções locais simples) | `DEC-11` (L38), Seção 15 (L110, L112) |
-| **Mensageria (CLI vs. MCP, formato versionado)** | **Ainda não decidido** (mantendo AI Memory independente e mensagens curtas) | `DEC-03`, `DEC-04`, Seção 15 (L111) |
+| **Sequential local coordination of Codex and Antigravity** | **Included** | `DEC-01`, `DEC-08`, `DEC-15`, section 16 #1 and #5 |
+| **Short structured messages + immutable local artifacts with hashes** | **Included** (contracts to be detailed in planning) | `DEC-04`, `DEC-05`, section 16 #2 |
+| **Authoritative structured history + reconstructible or reconcilable state** | **Included** (local storage to be selected in planning) | `DEC-10`, `DEC-11`, section 16 #3 |
+| **Human approval gates and handoffs between sessions** | **Included** | `DEC-09`, `DEC-13`, `DEC-14`, section 16 #4 |
+| **Support for multiple consumer projects (domain independence)** | **Included (per-task isolation)**. Simultaneous execution across projects is **undecided**. | `DEC-16`, section 4 (L35), section 15 (L113) |
+| **Automatic ChatGPT integration (UI/API)** | **Expressly dispensed with or excluded in V1** | `DEC-02` (L29) |
+| **Parallel execution within the same task** | **Expressly excluded in V1** | `DEC-08` (L35), section 6 (L63) |
+| **Distributed infrastructure (distributed databases, messaging, or infrastructure)** | **Expressly excluded from this stage** | `DEC-01` (L28), `DEC-11` (L38) |
+| **Premature generic framework for multiple agents** | **Expressly excluded** (future addition of agents **deferred**, with controlled extensibility) | `DEC-15` (L42) |
+| **Unrestricted automatic recovery** | **Expressly limited** (unsafe repetition when effects are uncertain is forbidden, and automatic retry is open for planning) | `DEC-12` (L39), section 15 (L113) |
+| **Web interface** | **Undecided** (listed in section 15 without specifying whether it is included in V1 or V1 is CLI-only. See `AUD-004`.) | Section 15 (L110) |
+| **GitHub integration / Git automation** | **Undecided** (Git operations require a human approval gate, but whether V1 will run Git/GitHub commands or leave them manual is unspecified. See `AUD-004`.) | `README.md` L5 and `001-relatorio-experimental.md` L153, L167, L175 |
+| **State persistence (specific mechanism)** | **Undecided** (local files are an option to evaluate alongside other simple local solutions) | `DEC-11` (L38), section 15 (L110, L112) |
+| **Messaging (CLI vs. MCP, versioned format)** | **Undecided** (keeping AI Memory independent and messages short) | `DEC-03`, `DEC-04`, section 15 (L111) |
 
 ---
 
-## 13. Avaliação das POCs
+## 13. POC assessment
 
-### 13.1 Resumo estruturado das POCs 001–007
+### 13.1 Structured summary of POCs 001–007
 
-| POC | Objetivo | Procedimento conhecido | Componentes | Resultados | Evidências no repositório | Limitações | Demonstrado vs. Não comprovado |
+| POC | Objective | Known procedure | Components | Results | Evidence in the repository | Limitations | Demonstrated vs. unproven |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| **001** | Verificar envio, listagem e reivindicação individual pela CLI do AI Memory. | Reportado na sessão experimental acompanhada pelo GPT. | AI Memory CLI | Reportado como funcional. | Nenhuma evidência primária; apenas relato em `001-relatorio-experimental.md` (L48, L58) e `001-handoff` (L26). | Sem logs, comandos ou IDs primários. | **Não verificado diretamente** (resultado reportado). |
-| **002** | Consultar inbox pelo Antigravity via MCP em modo não interativo. | Reportado na sessão (incluindo dificuldade inicial de permissões). | Antigravity, AI Memory MCP | Reportado como funcional após ajuste de permissões. | Apenas relato em `001-relatorio-experimental.md` (L49, L58) e `001-handoff` (L27). | Sem logs para reproduzir configuração de permissões. | **Não verificado diretamente** (resultado reportado). |
-| **003** | Enviar mensagem pelo Antigravity via ferramenta MCP `memory_message_send`. | Reportado na sessão. | Antigravity, AI Memory MCP | Reportado como funcional. | Apenas relato (`001-relatorio-experimental.md` L50; `001-handoff` L28). | Sem log primário do envio. | **Não verificado diretamente** (resultado reportado). |
-| **004** | Receber e ler pelo Codex a mensagem enviada pelo Antigravity. | Reportado na sessão. | Codex, AI Memory MCP | Reportado como funcional. | Apenas relato (`001-relatorio-experimental.md` L51; `001-handoff` L29). | Sem saída original para conferir leitura/identidade. | **Não verificado diretamente** (resultado reportado). |
-| **005** | Acionar Antigravity automaticamente ao detectar mensagem-alvo na inbox. | Script Python faz polling em `default/luishenriqs-identity-and-access-server`, filtra por `subject`+`body`, rejeita ambiguidade, faz `pop` por ID, salva ID local e invoca `ai-memory run ... antigravity --mode plan --print`. | Python 3, AI Memory CLI, `ai-memory run`, Antigravity | PASS e `exit=0` reportados na sessão. | Script integral (`evidence/pocs/005/poc_ai_memory_005.py`, SHA-256 conferido). | Sem saída original de terminal, sem manifesto e sem `processed.json`. | **Demonstrado apenas o desenho do script**; execução real permanece **reportada**. |
-| **006** | Encadear implementação (Codex), revisão independente (Antigravity) e resposta do Codex. | Repositório sintético em `/tmp` sem commits; Codex implementa `normalize_label`; 5 testes passam; despachante faz `send`+`pop` na inbox do IAS e invoca `agy --mode plan --print` com diff/testes; parecer `APROVADO`; despachante faz `send`+`pop` da resposta e invoca Codex, que cria `REVIEW_RESPONSE.md`; 5 testes finais passam. | Python 3, Codex v0.170.0 (`gpt-6.2-sol`), `agy`, AI Memory CLI v3.4.7, Git | `PASS`; 5/5 testes (`exit=0`) antes e depois; 2 mensagens correlacionadas; `VEREDITO: APROVADO`. | 28 arquivos em `evidence/pocs/006/` (todos conferidos com `MANIFEST.md`). | Código já estava correto antes da revisão; `check_tree` sem hashes; `ias_touched: false` autodeclarado; `send`+`pop` síncronos (~20 ms); `from_agent: "other"`. | **Demonstrado:** intercalação sequencial sintética e processamento de parecer. **Não comprovado:** detecção de defeito, isolamento do IAS, entrega assíncrona. |
-| **007** | Testar detecção adversarial de defeito controlado, RED, correção, GREEN e revisão regressiva. | Codex implementa versão inicial (3 testes públicos passam); despachante injeta `split(" ")` (3 públicos continuam passando); `agy` revisa sem aviso da injeção nem testes regressivos e emite `VEREDITO: AJUSTES` com 4 contraprovas; `regression_tests.py` falha 4/5 (RED, `exit=1`); Codex corrige para `split()`; GREEN 5/5 e públicos 3/3 (`exit=0`); `agy` emite `VEREDITO: APROVADO`; autoteste local de duplicidade/timeout. | Python 3, Codex v0.170.0 (`gpt-6.2-sol`), `agy`, AI Memory CLI v3.4.7, Git | `PASS`; RED 4/5 falhas (`exit=1`), GREEN 5/5 (`exit=0`), públicos 3/3 (`exit=0`); 4 mensagens (2 ciclos); hashes conferidos. | 43 arquivos em `evidence/pocs/007/` (todos conferidos com `MANIFEST.md`). | Função trivial (~4 linhas); sandbox `/tmp` gravável alcançava `regression_tests.py` e `_poc_logs/` fora de `guard_tree`; autoteste em memória sem log dedicado; `ias_touched: not_independently_verified`. | **Demonstrado:** revisão adversarial e regressiva fechada em caso sintético. **Não comprovado:** recuperação real pós-queda, contenção de sandbox, entrega assíncrona, escala. |
+| **001** | Verify sending, listing, and individual claiming through the AI Memory CLI. | Reported in the experimental session tracked by GPT. | AI Memory CLI | Reported to work. | No primary evidence, only the account in `001-relatorio-experimental.md` (L48, L58) and `001-handoff` (L26). | No primary logs, commands, or IDs. | **Not directly verified** (reported result). |
+| **002** | Check the inbox from Antigravity via MCP in non-interactive mode. | Reported in the session, including an initial permissions difficulty. | Antigravity, AI Memory MCP | Reported to work after permissions were adjusted. | Only the account in `001-relatorio-experimental.md` (L49, L58) and `001-handoff` (L27). | No logs to reproduce the permissions configuration. | **Not directly verified** (reported result). |
+| **003** | Send a message from Antigravity via the MCP tool `memory_message_send`. | Reported in the session. | Antigravity, AI Memory MCP | Reported to work. | Only the account (`001-relatorio-experimental.md` L50 and `001-handoff` L28). | No primary send log. | **Not directly verified** (reported result). |
+| **004** | Have Codex receive and read the message sent by Antigravity. | Reported in the session. | Codex, AI Memory MCP | Reported to work. | Only the account (`001-relatorio-experimental.md` L51 and `001-handoff` L29). | No original output to verify the read or identity. | **Not directly verified** (reported result). |
+| **005** | Invoke Antigravity automatically when a target message is detected in the inbox. | The Python script polls `default/luishenriqs-identity-and-access-server`, filters by `subject`+`body`, rejects ambiguity, performs `pop` by ID, saves the ID locally, and invokes `ai-memory run ... antigravity --mode plan --print`. | Python 3, AI Memory CLI, `ai-memory run`, Antigravity | PASS and `exit=0` reported in the session. | Complete script (`evidence/pocs/005/poc_ai_memory_005.py`, SHA-256 checked). | No original terminal output, manifest, or `processed.json`. | **Only the script design is demonstrated**. Actual execution remains a **reported result**. |
+| **006** | Sequence implementation (Codex), independent review (Antigravity), and the Codex response. | Synthetic repository in `/tmp` with no commits. Codex implements `normalize_label`. 5 tests pass. The dispatcher performs `send`+`pop` in the IAS inbox and invokes `agy --mode plan --print` with the diff and tests. Review is `APROVADO`. The dispatcher performs `send`+`pop` for the response and invokes Codex, which creates `REVIEW_RESPONSE.md`. 5 final tests pass. | Python 3, Codex v0.170.0 (`gpt-6.2-sol`), `agy`, AI Memory CLI v3.4.7, Git | `PASS`, 5/5 tests (`exit=0`) before and after, 2 correlated messages, and `VEREDITO: APROVADO`. | 28 files in `evidence/pocs/006/` (all checked against `MANIFEST.md`). | Code was already correct before review. `check_tree` used no hashes. `ias_touched: false` is self-reported. Synchronous `send`+`pop` (~20 ms) and `from_agent: "other"`. | **Demonstrated** — synthetic sequential interleaving and review handling. **Unproven** — defect detection, IAS isolation, asynchronous delivery. |
+| **007** | Test adversarial detection of a controlled defect, RED, correction, GREEN, and regression review. | Codex implements the initial version (3 public tests pass). The dispatcher injects `split(" ")` (3 public tests still pass). `agy` reviews without notice of the injection or the regression tests and issues `VEREDITO: AJUSTES` with 4 counterexamples. `regression_tests.py` reports 4/5 failures (RED, `exit=1`). Codex corrects the code to use `split()`. GREEN 5/5 and public tests 3/3 (`exit=0`). `agy` issues `VEREDITO: APROVADO`. Local duplication/timeout self-test. | Python 3, Codex v0.170.0 (`gpt-6.2-sol`), `agy`, AI Memory CLI v3.4.7, Git | `PASS`, RED 4/5 failures (`exit=1`), GREEN 5/5 (`exit=0`), public tests 3/3 (`exit=0`), 4 messages (2 cycles), hashes checked. | 43 files in `evidence/pocs/007/` (all checked against `MANIFEST.md`). | Trivial function (~4 lines). Writable `/tmp` sandbox access extended to `regression_tests.py` and `_poc_logs/` outside `guard_tree`. In-memory self-test without a dedicated log. `ias_touched: not_independently_verified`. | **Demonstrated** — completed adversarial and regression review in a synthetic case. **Unproven** — actual post-crash recovery, sandbox containment, asynchronous delivery, scale. |
 
-### 13.2 Exame das 12 capacidades críticas frente à arquitetura proposta
+### 13.2 Assessment of the 12 critical capabilities against the proposed architecture
 
-1. **Uso da inbox do IAS:** Confirmado nos 3 scripts (`005`, `006`, `007`: `default/luishenriqs-identity-and-access-server`). A arquitetura proposta (`DEC-16`) corrige isso proibindo reuso automático do namespace do IAS.
-2. **Identidade e proveniência das mensagens:** Nos 6 registros `*-pop.stdout.txt`, `from_agent` é `"other"` e `from_owner_user` é `null`; `--agent` no `pop` é rótulo do reivindicante. A arquitetura depende de verificação própria de autorização e proveniência (**ainda não demonstrada**).
-3. **Correlação por identificadores:** Demonstrada nas POCs 006–007 via UUID de mensagem ligando `send`, `pop` e `result.json`.
-4. **Comunicação síncrona vs. assíncrona:** Nas POCs 006–007, `send` e `pop` ocorreram em ~19–22 ms pelo mesmo despachante. Entrega assíncrona confiável permanece **não demonstrada** (reconhecido em `DEC-03` e Seção 14).
-5. **Transporte de contexto por prompt:** Nas POCs 006–007, código, diff e testes foram passados nos argumentos CLI (`--print`); a inbox carregou resumos nas requisições e pareceres (1.119, 2.395 e 1.904 chars, abaixo dos limites de 25k/20k).
-6. **Comunicação por referência a arquivos:** **Não demonstrada nas POCs** (é uma evolução proposta em `DEC-04` para evitar limites de payload e prompts gigantes).
-7. **Execução não interativa dos agentes:** Demonstrada para `codex exec` e `agy --mode plan --print` nas POCs 006–007; para `ai-memory run ... antigravity`, apenas código + relato na POC-005.
-8. **Revisão adversarial e regressiva:** Demonstrada na POC-007 em caso sintético simples.
-9. **Limites dos sandboxes:** Nos logs do Codex (`codex-*.stderr.txt`), `sandbox: workspace-write [workdir, /tmp, $TMPDIR]` e `approval: never` deixavam `/tmp` inteiro gravável, incluindo `regression_tests.py` e `_poc_logs/` na POC-007. Contenção forte permanece **não demonstrada**.
-10. **Falhas, timeouts e interrupções:** Apenas autoteste local em memória (`test_process_failures()`) na POC-007; falhas reais de subprocesso/crash não foram exercitadas.
-11. **Recuperação durável:** **Ausência total de demonstração** nas POCs; a arquitetura proposta (`DEC-11`, `DEC-12`, `DEC-13`) depende dessa capacidade a ser desenhada no planejamento.
-12. **Gates humanos automatizados:** **Ausência total de demonstração** nas POCs (apenas flag `--execute` manual); a arquitetura depende de desenho verificável no planejamento.
-
----
-
-## 14. Análise de coerência arquitetural
-
-### 14.1 Simplicidade (`DEC-01`)
-
-A arquitetura consolidada em `001-diretrizes-arquiteturais.md` **atende bem** à exigência de simplicidade:
-- Mantém escopo estritamente local, sem banco distribuído, broker externo, microsserviços ou framework genérico prematuro (`DEC-01`, `DEC-11`, `DEC-15`).
-- Dispensa integração automática com ChatGPT na V1 (`DEC-02`).
-- Adota execução sequencial sem concorrência na mesma tarefa (`DEC-08`).
-- Mantém 16 decisões de implementação deliberadamente abertas para o planejamento (Seção 15), com recomendação explícita de avaliar primeiro opções locais de menor complexidade (L116).
-- **Ponto de atenção:** a presença de *"interface web e suas funcionalidades"* na Seção 15 (L110) sem delimitação explícita frente à V1 (`AUD-004`) é o único ponto onde complexidade prematura poderia entrar sem requisito aprovado se não for delimitada na abertura do planejamento.
-
-### 14.2 Comunicação e artefatos (`DEC-04`, `DEC-05`)
-
-O modelo de mensagens curtas estruturadas com referências a artefatos locais imutáveis é **coerente e superior ao padrão das POCs**:
-- Resolve o risco de truncamento (20k/25k chars) e evita trafegar código/diffs extensos dentro da inbox.
-- A Seção 7 exige validação prévia de pertencimento ao projeto/tarefa, versão esperada, permissão do executor, etapa ativa e rejeição de mensagens duplicadas ou fora de ordem.
-- A Seção 8 exige imutabilidade das versões revisadas enquanto retidas, vinculação de correções à versão anterior e integridade por hash vinculada ao artefato/versão esperada.
-- **Ponto de atenção para o planejamento:** em repositórios reais antes de commit, fixar a "versão exata examinada" exigirá snapshot/hash de conjunto de arquivos ou patch/tree (não apenas de um arquivo isolado como `labels.py` na POC-007).
-
-### 14.3 Execução sequencial (`DEC-08`)
-
-O modelo sequencial é **adequado e suficiente para a V1**, reduzindo drasticamente a complexidade de concorrência. Contudo, a serialização **não elimina sozinha** os seguintes riscos residuais (reconhecidos conceitualmente em `DEC-12` e Seção 15, mas que exigirão contratos concretos no planejamento):
-- **Processos órfãos / travados:** se o orquestrador cair enquanto um subprocesso (`codex`/`agy`) continua rodando, uma nova execução sequencial pode colidir com o processo anterior caso não haja lock local/verificação de PID.
-- **Timeouts e limites de tokens:** podem encerrar a sessão do agente após escrita parcial de arquivos no workspace.
-- **Duplicidade de disparo e efeitos irreversíveis:** se uma falha ocorrer entre o efeito externo (ex.: envio de mensagem ou alteração de arquivo) e a gravação do evento de conclusão, a retomada não pode repetir cegamente a operação (`DEC-12`).
+1. **Use of the IAS inbox** — Confirmed in the 3 scripts (`005`, `006`, `007`: `default/luishenriqs-identity-and-access-server`). The proposed architecture (`DEC-16`) addresses this by prohibiting automatic reuse of the IAS namespace.
+2. **Message identity and provenance** — In the 6 `*-pop.stdout.txt` records, `from_agent` is `"other"` and `from_owner_user` is `null`. The `--agent` parameter to `pop` is the claimant label. The architecture relies on its own authorization and provenance verification (**still undemonstrated**).
+3. **Correlation by identifiers** — Demonstrated in POCs 006–007 via message UUIDs linking `send`, `pop`, and `result.json`.
+4. **Synchronous vs. asynchronous communication** — In POCs 006–007, `send` and `pop` occurred ~19–22 ms apart under the same dispatcher. Reliable asynchronous delivery remains **undemonstrated** (acknowledged in `DEC-03` and section 14).
+5. **Context transport through prompts** — In POCs 006–007, code, diff, and tests were passed in the CLI arguments (`--print`). The inbox carried request summaries and reviews (1,119, 2,395, and 1,904 chars, below the 25k/20k limits).
+6. **Communication by file reference** — **Undemonstrated in the POCs** (a proposed improvement in `DEC-04` to avoid payload limits and oversized prompts).
+7. **Non-interactive agent execution** — Demonstrated for `codex exec` and `agy --mode plan --print` in POCs 006–007. For `ai-memory run ... antigravity`, only code and the POC-005 account are available.
+8. **Adversarial and regression review** — Demonstrated in a simple synthetic case in POC-007.
+9. **Sandbox limits** — In Codex logs (`codex-*.stderr.txt`), `sandbox: workspace-write [workdir, /tmp, $TMPDIR]` and `approval: never` left all of `/tmp` writable, including `regression_tests.py` and `_poc_logs/` in POC-007. Strong containment remains **undemonstrated**.
+10. **Failures, timeouts, and interruptions** — Only a local in-memory self-test (`test_process_failures()`) in POC-007. Actual subprocess failures or crashes were not exercised.
+11. **Durable recovery** — **Entirely undemonstrated** in the POCs. The proposed architecture (`DEC-11`, `DEC-12`, `DEC-13`) depends on this capability being designed during planning.
+12. **Automated human approval gates** — **Entirely undemonstrated** in the POCs (only the manual `--execute` flag). The architecture depends on a verifiable design during planning.
 
 ---
 
-## 15. Análise de segurança e gates humanos
+## 14. Architectural consistency analysis
 
-Verificação dos 8 pontos críticos de governança (`001-diretrizes-arquiteturais.md` Seções 6, 7, 10, 11 e 13):
+### 14.1 Simplicity (`DEC-01`)
 
-1. **Autorização inicial:** Exigida antes de qualquer ação coordenada (Seção 6 #1, Seção 10). *Ressalva (`AUD-002`):* há ambiguidade operacional residual quando o humano entrega o prompt diretamente ao executor (`DEC-02`) em vez de registrar/acionar primeiro no orquestrador (`DEC-09`).
-2. **Limites da delegação:** Bem definidos (projeto, repositório, baseline, escopo, executor, limites e critérios de conclusão).
-3. **Revisão independente:** Bem protegida (`DEC-14`, Seção 13: independência entre elaboração/implementação e revisão, vinculação à versão exata).
-4. **Tratamento de achados:** Bem estruturado (achados verificáveis → correção gera nova versão → verificação regressiva).
-5. **Encaminhamento ao humano:** Explicito em gates regulares e obrigatório diante de incerteza material (`DEC-12`, Seções 10 e 11).
-6. **Homologação:** Exclusiva do responsável humano (`DEC-14`, Seção 10).
-7. **Integração Git:** Condicionada a autorização humana específica (`README.md` L5; `001-relatorio-experimental.md` L167, L175). *Ressalva (`AUD-004`):* não está claro se a V1 executa comandos Git sob gate ou se Git/GitHub permanece 100% manual.
-8. **Encerramento:** Condicionado a autorização e promoção prévia dos registros duráveis antes de limpar a área temporária (`DEC-06`, `DEC-07`, Seção 12).
+The architecture consolidated in `001-diretrizes-arquiteturais.md` **meets** the simplicity requirement well.
+- Maintains strictly local scope, without distributed databases, external brokers, microservices, or a premature generic framework (`DEC-01`, `DEC-11`, `DEC-15`).
+- Dispenses with automatic ChatGPT integration in V1 (`DEC-02`).
+- Adopts sequential execution without concurrency within the same task (`DEC-08`).
+- Deliberately leaves 16 implementation decisions open for planning (section 15), with an explicit recommendation to evaluate the least complex local options first (L116).
+- **Point to watch** — The inclusion of *"interface web e suas funcionalidades"* (translation: "web interface and its features") in section 15 (L110), without an explicit V1 boundary (`AUD-004`), is the only point where premature complexity could enter without an approved requirement unless bounded at the start of planning.
 
-**Possibilidades concretas de um agente ultrapassar involuntariamente uma autorização:**
-- **Via sandbox amplo do executor:** como demonstrado na POC-007 (`workspace-write [workdir, /tmp, $TMPDIR]`), um executor pode tecnicamente escrever fora da árvore verificada se artefatos de controle/avaliação ou a área temporária ficarem no mesmo espaço gravável sem proteção (`AUD-001`).
-- **Via área temporária na raiz do projeto consumidor (`DEC-06`):** sem exclusão explícita no Git (ex.: `.git/info/exclude`) e separação de permissões, artefatos transitórios podem interferir em diffs/commits do projeto consumidor (`AUD-001`).
-- **Via atuação manual avulsa antes do registro no orquestrador:** mitigada em texto na Seção 6 #1, mas exige que o planejamento impeça o orquestrador de aceitar uma solicitação de executor como prova de autorização humana (`AUD-002`).
+### 14.2 Communication and artifacts (`DEC-04`, `DEC-05`)
 
----
+The model of short structured messages with references to immutable local artifacts is **coherent and superior to the pattern used in the POCs**.
+- Addresses truncation risk (20k/25k chars) and avoids transporting extensive code or diffs in the inbox.
+- Section 7 requires prior validation of project and task membership, expected version, executor permission, and active step, and rejection of duplicate or out-of-order messages.
+- Section 8 requires reviewed versions to remain immutable while retained, corrections to link to the previous version, and integrity through a hash tied to the expected artifact/version.
+- **Point to watch during planning** — In real repositories before a commit, pinning the "versão exata examinada" (translation: "exact version examined") will require a snapshot or hash of a set of files, patch, or tree, beyond a single file such as `labels.py` in POC-007.
 
-## 16. Análise de logs, estado, artefatos e recuperação
+### 14.3 Sequential execution (`DEC-08`)
 
-Exame de consistência entre os 9 mecanismos propostos (`DEC-05` a `DEC-07`, `DEC-10` a `DEC-13`, Seções 8, 9, 11 e 12):
-
-- **Coerência geral:** **Alta.** A arquitetura separa claramente:
-  - **Histórico autoritativo de eventos** (append-only estruturado por tarefa, registrando operações solicitadas, execuções observadas, resultados comprovados e operações com conclusão incerta);
-  - **Estado operacional atual** (reconstruível ou reconciliável a partir do histórico e das evidências);
-  - **Artefatos imutáveis** (versões fixadas com hash);
-  - **Handoffs** (síntese de continuidade entre sessões validável contra os registros persistidos).
-- **Ausência de contradição com simplicidade:** Manter um arquivo append-only estruturado (ex.: JSONL) + arquivo de estado reconciliável + arquivos imutáveis com SHA-256 + handoff Markdown/estruturado é perfeitamente viável em filesystem local simples, sem banco distribuído nem overengineering.
-- **Controles essenciais para a V1:**
-  1. Log estruturado autoritativo por tarefa (fora da área temporária) distinguindo *iniciado*, *concluído* e *incerto*.
-  2. Fixação de versão/hash dos artefatos submetidos a revisão.
-  3. Lock/exclusividade de execução ativa e verificação de estado/efeitos observáveis na retomada antes de qualquer ação.
-  4. Interrupção fail-closed com escalonamento humano diante de efeito incerto em operação potencialmente irreversível.
-  5. Handoff mínimo persistido para retomada sem depender do contexto da conversa.
-- **Controles adiáveis para pós-V1:**
-  1. Recuperação automática sofisticada ou retry automático de etapas com efeitos colaterais.
-  2. Checkpoints granulares internos à sessão de um agente (além das fronteiras de etapa).
-  3. Replicação, indexação avançada ou bancos/filas distribuídos.
+The sequential model is **appropriate and sufficient for V1**, dramatically reducing concurrency complexity. However, serialization **does not eliminate by itself** the following residual risks, which are recognized conceptually in `DEC-12` and section 15 but will require concrete contracts during planning.
+- **Orphaned or hung processes** — If the orchestrator crashes while a subprocess (`codex`/`agy`) continues running, a new sequential run could collide with the prior process without a local lock or PID check.
+- **Timeouts and token limits** — May end the agent session after files have been partially written in the workspace.
+- **Duplicate invocations and irreversible effects** — If a failure occurs between the external effect (e.g., sending a message or modifying a file) and recording the completion event, recovery cannot blindly repeat the operation (`DEC-12`).
 
 ---
 
-## 17. Pontos fortes
+## 15. Security and human approval gate analysis
 
-1. **Disciplina epistêmica e rastreabilidade excepcionais:** distinção consistente entre fatos verificados diretamente, resultados reportados, inferências, hipóteses, propostas futuras e decisões humanas; 72/72 artefatos experimentais com hashes SHA-256 conferidos e zero vazamentos de dados sensíveis.
-2. **Simplicidade pragmática (`DEC-01`):** foco local-first, sequencial, sem infraestrutura distribuída, sem integração prematura com ChatGPT e sem framework genérico prematuro.
-3. **Separação limpa de responsabilidades:** AI Memory permanece independente; regras de domínio ficam nos projetos consumidores (`DEC-16`); autoridade normativa permanece centralizada no orquestrador sob gates humanos (`DEC-09`).
-4. **Segurança orientada a desconfiança de entrada (`DEC-03`, Seção 7):** mensagens e pareceres são explicitamente tratados como entradas não confiáveis, nunca como autorização operacional isolada.
-5. **Revisão independente institucionalizada (`DEC-14`):** separação entre elaboração/implementação e revisão com vínculo explícito achado → correção → regressão, já validada conceitualmente na POC-007.
-6. **Resiliência realista a falhas (`DEC-11`–`DEC-13`):** reconhece falhas de processo, reinicializações inesperadas e limites de tokens, priorizando detecção honesta e escalonamento humano (fail-closed) em vez de prometer recuperação automática mágica.
-7. **Extensibilidade controlada (`DEC-15`):** planeja para Codex e Antigravity sem acoplamento irreversível que impeça futuros agentes.
-8. **Governança documental madura:** ciclo real de revisão independente + regressiva (R1/R2) aplicado tanto à fundação experimental (`001`/`002`) quanto às diretrizes arquiteturais (`003`/`004`).
+Assessment of the 8 critical governance points (`001-diretrizes-arquiteturais.md` sections 6, 7, 10, 11, and 13):
 
----
+1. **Initial authorization** — Required before any coordinated action (section 6 #1, section 10). *Qualification (`AUD-002`)* — There is residual operational ambiguity when the human delivers the prompt directly to the executor (`DEC-02`) without first registering or invoking it in the orchestrator (`DEC-09`).
+2. **Delegation limits** — Well defined (project, repository, baseline, scope, executor, limits, and completion criteria).
+3. **Independent review** — Well protected (`DEC-14`, section 13, with independence of review from drafting and implementation and a link to the exact version).
+4. **Finding handling** — Well structured (verifiable findings → correction creates a new version → regression check).
+5. **Escalation to the human** — Explicit at regular gates and mandatory in the event of material uncertainty (`DEC-12`, sections 10 and 11).
+6. **Formal approval** — Reserved exclusively to the human owner (`DEC-14`, section 10).
+7. **Git integration** — Conditional on specific human authorization (`README.md` L5 and `001-relatorio-experimental.md` L167, L175). *Qualification (`AUD-004`)* — It is unclear whether V1 runs Git commands under an approval gate or Git/GitHub remains 100% manual.
+8. **Closure** — Conditional on authorization and prior promotion of durable records before the temporary workspace is cleaned up (`DEC-06`, `DEC-07`, section 12).
 
-## 18. Pontos fracos
-
-1. **Capacidades centrais da V1 ainda não demonstradas empiricamente:** entrega assíncrona confiável, comunicação por referência a arquivos, recuperação durável após queda real, contenção efetiva de sandbox e gates humanos implementados não foram exercitados nas POCs. *Consequência prática:* o planejamento técnico precisará validar cada um desses mecanismos com critérios verificáveis antes da implementação ampla.
-2. **Dependência de CLIs externas em evolução (`codex`, `agy`, `ai-memory`):** a própria história das POCs já mostrou divergência de invocação (`ai-memory run ... antigravity` na POC-005 vs. `agy` nas POCs 006–007) e ausência de registro de versão do `agy`. *Consequência prática:* mudanças de flags, formatos de saída ou políticas de sandbox nessas CLIs podem quebrar adaptadores do orquestrador.
-3. **Limitação de contenção do sandbox local:** `workspace-write` do Codex incluiu `/tmp` inteiro nas POCs 006–007, e a área temporária na raiz do projeto consumidor (`DEC-06`) aproxima artefatos de orquestração do espaço gravável do executor. *Consequência prática:* risco de interferência em `git status` ou adulteração acidental de artefatos se o isolamento não for desenhado explicitamente no planejamento.
-4. **Ausência de prova de identidade autenticada na camada CLI do AI Memory:** os logs das POCs 006–007 mostram `from_agent: "other"` e `from_owner_user: null`. *Consequência prática:* o orquestrador não pode delegar autenticação ou proveniência ao AI Memory e terá de manter verificação própria.
-5. **Ambiguidade de escopo da V1 em dois itens de interface/integração:** interface web e automação Git/GitHub permanecem em aberto sem marcação clara de exclusão da V1 (`AUD-004`). *Consequência prática:* risco de crescimento desordenado do planejamento se não forem delimitados na abertura.
-6. **Gargalo inerente ao modelo sequencial + gates manuais:** embora ideal para a V1, a execução sequencial com retorno manual ao humano/ChatGPT limita vazão em tarefas paralelizáveis. *Consequência prática:* aceitável na V1 por decisão consciente (`DEC-02`, `DEC-08`), mas impõe manter o fluxo enxuto para não reintroduzir atrito excessivo.
+**Concrete ways an agent could inadvertently exceed its authorization**
+- **Through a broad executor sandbox** — As demonstrated in POC-007 (`workspace-write [workdir, /tmp, $TMPDIR]`), an executor can technically write outside the verified tree if control and evaluation artifacts or the temporary workspace reside in the same writable space without protection (`AUD-001`).
+- **Through the temporary workspace at the consumer project's root (`DEC-06`)** — Without an explicit Git exclusion (e.g., `.git/info/exclude`) and separation of permissions, transient artifacts can interfere with consumer-project diffs or commits (`AUD-001`).
+- **Through standalone manual action before orchestrator registration** — Mitigated in the wording of section 6 #1, but planning must prevent the orchestrator from accepting an executor request as proof of human authorization (`AUD-002`).
 
 ---
 
-## 19. Achados classificados
+## 16. Analysis of logs, state, artifacts, and recovery
+
+Consistency assessment of the 9 proposed mechanisms (`DEC-05` through `DEC-07`, `DEC-10` through `DEC-13`, sections 8, 9, 11, and 12):
+
+- **Overall consistency** — **High.** The architecture clearly separates:
+  - **Authoritative event history** (structured and append-only per task, recording requested operations, observed executions, verified results, and operations whose completion is uncertain).
+  - **Current operational state** (reconstructible or reconcilable from history and evidence).
+  - **Immutable artifacts** (versions pinned with hashes).
+  - **Handoffs** (summaries for continuity between sessions, verifiable against persisted records).
+- **Compatibility with simplicity** — Keeping a structured append-only file (e.g., JSONL), a reconcilable state file, immutable files with SHA-256, and a Markdown or structured handoff is entirely feasible on a simple local filesystem, without a distributed database or overengineering.
+- **Essential controls for V1**
+  1. Authoritative structured log per task (outside the temporary workspace), distinguishing *started*, *completed*, and *uncertain*.
+  2. Pin versions and hashes of artifacts submitted for review.
+  3. Locking or exclusivity for active execution, with verification of state and observable effects on resumption before any action.
+  4. Fail-closed interruption with escalation to the human when the effect of a potentially irreversible operation is uncertain.
+  5. Minimal persisted handoff for resumption without relying on conversation context.
+- **Controls that can be deferred until after V1**
+  1. Sophisticated automatic recovery or automatic retry of steps with side effects.
+  2. Granular checkpoints within an agent session, beyond step boundaries.
+  3. Replication, advanced indexing, or distributed databases and queues.
+
+---
+
+## 17. Strengths
+
+1. **Exceptional epistemic discipline and traceability** — Consistent distinction among directly verified facts, reported results, inferences, hypotheses, future proposals, and human decisions. SHA-256 hashes checked for 72/72 experimental artifacts, with zero sensitive data leaks.
+2. **Pragmatic simplicity (`DEC-01`)** — Local-first, sequential focus, without distributed infrastructure, premature ChatGPT integration, or a premature generic framework.
+3. **Clear division of responsibilities** — AI Memory remains independent. Domain rules stay in consumer projects (`DEC-16`). Normative authority remains centralized in the orchestrator under human approval gates (`DEC-09`).
+4. **Security based on treating input as untrusted (`DEC-03`, section 7)** — Messages and reviews are explicitly treated as untrusted inputs and never as independent operational authorization.
+5. **Institutionalized independent review (`DEC-14`)** — Separation of drafting or implementation from review, with an explicit link from finding → correction → regression check, already validated conceptually in POC-007.
+6. **Realistic resilience to failures (`DEC-11`–`DEC-13`)** — Acknowledges process failures, unexpected restarts, and token limits, prioritizing accurate detection and human escalation (fail closed) over promises of effortless automatic recovery.
+7. **Controlled extensibility (`DEC-15`)** — Plans for Codex and Antigravity without irreversible coupling that would prevent future agents.
+8. **Mature documentation governance** — Actual independent and regression review cycle (R1/R2) applied to both the experimental foundation (`001`/`002`) and the architectural directives (`003`/`004`).
+
+---
+
+## 18. Weaknesses
+
+1. **Key V1 capabilities remain empirically undemonstrated** — Reliable asynchronous delivery, communication by file reference, durable recovery after an actual crash, effective sandbox containment, and implemented human approval gates were not exercised in the POCs. *Practical consequence* — Technical planning will need to validate each of these mechanisms with verifiable criteria before broad implementation.
+2. **Dependence on evolving external CLIs (`codex`, `agy`, `ai-memory`)** — The POC history already shows a difference in invocation (`ai-memory run ... antigravity` in POC-005 vs. `agy` in POCs 006–007) and no record of the `agy` version. *Practical consequence* — Changes to flags, output formats, or sandbox policies in these CLIs may break orchestrator adapters.
+3. **Local sandbox containment limitation** — Codex's `workspace-write` included all of `/tmp` in POCs 006–007, and the temporary workspace at the consumer project's root (`DEC-06`) brings orchestration artifacts close to the executor's writable space. *Practical consequence* — Risk of interference with `git status` or accidental artifact modification if isolation is not explicitly designed during planning.
+4. **Lack of proof of authenticated identity in the AI Memory CLI layer** — Logs from POCs 006–007 show `from_agent: "other"` and `from_owner_user: null`. *Practical consequence* — The orchestrator cannot delegate authentication or provenance to AI Memory and will have to maintain its own verification.
+5. **V1 scope ambiguity for two interface or integration items** — The web interface and Git/GitHub automation remain open without a clear indication that they are excluded from V1 (`AUD-004`). *Practical consequence* — Risk of uncontrolled growth in planning scope unless bounded at the outset.
+6. **Inherent bottleneck in the sequential model with manual gates** — Although ideal for V1, sequential execution with manual handoff back to the human or ChatGPT limits throughput for parallelizable tasks. *Practical consequence* — Acceptable in V1 as a deliberate decision (`DEC-02`, `DEC-08`), but the workflow must remain lean to avoid reintroducing excessive friction.
+
+---
+
+## 19. Classified findings
 
 ### AUD-001
-- **ID estável:** `AUD-001`
-- **Severidade:** `MINOR`
-- **Julgamento independente:** `CONFIRMADO`
-- **Fonte e localização:** `docs/architecture/001-diretrizes-arquiteturais.md` — Seção 4 (`DEC-06`, L33; `DEC-16`, L43), Seção 12 (L91) e Seção 14 (L103).
-- **Evidência:** `DEC-06` admite área temporária na raiz do projeto consumidor; nos logs preservados da POC-007 (`evidence/pocs/007/_poc_logs/codex-correct.stderr.txt` L7), `sandbox: workspace-write` do Codex concedia escrita a `[workdir, /tmp, $TMPDIR]`, alcançando artefatos fora de `guard_tree`. Além disso, arquivos na raiz de um repositório Git consumidor aparecem em `git status` se não isolados.
-- **Descrição:** A documentação não explicita a necessidade de isolar a área temporária na raiz do projeto consumidor contra: (a) poluição do `git status`/staging do repositório consumidor sem exigir alteração intrusiva no `.gitignore` do projeto (`DEC-16`); e (b) escrita indevida pelo executor sobre arquivos de controle/avaliação.
-- **Impacto:** Risco operacional no planejamento de misturar estado transitório do orquestrador com a working tree versionada do projeto consumidor ou repetir a exposição de artefatos de controle observada na POC-007.
-- **Correção mínima recomendada:** Registrar no planejamento técnico (e, se desejado, como nota de escopo na Seção 15 de `001-diretrizes-arquiteturais.md`) o contrato de isolamento Git da área temporária (ex.: exclusão local não intrusiva) e a separação física/permissional entre área gravável do executor e artefatos de controle/avaliação.
-- **Momento recomendado para resolução:** **B — Abertura do planejamento técnico** (sem bloquear homologação das diretrizes).
+- **Stable ID** — `AUD-001`
+- **Severity** — `MINOR`
+- **Independent judgment** — `CONFIRMADO` (confirmed)
+- **Source and location** — `docs/architecture/001-diretrizes-arquiteturais.md` — section 4 (`DEC-06`, L33 and `DEC-16`, L43), section 12 (L91), and section 14 (L103).
+- **Evidence** — `DEC-06` allows a temporary workspace at the consumer project's root. In preserved POC-007 logs (`evidence/pocs/007/_poc_logs/codex-correct.stderr.txt` L7), the Codex `sandbox: workspace-write` granted write access to `[workdir, /tmp, $TMPDIR]`, reaching artifacts outside `guard_tree`. Files at the root of a consumer Git repository also appear in `git status` unless isolated.
+- **Description** — The documentation does not spell out the need to isolate the temporary workspace at the consumer project's root against (a) clutter in the consumer repository's `git status` or staging without requiring an intrusive change to the project's `.gitignore` (`DEC-16`), and (b) improper executor writes to control and evaluation files.
+- **Impact** — Operational risk during planning of mixing transient orchestrator state with the consumer project's versioned working tree or repeating the control artifact exposure observed in POC-007.
+- **Minimum recommended correction** — Record in technical planning, and optionally as a scope note in section 15 of `001-diretrizes-arquiteturais.md`, the Git isolation contract for the temporary workspace (e.g., a non-intrusive local exclusion) and physical and permission separation between the executor's writable area and control and evaluation artifacts.
+- **Recommended timing for resolution** — **B — Start of technical planning**, without blocking formal approval of the directives.
 
 ### AUD-002
-- **ID estável:** `AUD-002`
-- **Severidade:** `MINOR`
-- **Julgamento independente:** `CONFIRMADO`
-- **Fonte e localização:** `docs/architecture/001-diretrizes-arquiteturais.md` — Seção 4 (`DEC-02`, L29; `DEC-09`, L36) e Seção 6, passo 1 (L57).
-- **Evidência:** `DEC-02` estabelece início manual com prompt autorizado para o executor designado; Seção 6 passo 1 exige que, antes de qualquer ação da tarefa coordenada, o orquestrador registre e valide a tarefa a partir de autorização verificável do humano, tratando solicitações do executor apenas como insumos.
-- **Descrição:** Permanece uma ambiguidade operacional sobre o ponto de entrada canônico da tarefa coordenada: se o humano entrega o prompt autorizado primeiro ao orquestrador (que valida e aciona o executor) ou se entrega ao executor e depois confirma explicitamente no orquestrador.
-- **Impacto:** Se não esclarecido no início do planejamento, pode gerar desenho ambíguo do gate inicial ou tentativa indevida de derivar autorização a partir de uma solicitação vinda do executor.
-- **Correção mínima recomendada:** Definir na abertura do planejamento técnico o fluxo exato de registro da autorização inicial (ex.: entrada canônica pelo orquestrador com o prompt autorizado, ou confirmação explícita do humano no orquestrador antes da primeira transição coordenada).
-- **Momento recomendado para resolução:** **B — Abertura do planejamento técnico** (ou esclarecimento breve na homologação humana).
+- **Stable ID** — `AUD-002`
+- **Severity** — `MINOR`
+- **Independent judgment** — `CONFIRMADO`
+- **Source and location** — `docs/architecture/001-diretrizes-arquiteturais.md` — section 4 (`DEC-02`, L29 and `DEC-09`, L36) and section 6, step 1 (L57).
+- **Evidence** — `DEC-02` establishes manual initiation with an authorized prompt for the designated executor. Section 6 step 1 requires the orchestrator to register and validate the task based on verifiable human authorization before any coordinated task action, treating executor requests only as inputs.
+- **Description** — Operational ambiguity remains about the canonical entry point for the coordinated task. The human might deliver the authorized prompt first to the orchestrator, which validates it and invokes the executor, or deliver it to the executor and then explicitly confirm it in the orchestrator.
+- **Impact** — If left unclear at the start of planning, this may lead to an ambiguous initial-gate design or an improper attempt to derive authorization from a request originating with the executor.
+- **Minimum recommended correction** — At the start of technical planning, define the exact flow for registering initial authorization, such as canonical intake through the orchestrator with the authorized prompt, or explicit human confirmation in the orchestrator before the first coordinated transition.
+- **Recommended timing for resolution** — **B — Start of technical planning**, or a brief clarification during formal human approval.
 
 ### AUD-003
-- **ID estável:** `AUD-003`
-- **Severidade:** `MINOR`
-- **Julgamento independente:** `CONFIRMADO` (`REQUER DECISÃO HUMANA` via ato de homologação)
-- **Fonte e localização:** `docs/reviews/003-revisao-independente-diretrizes-arquiteturais-r1.md` (L12, L25, L55) e `docs/architecture/001-diretrizes-arquiteturais.md` (Seção 1, L6; Seção 3, L19).
-- **Evidência:** `003` referencia `decisoes-delegacao.md` (*cópia temporária da delegação humana*), ausente do repositório; `001-diretrizes-arquiteturais.md` declara status *"Homologação documental pendente"*.
-- **Descrição:** A partir apenas do repositório persistido, não é possível confrontar palavra-por-palavra `DEC-01`–`DEC-16` com o texto bruto da delegação humana original; a rastreabilidade depende dos pareceres `003`/`004` até que o responsável humano homologue formalmente `001-diretrizes-arquiteturais.md`.
-- **Impacto:** Lacuna transitória de cadeia de custódia documental que se encerra automaticamente assim que a homologação humana for registrada de forma explícita.
-- **Correção mínima recomendada:** Registrar explicitamente a homologação humana de `docs/architecture/001-diretrizes-arquiteturais.md` (com data e versão/hash homologado), tornando-o a fonte normativa autoritativa no repositório.
-- **Momento recomendado para resolução:** **A — No ato de homologação humana** (antes de iniciar o planejamento técnico).
+- **Stable ID** — `AUD-003`
+- **Severity** — `MINOR`
+- **Independent judgment** — `CONFIRMADO` (`REQUER DECISÃO HUMANA`, requires a human decision through formal approval)
+- **Source and location** — `docs/reviews/003-revisao-independente-diretrizes-arquiteturais-r1.md` (L12, L25, L55) and `docs/architecture/001-diretrizes-arquiteturais.md` (section 1, L6 and section 3, L19).
+- **Evidence** — `003` references `decisoes-delegacao.md` (*temporary copy of the human delegation*), which is absent from the repository. `001-diretrizes-arquiteturais.md` states *"Homologação documental pendente"* (translation: "formal approval of the document is pending").
+- **Description** — Using only the persisted repository, it is impossible to compare `DEC-01`–`DEC-16` word for word against the original raw human delegation. Traceability depends on reviews `003`/`004` until the human owner formally approves `001-diretrizes-arquiteturais.md`.
+- **Impact** — Temporary gap in the documentation chain of custody that closes automatically when formal human approval is explicitly recorded.
+- **Minimum recommended correction** — Explicitly record formal human approval of `docs/architecture/001-diretrizes-arquiteturais.md`, with date and approved version/hash, making it the authoritative normative source in the repository.
+- **Recommended timing for resolution** — **A — At formal human approval**, before starting technical planning.
 
 ### AUD-004
-- **ID estável:** `AUD-004`
-- **Severidade:** `MINOR`
-- **Julgamento independente:** `REQUER DECISÃO HUMANA`
-- **Fonte e localização:** `docs/architecture/001-diretrizes-arquiteturais.md` — Seção 15 (L110) e `README.md` (L5) / `docs/001-relatorio-experimental.md` (L167, L175).
-- **Evidência:** A Seção 15 lista *"interface web e suas funcionalidades"* como decisão pendente sem indicar se pertence à V1 ou a fase futura; igualmente, nenhum documento delimita se a V1 executará operações Git/GitHub sob gate humano ou se Git/GitHub permanecerá totalmente manual.
-- **Descrição:** Falta fechamento explícito de fronteira da V1 para esses dois itens de alto impacto em escopo e risco.
-- **Impacto:** Risco de expansão desnecessária de escopo (interface web) ou de desenho prematuro de efeitos irreversíveis (push/PR/merge automatizados) durante o planejamento da V1.
-- **Correção mínima recomendada:** Definir explicitamente na homologação ou na abertura do planejamento técnico: (a) se a V1 será estritamente CLI/local (adiando interface web); e (b) se operações Git/GitHub ficam manuais na V1 ou se apenas operações Git locais específicas serão suportadas sob gate humano.
-- **Momento recomendado para resolução:** **A/B — Na homologação humana ou como primeira decisão do planejamento técnico**.
+- **Stable ID** — `AUD-004`
+- **Severity** — `MINOR`
+- **Independent judgment** — `REQUER DECISÃO HUMANA` (requires a human decision)
+- **Source and location** — `docs/architecture/001-diretrizes-arquiteturais.md` — section 15 (L110) and `README.md` (L5) / `docs/001-relatorio-experimental.md` (L167, L175).
+- **Evidence** — Section 15 lists *"interface web e suas funcionalidades"* (translation: "web interface and its features") as a pending decision without saying whether it belongs to V1 or a later phase. Likewise, no document establishes whether V1 will perform Git/GitHub operations under a human approval gate or Git/GitHub will remain entirely manual.
+- **Description** — The V1 boundary for these two items with significant scope and risk implications remains explicitly unresolved.
+- **Impact** — Risk of unnecessary scope expansion (web interface) or premature design of irreversible effects (automated push/PR/merge) during V1 planning.
+- **Minimum recommended correction** — Explicitly decide at formal approval or the start of technical planning (a) whether V1 will be strictly CLI/local, deferring the web interface, and (b) whether Git/GitHub operations will remain manual in V1 or only specific local Git operations will be supported under a human approval gate.
+- **Recommended timing for resolution** — **A/B — At formal human approval or as the first technical planning decision**.
 
 ### AUD-005
-- **ID estável:** `AUD-005`
-- **Severidade:** `EDITORIAL`
-- **Julgamento independente:** `CONFIRMADO`
-- **Fonte e localização:** `docs/001-relatorio-experimental.md` — Seção 4 (L30) vs. `evidence/pocs/006/_poc_logs/POC-006-cd85b48a2fc5-RESPONSE-send.stderr.txt`, `evidence/pocs/007/_poc_logs/REVIEW1-RESPONSE-send.stderr.txt` e `evidence/pocs/MANIFEST.md` (L39, L74).
-- **Evidência:** Os dois logs preservados registram diretamente `ai-memory starting version="3.4.7"`, enquanto `001-relatorio-experimental.md` L30 diz apenas *"Versão informada na descrição da tarefa."*
-- **Descrição:** Pequena subestimação da força da evidência disponível para a versão `3.4.7` do AI Memory nas POCs 006–007.
-- **Impacto:** Nenhum impacto arquitetural ou de segurança; apenas precisão documental histórica.
-- **Correção mínima recomendada:** Não reabrir o relatório histórico de `eeb3f53` apenas por isso; registrar como nota factual (já suprida por `MANIFEST.md` e por esta auditoria).
-- **Momento recomendado para resolução:** **C — Opcional / sem ação imediata necessária**.
+- **Stable ID** — `AUD-005`
+- **Severity** — `EDITORIAL`
+- **Independent judgment** — `CONFIRMADO`
+- **Source and location** — `docs/001-relatorio-experimental.md` — section 4 (L30) vs. `evidence/pocs/006/_poc_logs/POC-006-cd85b48a2fc5-RESPONSE-send.stderr.txt`, `evidence/pocs/007/_poc_logs/REVIEW1-RESPONSE-send.stderr.txt`, and `evidence/pocs/MANIFEST.md` (L39, L74).
+- **Evidence** — Both preserved logs directly record `ai-memory starting version="3.4.7"`, while `001-relatorio-experimental.md` L30 states only *"Versão informada na descrição da tarefa."* (Translation: "Version reported in the task description.")
+- **Description** — Slight understatement of the strength of available evidence for AI Memory version `3.4.7` in POCs 006–007.
+- **Impact** — No architectural or security impact, only historical documentation accuracy.
+- **Minimum recommended correction** — Do not reopen the historical report from `eeb3f53` for this alone. Record the point as a factual note, as `MANIFEST.md` and this audit already do.
+- **Recommended timing for resolution** — **C — Optional / no immediate action needed**.
 
 ### AUD-006
-- **ID estável:** `AUD-006`
-- **Severidade:** `EDITORIAL`
-- **Julgamento independente:** `CONFIRMADO`
-- **Fonte e localização:** `README.md` (L11).
-- **Evidência:** `README.md` L11 ainda afirma *"documentação inicial saneada em 2026-11-19, sujeita à revisão regressiva e à homologação humana"* e não referencia `docs/architecture/001-diretrizes-arquiteturais.md`, `docs/handoffs/` nem `evidence/pocs/MANIFEST.md`.
-- **Descrição:** Estado editorial esperado pelo congelamento do commit `eeb3f53` (antes da homologação das diretrizes), mas que deixará o `README.md` defasado assim que as diretrizes forem homologadas e integradas.
-- **Impacto:** Sem impacto técnico; afeta apenas a navegação inicial de quem entra no repositório.
-- **Correção mínima recomendada:** Atualizar `README.md` somente após a homologação humana de `001-diretrizes-arquiteturais.md`, adicionando os links para diretrizes, handoff e manifesto e atualizando o estado atual.
-- **Momento recomendado para resolução:** **A/B — No commit pós-homologação das diretrizes arquiteturais**.
+- **Stable ID** — `AUD-006`
+- **Severity** — `EDITORIAL`
+- **Independent judgment** — `CONFIRMADO`
+- **Source and location** — `README.md` (L11).
+- **Evidence** — `README.md` L11 still states *"documentação inicial saneada em 2026-11-19, sujeita à revisão regressiva e à homologação humana"* (translation: "initial documentation remediated on 2026-11-19, subject to regression review and formal human approval") and does not reference `docs/architecture/001-diretrizes-arquiteturais.md`, `docs/handoffs/`, or `evidence/pocs/MANIFEST.md`.
+- **Description** — Expected editorial state due to the freeze of commit `eeb3f53` before formal approval of the directives. The `README.md` will become outdated as soon as the directives are formally approved and integrated.
+- **Impact** — No technical impact. Affects only initial navigation for new repository readers.
+- **Minimum recommended correction** — Update `README.md` only after formal human approval of `001-diretrizes-arquiteturais.md`, adding links to the directives, handoff, and manifest and updating the current status.
+- **Recommended timing for resolution** — **A/B — In the commit after formal approval of the architectural directives**.
 
 ---
 
-## 20. Recomendações priorizadas
+## 20. Prioritized recommendations
 
-### A — Essenciais antes do planejamento técnico (no gate de homologação)
-1. **Formalizar a homologação humana** de `docs/architecture/001-diretrizes-arquiteturais.md` (v0.2, SHA-256 `b12cb547d861b4515fd9a3d6d6ab5468fb24864ec79db4ea734b7ba072e3d700`), encerrando `AUD-003` e autorizando a integração Git dos documentos de consolidação arquitetural e a atualização editorial do `README.md` (`AUD-006`).
-2. **Fechar duas fronteiras de V1** antes de detalhar contratos (`AUD-004`): confirmar se a V1 será estritamente CLI/local (adiando interface web) e se operações Git/GitHub permanecerão manuais na V1.
+### A — Essential before technical planning (at the formal approval gate)
+1. **Record formal human approval** of `docs/architecture/001-diretrizes-arquiteturais.md` (v0.2, SHA-256 `b12cb547d861b4515fd9a3d6d6ab5468fb24864ec79db4ea734b7ba072e3d700`), closing `AUD-003` and authorizing Git integration of the architectural consolidation documents and the editorial update to `README.md` (`AUD-006`).
+2. **Settle two V1 boundaries** before detailing contracts (`AUD-004`) by confirming whether V1 will be strictly CLI/local (deferring the web interface) and whether Git/GitHub operations will remain manual in V1.
 
-### B — Recomendadas para o planejamento técnico
-1. **Definir o ponto de entrada canônico do gate inicial (`AUD-002`):** especificar como a autorização humana verificável é registrada no orquestrador antes de qualquer ação coordenada, mantendo o início manual com prompt autocontido (`DEC-02`) sem enfraquecer `DEC-09`.
-2. **Definir o contrato de isolamento da área temporária (`AUD-001`):** garantir que a área transitória na raiz do projeto consumidor (`DEC-06`) não polua `git status`/commits do projeto consumidor (`DEC-16`) e fique separada de artefatos de controle/avaliação graváveis apenas pelo orquestrador.
-3. **Especificar fixação de versão pré-commit (`DEC-05`):** definir como fixar e verificar por hash conjuntos de arquivos ou diffs/snapshots antes de commit, evitando que alterações concorrentes invalidem revisões.
-4. **Adotar persistência local simples e auditável (`DEC-10`, `DEC-11`):** avaliar log estruturado append-only (ex.: JSONL) + estado reconstruível + lock de processo único na V1, com detecção de processos órfãos e política fail-closed para efeitos incertos (`DEC-12`).
-5. **Validar contrato mínimo de adaptadores de executores (`DEC-15`):** padronizar invocação, captura de versão (inclusive `agy`), timeouts e captura de stdout/stderr/exit code para Codex e Antigravity sem criar framework genérico prematuro.
-6. **Validar contrato de mensagens curtas com o AI Memory (`DEC-03`, `DEC-04`):** definir schema mínimo versionado com `task_id`, ação, referência de artefato, hash esperado e verificação independente de autorização/duplicidade.
+### B — Recommended for technical planning
+1. **Define the canonical entry point for the initial gate (`AUD-002`)** — Specify how verifiable human authorization is registered in the orchestrator before any coordinated action, preserving manual initiation with a self-contained prompt (`DEC-02`) without weakening `DEC-09`.
+2. **Define the temporary workspace isolation contract (`AUD-001`)** — Ensure that the transient workspace at the consumer project's root (`DEC-06`) does not clutter the consumer project's `git status` or commits (`DEC-16`) and stays separate from control and evaluation artifacts writable only by the orchestrator.
+3. **Specify pre-commit version pinning (`DEC-05`)** — Define how to pin and hash-verify sets of files or diffs/snapshots before committing, preventing concurrent changes from invalidating reviews.
+4. **Adopt simple, auditable local persistence (`DEC-10`, `DEC-11`)** — Evaluate a structured append-only log (e.g., JSONL), reconstructible state, and a single-process lock in V1, with orphan process detection and a fail-closed policy for uncertain effects (`DEC-12`).
+5. **Validate a minimum executor adapter contract (`DEC-15`)** — Standardize invocation, version capture (including `agy`), timeouts, and capture of stdout, stderr, and exit code for Codex and Antigravity without creating a premature generic framework.
+6. **Validate a short-message contract with AI Memory (`DEC-03`, `DEC-04`)** — Define a minimal versioned schema with `task_id`, action, artifact reference, expected hash, and independent checks of authorization and duplication.
 
-### C — Evoluções futuras (fora da V1)
-1. Interface web local de acompanhamento/aprovação de gates (caso adiada na V1).
-2. Incorporação de novos executores/revisores além de Codex e Antigravity (`DEC-15`).
-3. Execução concorrente controlada entre tarefas de projetos distintos (após maturação do modelo sequencial).
-4. Políticas avançadas de retenção, compactação e rotação de evidências.
-
----
-
-## 21. Decisões humanas ainda necessárias
-
-1. **Homologação documental:** aprovar (com ou sem ajustes) `docs/architecture/001-diretrizes-arquiteturais.md` (v0.2, SHA-256 `b12cb547d861b4515fd9a3d6d6ab5468fb24864ec79db4ea734b7ba072e3d700`) e autorizar seu commit/publicação junto aos pareceres `003`, `004` e `005` e atualização editorial do `README.md`.
-2. **Delimitação de interface na V1 (`AUD-004`):** confirmar se a V1 será exclusivamente CLI local (adiando interface web) ou se requer alguma interface web mínima.
-3. **Delimitação de Git/GitHub na V1 (`AUD-004`):** confirmar se operações Git (`commit`, `branch`, `push`, PR) ficam fora do escopo automático da V1 (executadas manualmente após o gate humano) ou se alguma operação Git local será coordenada sob gate.
-4. **Ponto de entrada do gate inicial (`AUD-002`):** confirmar preferência operacional entre (a) registrar/disparar a tarefa inicialmente pelo orquestrador com o prompt autorizado, ou (b) iniciar manualmente no executor e confirmar o registro no orquestrador antes de qualquer transição coordenada.
-5. **Abertura do planejamento técnico:** autorizar formalmente a próxima fase (planejamento técnico dos contratos da V1).
+### C — Future enhancements (outside V1)
+1. Local web interface for monitoring and approving gates (if deferred in V1).
+2. Integration of new executors or reviewers beyond Codex and Antigravity (`DEC-15`).
+3. Controlled concurrent execution across tasks in different projects after the sequential model matures.
+4. Advanced evidence retention, compression, and rotation policies.
 
 ---
 
-## 22. Avaliação de suficiência documental
+## 21. Human decisions still required
 
-| Critério | Avaliação |
+1. **Formal approval of the documentation** — Approve, with or without adjustments, `docs/architecture/001-diretrizes-arquiteturais.md` (v0.2, SHA-256 `b12cb547d861b4515fd9a3d6d6ab5468fb24864ec79db4ea734b7ba072e3d700`) and authorize committing and publishing it with reviews `003`, `004`, and `005` and the editorial update to `README.md`.
+2. **V1 interface boundary (`AUD-004`)** — Confirm whether V1 will be exclusively local CLI (deferring the web interface) or requires a minimal web interface.
+3. **V1 Git/GitHub boundary (`AUD-004`)** — Confirm whether Git operations (`commit`, `branch`, `push`, PR) remain outside V1's automated scope, performed manually after the human approval gate, or whether any local Git operation will be coordinated under a gate.
+4. **Initial gate entry point (`AUD-002`)** — Confirm the operational preference between (a) initially registering or triggering the task through the orchestrator with the authorized prompt, or (b) starting manually in the executor and confirming registration in the orchestrator before any coordinated transition.
+5. **Start of technical planning** — Formally authorize the next phase, technical planning of V1 contracts.
+
+---
+
+## 22. Assessment of documentation sufficiency
+
+| Criterion | Assessment |
 | --- | --- |
-| Leitura integral de todos os documentos relevantes (9/9) | **Atendido** |
-| Inventário e exame de todos os 72 artefatos experimentais | **Atendido** (72/72 verificados; 96.180 bytes; 72/72 SHA-256 conferidos; 0 vazamentos) |
-| Confronto individual das 16 diretrizes (`DEC-01`–`DEC-16`) | **Atendido** |
-| Ausência de `BLOCKER` e `MAJOR` | **Atendido** (0 `BLOCKER`, 0 `MAJOR`, 4 `MINOR`, 2 `EDITORIAL`) |
-| Distinção entre fatos, relatos, propostas e decisões humanas | **Atendido** |
-| Simplicidade e viabilidade da arquitetura conceitual | **Atendido** |
-| Adequação como base para iniciar o planejamento técnico | **Atendido com ressalvas localizadas (`AUD-001` a `AUD-004`)** |
+| Full reading of all relevant documents (9/9) | **Met** |
+| Inventory and examination of all 72 experimental artifacts | **Met** (72/72 verified, 96,180 bytes, 72/72 SHA-256 hashes checked, 0 leaks) |
+| Individual comparison of the 16 directives (`DEC-01`–`DEC-16`) | **Met** |
+| Absence of `BLOCKER` and `MAJOR` findings | **Met** (0 `BLOCKER`, 0 `MAJOR`, 4 `MINOR`, 2 `EDITORIAL`) |
+| Distinction among facts, reports, proposals, and human decisions | **Met** |
+| Simplicity and feasibility of the conceptual architecture | **Met** |
+| Suitability as a basis for starting technical planning | **Met with specific qualifications (`AUD-001` through `AUD-004`)** |
 
 ---
 
-## 23. Conclusão independente
+## 23. Independent conclusion
 
-**Veredito:** **`SUFICIENTE COM RESSALVAS — RECOMENDO HOMOLOGAÇÃO CONDICIONADA`**
+**Verdict** — **`SUFICIENTE COM RESSALVAS — RECOMENDO HOMOLOGAÇÃO CONDICIONADA`** (sufficient with qualifications — conditional formal approval recommended)
 
-O repositório `ai-agent-orchestrator` encontra-se em estado documental sólido, íntegro e coerente. As 16 diretrizes consolidadas em `docs/architecture/001-diretrizes-arquiteturais.md` (v0.2) preservam a simplicidade local-first, respeitam os limites reais comprovados pelas POCs 001–007, mantêm o AI Memory independente, protegem a autoridade humana e evitam decisões técnicas prematuras. Não há achados `BLOCKER` nem `MAJOR`, tampouco contradições materiais entre os documentos.
+The `ai-agent-orchestrator` repository is in a solid, intact, and coherent state of documentation. The 16 directives consolidated in `docs/architecture/001-diretrizes-arquiteturais.md` (v0.2) preserve local-first simplicity, respect the actual limits established by POCs 001–007, keep AI Memory independent, protect human authority, and avoid premature technical decisions. There are no `BLOCKER` or `MAJOR` findings and no material contradictions among the documents.
 
-Recomenda-se a **homologação humana condicionada** ao tratamento explícito das quatro ressalvas `MINOR` identificadas (`AUD-001` a `AUD-004`): formalização do ato de homologação como fonte normativa autoritativa (`AUD-003`), fechamento de fronteira da V1 para interface web e Git/GitHub (`AUD-004`), definição do ponto de entrada canônico do gate inicial (`AUD-002`) e previsão explícita do isolamento Git/sandbox da área temporária na raiz do projeto consumidor (`AUD-001`) na abertura do planejamento técnico. A decisão final de homologação pertence exclusivamente ao responsável humano.
+**Formal human approval is recommended** subject to explicit handling of the four identified `MINOR` qualifications (`AUD-001` through `AUD-004`). Record the act of formal approval to establish the authoritative normative source (`AUD-003`), settle the V1 boundary for the web interface and Git/GitHub (`AUD-004`), define the canonical entry point for the initial gate (`AUD-002`), and explicitly provide for Git and sandbox isolation of the temporary workspace at the consumer project's root (`AUD-001`) at the start of technical planning. The final formal approval decision belongs exclusively to the human owner.
 
 ---
 
-## 24. Próximo gate recomendado
+## 24. Recommended next gate
 
-**Gate humano de homologação das diretrizes arquiteturais e abertura do planejamento técnico:**
-1. Avaliação deste parecer (`005`) pelo GPT e pelo responsável humano;
-2. Decisão humana sobre homologação de `docs/architecture/001-diretrizes-arquiteturais.md` (v0.2) e sobre as questões da Seção 21 (`AUD-002`, `AUD-003`, `AUD-004`);
-3. Autorização (se aprovada) para commit dos documentos de consolidação arquitetural + pareceres (`003`, `004`, `005`) e atualização editorial do `README.md` (`AUD-006`);
-4. Autorização formal para abertura da fase de **planejamento técnico da V1** (contratos mínimos de estado, mensagens, artefatos, isolamento e retomada).
+**Human approval gate for the architectural directives and the start of technical planning**
+1. GPT and the human owner evaluate this review (`005`).
+2. The human decides on formal approval of `docs/architecture/001-diretrizes-arquiteturais.md` (v0.2) and on the questions in section 21 (`AUD-002`, `AUD-003`, `AUD-004`).
+3. If approved, authorize committing the architectural consolidation documents and reviews (`003`, `004`, `005`) and the editorial update to `README.md` (`AUD-006`).
+4. Formally authorize the start of **V1 technical planning** (minimum contracts for state, messages, artifacts, isolation, and recovery).

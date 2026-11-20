@@ -1,253 +1,253 @@
-# Revisão Independente R1 — Documentação Inicial do AI Agent Orchestrator
+# Independent Review R1 — Initial AI Agent Orchestrator Documentation
 
-## 1. Identificação da revisão e baseline
+## 1. Review identification and baseline
 
-- **Projeto:** AI Agent Orchestrator
-- **Revisão:** R1 — Auditoria documental independente
-- **Papel:** Revisor técnico independente (modo somente leitura sobre fontes; criação exclusiva deste parecer)
-- **Origem da documentação auditada:** Preparação inicial realizada pelo Codex
-- **Data da revisão:** 2026-11-19
-- **Repositório auditado:** `$HOME/projects/ai-agent-orchestrator`
-- **Branch observada:** `main`
-- **Estado Git inicial (antes da criação deste parecer):**
-  - Repositório Git local recém-inicializado, sem commits (`## No commits yet on main`; `git log` retorna ausência de commits em `main`).
-  - Sem remotes configurados (`git remote -v` vazio).
-  - Arquivos presentes na árvore de trabalho (todos *untracked*):
+- **Project** — AI Agent Orchestrator
+- **Review** — R1 — Independent documentation audit
+- **Role** — Independent technical reviewer with read-only access to sources and creation of this review only
+- **Origin of the audited documentation** — Initially prepared by Codex
+- **Review date** — 2026-11-19
+- **Audited repository** — `$HOME/projects/ai-agent-orchestrator`
+- **Observed branch** — `main`
+- **Initial Git state before creating this review**
+  - Newly initialized local Git repository with no commits (`## No commits yet on main`. `git log` reports no commits on `main`).
+  - No remotes configured (`git remote -v` returns no output).
+  - Files present in the working tree, all *untracked*
     - `README.md`
     - `docs/001-relatorio-experimental.md`
-  - Nenhuma alteração preexistente foi modificada durante a auditoria.
+  - The audit left all preexisting changes untouched.
 
 ---
 
-## 2. Resumo executivo
+## 2. Executive summary
 
-A documentação inicial composta por `README.md` e `docs/001-relatorio-experimental.md` apresenta boa qualidade técnica, disciplina epistêmica acima da média e consistência interna entre os dois arquivos. Os documentos diferenciam adequadamente o papel do AI Memory e do futuro orquestrador, evitam atribuir aprovação a propostas futuras, preservam a independência frente a aplicações consumidoras (IAS, Jungle e projetos futuros) e conferem com fidelidade a maior parte dos artefatos primários das POCs 006 e 007 (incluindo hashes SHA-256, IDs de mensagens, logs de testes RED/GREEN e ausência de commits nas árvores sintéticas).
+The initial documentation, comprising `README.md` and `docs/001-relatorio-experimental.md`, shows good technical quality, above-average epistemic discipline, and internal consistency between the two files. The documents adequately distinguish the roles of AI Memory and the future orchestrator, avoid attributing approval to future proposals, preserve independence from consumer applications (IAS, Jungle, and future projects), and accurately match most primary artifacts from POCs 006 and 007, including SHA-256 hashes, message IDs, RED/GREEN test logs, and the absence of commits in the synthetic trees.
 
-Entretanto, a verificação independente das fontes primárias identificou **6 achados** (**0 BLOCKER**, **2 MAJOR**, **3 MINOR**, **1 EDITORIAL**). Os dois achados **MAJOR** impedem a recomendação de aprovação documental definitiva antes de saneamento:
+However, independent verification of the primary sources identified **6 findings** (**0 BLOCKER**, **2 MAJOR**, **3 MINOR**, **1 EDITORIAL**). The two **MAJOR** findings preclude recommending final approval of the documentation before remediation.
 
-1. **R1-001 (MAJOR):** O relatório omite que os scripts das POCs 005, 006 e 007 operaram sobre o namespace/inbox do projeto IAS no AI Memory (`default/luishenriqs-identity-and-access-server`) e que as mensagens das POCs 006 e 007 foram enviadas sem identidade real do agente remetente (`"from_agent": "other"`, `"from_owner_user": null`). Isso impacta a rastreabilidade de isolamento e proveniência para o planejamento técnico.
-2. **R1-002 (MAJOR):** A documentação não registra a orientação estratégica humana recente que concentra o desenvolvimento futuro no `AI Agent Orchestrator` em parceria com o AI Memory, preservando o `AI Orchestration Lab` como referência histórica sem continuidade ativa de implementação prevista.
+1. **R1-001 (MAJOR)** — The report omits that the POC 005, 006, and 007 scripts operated on the IAS project's namespace and inbox in AI Memory (`default/luishenriqs-identity-and-access-server`) and that the POC 006 and 007 messages were sent without the actual sending agent's identity (`"from_agent": "other"`, `"from_owner_user": null`). This affects traceability for isolation and provenance in technical planning.
+2. **R1-002 (MAJOR)** — The documentation omits the recent human strategic directive to focus future development on `AI Agent Orchestrator` in partnership with AI Memory, preserving `AI Orchestration Lab` as a historical reference with no continued active implementation planned.
 
-**Parecer conclusivo:** **`AJUSTES NECESSÁRIOS`** (sem recomendação de aprovação documental definitiva enquanto houver achados `MAJOR` abertos).
+**Final verdict** — **`AJUSTES NECESSÁRIOS`** (adjustments required). Final documentation approval is not recommended while any `MAJOR` findings remain open.
 
 ---
 
-## 3. Fontes consultadas
+## 3. Sources consulted
 
-Todas as fontes abaixo foram verificadas quanto à existência e consultadas exclusivamente em modo leitura. Nenhuma POC foi reexecutada, nenhuma mensagem pendente do AI Memory foi consumida e nenhum subprocesso de agente foi iniciado.
+The existence of all sources below was verified, and they were consulted exclusively in read-only mode. No POC was rerun, no pending AI Memory message was consumed, and no agent subprocess was started.
 
-### 3.1 Documentos auditados (leitura integral)
+### 3.1 Audited documents (read in full)
 
-| Caminho | Existência | Observação |
+| Path | Existence | Note |
 | --- | --- | --- |
-| `$HOME/projects/ai-agent-orchestrator/README.md` | Verificada | Lido integralmente (11 linhas). |
-| `$HOME/projects/ai-agent-orchestrator/docs/001-relatorio-experimental.md` | Verificada | Lido integralmente (151 linhas). |
+| `$HOME/projects/ai-agent-orchestrator/README.md` | Verified | Read in full (11 lines). |
+| `$HOME/projects/ai-agent-orchestrator/docs/001-relatorio-experimental.md` | Verified | Read in full (151 lines). |
 
-### 3.2 Fontes experimentais consultadas
+### 3.2 Experimental sources consulted
 
-| Caminho | Existência | Artefatos inspecionados |
+| Path | Existence | Artifacts inspected |
 | --- | --- | --- |
-| `/mnt/c/Users/<perfil-windows>/Downloads/poc_ai_memory_005.py` | Verificada | Leitura integral (135 linhas). Sem logs ou manifesto de execução no conjunto. |
-| `/mnt/c/Users/<perfil-windows>/Downloads/poc_ai_memory_006.py` | Verificada | Leitura integral (222 linhas). |
-| `/mnt/c/Users/<perfil-windows>/Downloads/poc_ai_memory_007.py` | Verificada | Leitura integral (348 linhas). |
-| `/tmp/ias-ai-memory-poc-006-3nvadl13/` | Verificada | `result.json` (SHA-256 `9a3a37ce1dce4162aa1371e50653599aefb555531220ca9784494f29001374bd`), `demo/labels.py` (SHA-256 `48c87796d8c7906267b378d5dd112cf98b0963ef03935182d986bd04ce615b7f`), `demo/REVIEW_RESPONSE.md`, logs em `_poc_logs/` (`*.exit.txt`, `*-send.stdout.txt`, `*-pop.stdout.txt`, `antigravity-review.*`, `codex-implement.*`, `codex-response.*`, `tests-before-review.*`, `tests-final.*`), estado Git de `demo/`. |
-| `/tmp/ias-ai-memory-poc-007-c5_hla_j/` | Verificada | `result.json` (SHA-256 `4e6646242b523f1eed43f6c5f0734117c779dabfa908267bdbdbd020ef2aecf1`), `_poc_logs/fault-injection.json`, `demo/labels.py` (SHA-256 `cfefb68b637ea6a1ec497116ada9cbd63eb1c214d5f7279289a6ef3bb55eda10`), `regression_tests.py`, logs em `_poc_logs/` (`*.exit.txt`, `*-send.stdout.txt`, `*-pop.stdout.txt`, `antigravity-review1.*`, `antigravity-review2.*`, `codex-initial.*`, `codex-correct.*`, `tests-initial.*`, `tests-faulty-public.*`, `tests-red.*`, `tests-green.*`, `tests-final-public.*`), estado Git de `demo/`. |
+| `/mnt/c/Users/<perfil-windows>/Downloads/poc_ai_memory_005.py` | Verified | Read in full (135 lines). No execution logs or manifest in the collection. |
+| `/mnt/c/Users/<perfil-windows>/Downloads/poc_ai_memory_006.py` | Verified | Read in full (222 lines). |
+| `/mnt/c/Users/<perfil-windows>/Downloads/poc_ai_memory_007.py` | Verified | Read in full (348 lines). |
+| `/tmp/ias-ai-memory-poc-006-3nvadl13/` | Verified | `result.json` (SHA-256 `9a3a37ce1dce4162aa1371e50653599aefb555531220ca9784494f29001374bd`), `demo/labels.py` (SHA-256 `48c87796d8c7906267b378d5dd112cf98b0963ef03935182d986bd04ce615b7f`), `demo/REVIEW_RESPONSE.md`, logs in `_poc_logs/` (`*.exit.txt`, `*-send.stdout.txt`, `*-pop.stdout.txt`, `antigravity-review.*`, `codex-implement.*`, `codex-response.*`, `tests-before-review.*`, `tests-final.*`), and Git status of `demo/`. |
+| `/tmp/ias-ai-memory-poc-007-c5_hla_j/` | Verified | `result.json` (SHA-256 `4e6646242b523f1eed43f6c5f0734117c779dabfa908267bdbdbd020ef2aecf1`), `_poc_logs/fault-injection.json`, `demo/labels.py` (SHA-256 `cfefb68b637ea6a1ec497116ada9cbd63eb1c214d5f7279289a6ef3bb55eda10`), `regression_tests.py`, logs in `_poc_logs/` (`*.exit.txt`, `*-send.stdout.txt`, `*-pop.stdout.txt`, `antigravity-review1.*`, `antigravity-review2.*`, `codex-initial.*`, `codex-correct.*`, `tests-initial.*`, `tests-faulty-public.*`, `tests-red.*`, `tests-green.*`, `tests-final-public.*`), and Git status of `demo/`. |
 
-### 3.3 Fontes ausentes no conjunto consultado
+### 3.3 Sources missing from the collection consulted
 
-- Registros primários (comandos, logs, manifestos) das POCs 001 a 004.
-- Logs de execução, saída textual, código de retorno e estado gravado (`~/.local/state/ai-memory-poc-005/processed.json`) da execução da POC-005.
+- Primary records (commands, logs, manifests) from POCs 001 through 004.
+- Execution logs, text output, return code, and recorded state (`~/.local/state/ai-memory-poc-005/processed.json`) from the POC-005 run.
 
 ---
 
-## 4. Matriz de rastreabilidade das POCs
+## 4. POC traceability matrix
 
-| POC | Evidência primária disponível | Fato verificado diretamente | Resultado reportado (não verificado diretamente) | Limite da evidência |
+| POC | Available primary evidence | Directly verified fact | Reported result (without direct verification) | Evidence limitation |
 | --- | --- | --- | --- | --- |
-| **POC-001 a POC-004** | Nenhuma no conjunto consultado. | Nenhum registro primário verificado diretamente. | Comunicação via inbox/MCP entre Codex e Antigravity (disponibilidade, envio, consulta, reivindicação, identificação, execução não interativa) reportada em bloco agregado. | Não é possível individualizar entregas por número de POC nem auditar comandos/saídas originais. |
-| **POC-005** | Script `poc_ai_memory_005.py`. | Lógica de polling da inbox (`default/luishenriqs-identity-and-access-server`), filtro por `subject` e `body`, bloqueio em ambiguidade, `pop` por ID, persistência local antes do disparo, invocação via `ai-memory run ... antigravity --mode plan --print`, validação de `"POC-005 recebida"` e ausência de retry. | Resultado `PASS` da execução real. | Ausência de stdout/stderr, exit code e arquivo de estado da execução impede confirmar que o script rodou e obteve `PASS`. |
-| **POC-006** | Script `poc_ai_memory_006.py` e diretório `/tmp/ias-ai-memory-poc-006-3nvadl13/`. | Ciclo em árvore sintética sem commits; `codex` (v0.170.0) implementou `labels.py`; 5 testes `unittest` passaram (`exit=0`) antes e depois; 2 roundtrips `send`+`pop` via CLI do AI Memory com IDs coincidentes com `result.json` (`01a1f584-ba68-7d60-b10b-d796b2fe6b22` e `01a1f585-214a-7711-a817-b795c7786777`, `exit=0`); `agy --mode plan --print` emitiu `VEREDITO: APROVADO`; Codex gerou `REVIEW_RESPONSE.md`. SHA-256 de `result.json` conferido. | `ias_touched: false` gravado como literal no manifesto pelo despachante. | Mensagens trafegaram na inbox do projeto IAS (`from_agent: "other"`); `send` e `pop` feitos em sequência (~20ms) pelo mesmo despachante; `check_tree` não valida hashes; código já passava nos 5 testes antes da revisão. |
-| **POC-007** | Script `poc_ai_memory_007.py` e diretório `/tmp/ias-ai-memory-poc-007-c5_hla_j/`. | Implementação inicial do Codex passou nos 3 testes públicos (`exit=0`); injeção controlada de `split(" ")` registrada em `fault-injection.json` (hashes `clean_pre_injection_sha256` e `faulty_sha256`) manteve 3 testes públicos passando (`exit=0`); `antigravity-review1` emitiu `VEREDITO: AJUSTES` com 4 categorias de contraprovas sem aviso da injeção; `tests-red` registrou 5 testes, 4 falhas e `exit=1`; `codex-correct` alterou para `split()`; `tests-green` (5/5) e `tests-final-public` (3/3) passaram (`exit=0`); SHA-256 final de `labels.py` coincide com `corrected_sha256`; `antigravity-review2` emitiu `VEREDITO: APROVADO`; 4 pares `send`+`pop` via CLI coincidem com `result.json` (`exit=0`). SHA-256 de `result.json` conferido. | Execução bem-sucedida de `test_process_failures()` (o manifesto registra `true`, sem log dedicado da saída desse autoteste); ausência de verificação independente sobre o IAS (`not_independently_verified`). | Mensagens trafegaram na inbox do projeto IAS (`from_agent: "other"`); `send`+`pop` imediatos pelo despachante; sandbox `workspace-write` do Codex incluía `/tmp` inteiro (onde estavam `regression_tests.py` e `_poc_logs/`); autoteste de duplicidade/timeout é estritamente em memória e isolado. |
+| **POC-001 through POC-004** | None in the collection consulted. | No primary record verified directly. | Inbox/MCP communication between Codex and Antigravity (availability, sending, lookup, claiming, identification, non-interactive execution) was reported in aggregate. | Deliverables cannot be attributed to individual POC numbers, and the original commands and outputs cannot be audited. |
+| **POC-005** | Script `poc_ai_memory_005.py`. | Polling logic for the inbox (`default/luishenriqs-identity-and-access-server`), filtering by `subject` and `body`, stopping on ambiguity, `pop` by ID, local persistence before invocation, invocation via `ai-memory run ... antigravity --mode plan --print`, validation of `"POC-005 recebida"` (received), and no retry. | `PASS` result for the actual run. | The absence of stdout/stderr, exit code, and execution state file prevents confirmation that the script ran and obtained `PASS`. |
+| **POC-006** | Script `poc_ai_memory_006.py` and directory `/tmp/ias-ai-memory-poc-006-3nvadl13/`. | Cycle in a synthetic tree with no commits. `codex` (v0.170.0) implemented `labels.py`. 5 `unittest` tests passed (`exit=0`) before and after. 2 `send`+`pop` round trips through the AI Memory CLI had IDs matching `result.json` (`01a1f584-ba68-7d60-b10b-d796b2fe6b22` and `01a1f585-214a-7711-a817-b795c7786777`, `exit=0`). `agy --mode plan --print` issued `VEREDITO: APROVADO` (verdict: approved). Codex generated `REVIEW_RESPONSE.md`. SHA-256 of `result.json` verified. | `ias_touched: false` written as a literal in the manifest by the dispatcher. | Messages passed through the IAS project inbox (`from_agent: "other"`). The same dispatcher performed `send` and `pop` in sequence (~20ms). `check_tree` does not validate hashes. The code already passed all 5 tests before review. |
+| **POC-007** | Script `poc_ai_memory_007.py` and directory `/tmp/ias-ai-memory-poc-007-c5_hla_j/`. | The initial Codex implementation passed all 3 public tests (`exit=0`). The controlled injection of `split(" ")` recorded in `fault-injection.json` (hashes `clean_pre_injection_sha256` and `faulty_sha256`) left all 3 public tests passing (`exit=0`). `antigravity-review1` issued `VEREDITO: AJUSTES` (verdict: adjustments) with 4 categories of counterexamples without being told of the injection. `tests-red` recorded 5 tests, 4 failures, and `exit=1`. `codex-correct` changed the code to use `split()`. `tests-green` (5/5) and `tests-final-public` (3/3) passed (`exit=0`). The final SHA-256 of `labels.py` matches `corrected_sha256`. `antigravity-review2` issued `VEREDITO: APROVADO`. 4 CLI `send`+`pop` pairs match `result.json` (`exit=0`). SHA-256 of `result.json` verified. | Successful run of `test_process_failures()` (the manifest records `true`, with no dedicated log of the self-test output). Lack of independent verification regarding IAS (`not_independently_verified`). | Messages passed through the IAS project inbox (`from_agent: "other"`). The dispatcher performed `send`+`pop` immediately. The Codex `workspace-write` sandbox included all of `/tmp` (where `regression_tests.py` and `_poc_logs/` were located). The duplicate/timeout self-test was strictly in-memory and isolated. |
 
 ---
 
-## 5. Avaliação de fidelidade histórica
+## 5. Assessment of historical fidelity
 
-O relatório `docs/001-relatorio-experimental.md` representa com fidelidade satisfatória:
-- **Motivação original:** traduz corretamente a transição entre "mecanismo de comunicação" e necessidade de controle explícito de sequência, efeitos e autorizações entre projetos.
-- **Sequência das POCs:** mantém a ordem cronológica 001–007 e evita fabricar granularidade inexistente para o bloco 001–004 ou simular evidência de execução para a POC-005.
-- **Resultados observados nas POCs 006 e 007:** números de testes (5 na POC-006; 3 públicos e 5 regressivos com 4 falhas RED / 5 acertos GREEN na POC-007), vereditos (`APROVADO`, `AJUSTES`, `APROVADO`), ausência de segunda sessão do Codex após o parecer final da POC-007, ausência de commits nas árvores sintéticas e hashes SHA-256 dos dois `result.json` conferem exatamente com as evidências primárias.
-- **Consistência entre `README.md` e `docs/001-relatorio-experimental.md`:** ambos convergem no escopo, na parceria com o AI Memory, na autoridade humana, na independência frente a IAS/Jungle e no estado atual de preparação documental sem implementação.
+The report `docs/001-relatorio-experimental.md` represents the following with satisfactory fidelity.
+- **Original motivation** — Accurately conveys the transition from a "communication mechanism" to the need for explicit control of sequencing, effects, and authorizations across projects.
+- **POC sequence** — Maintains chronological order 001–007 and avoids inventing detail unavailable for the 001–004 group or simulating evidence of POC-005 execution.
+- **Results observed in POCs 006 and 007** — The test counts (5 in POC-006 and 3 public and 5 regression tests with 4 RED failures and 5 GREEN passes in POC-007), verdicts (`APROVADO`, `AJUSTES`, `APROVADO`), absence of a second Codex session after the final review in POC-007, absence of commits in the synthetic trees, and SHA-256 hashes of both `result.json` files match the primary evidence exactly.
+- **Consistency between `README.md` and `docs/001-relatorio-experimental.md`** — Both align on scope, partnership with AI Memory, human authority, independence from IAS/Jungle, and the current state of documentation preparation without implementation.
 
-**Omissões históricas relevantes para o planejamento futuro:**
-1. Uso efetivo do projeto do IAS no AI Memory (`default/luishenriqs-identity-and-access-server`) como inbox de todas as POCs 005–007, e registro de `from_agent: "other"` nos envios da POC-006 e POC-007 (Achado **R1-001**).
-2. Ausência de registro da relação histórica e estratégica com o `AI Orchestration Lab` (Achado **R1-002**).
-3. Assimetria de conteúdo entre inbox e prompt CLI + truncamento de pareceres nas POCs 006 e 007 (Achado **R1-003**).
-4. Mudança de invocação do Antigravity entre POC-005 (`ai-memory run ... antigravity`) e POCs 006–007 (`agy` direto), além do escopo `/tmp` gravável e `approval: never` nos logs do Codex (Achado **R1-004**).
+**Historical omissions relevant to future planning**
+1. Actual use of the IAS project in AI Memory (`default/luishenriqs-identity-and-access-server`) as the inbox for all POCs 005–007, and the recording of `from_agent: "other"` in POC-006 and POC-007 sends (Finding **R1-001**).
+2. Failure to record the historical and strategic relationship with `AI Orchestration Lab` (Finding **R1-002**).
+3. Content asymmetry between the inbox and CLI prompt, plus review truncation in POCs 006 and 007 (Finding **R1-003**).
+4. Change in Antigravity invocation between POC-005 (`ai-memory run ... antigravity`) and POCs 006–007 (direct `agy`), plus writable `/tmp` scope and `approval: never` in the Codex logs (Finding **R1-004**).
 
 ---
 
-## 6. Avaliação das conclusões técnicas
+## 6. Assessment of technical conclusions
 
-### 6.1 Distinção de limites das conclusões (Critério 5.C)
+### 6.1 Distinguishing the limits of conclusions (Criterion 5.C)
 
-| Limite avaliado | Avaliação na documentação |
+| Boundary assessed | Documentation assessment |
 | --- | --- |
-| Comunicação por AI Memory vs. orquestração | **Bem diferenciado** (README L3–5; Relatório Seções 2, 5, 10 e 11). |
-| Mensagem reivindicada vs. tarefa executada com sucesso | **Bem diferenciado** (Relatório L32 e L130). |
-| Sucesso de subprocesso vs. correção funcional | **Diferenciado** (Relatório Seções 6, 9 e 12), embora os exemplos possam ser reforçados pela evidência da POC-007 em que `tests-faulty-public` teve `exit=0` com código defeituoso. |
-| Testes locais de duplicidade vs. tolerância real a falhas | **Bem diferenciado** (Relatório L69, L98 e L119). |
-| Revisão independente vs. garantia de ausência de defeitos | **Adequado** (Relatório L75 e L123–124 limita conclusões ao caso estudado). |
-| Prova de conceito vs. produção | **Bem diferenciado** (README L9–11; Relatório Seções 1, 12, 14 e 15). |
-| Isolamento reportado do IAS vs. isolamento comprovado | **Parcialmente adequado**: o relatório distingue bem no nível de repositório/filesystem (L93), mas omite que a inbox do projeto IAS no AI Memory foi utilizada pelas POCs 005–007 (Achado **R1-001**). |
+| Communication through AI Memory vs. orchestration | **Clearly distinguished** (README L3–5 and report sections 2, 5, 10, and 11). |
+| Message claimed vs. task executed successfully | **Clearly distinguished** (report L32 and L130). |
+| Subprocess success vs. functional correctness | **Distinguished** (report sections 6, 9, and 12), although the examples could be strengthened with the POC-007 evidence where `tests-faulty-public` returned `exit=0` with defective code. |
+| Local duplication tests vs. actual fault tolerance | **Clearly distinguished** (report L69, L98, and L119). |
+| Independent review vs. guarantee of defect-free code | **Adequate** (report L75 and L123–124 limit conclusions to the case studied). |
+| Proof of concept vs. production | **Clearly distinguished** (README L9–11 and report sections 1, 12, 14, and 15). |
+| Reported vs. proven isolation from IAS | **Partially adequate** — the report distinguishes this well at the repository/filesystem level (L93), but omits that POCs 005–007 used the IAS project inbox in AI Memory (Finding **R1-001**). |
 
-### 6.2 Arquitetura conceitual e responsabilidades (Critério 5.D)
+### 6.2 Conceptual architecture and responsibilities (Criterion 5.D)
 
-A separação de responsabilidades na Seção 11 do relatório e no `README.md` está **adequada**:
-- **AI Memory:** memória persistente, contexto e mensageria (produto independente de Fábio Akita).
-- **AI Agent Orchestrator:** coordenação, sequência, processos, estados, limites autorizados, vínculos entre versões e evidências, tratamento de falhas e gates.
-- **Codex / Antigravity:** executores e revisores conforme designação e permissões.
-- **Humano:** autoridade final sobre escopo, decisões, exceções, homologação e integração.
+The separation of responsibilities in section 11 of the report and in `README.md` is **adequate**.
+- **AI Memory** — persistent memory, context, and messaging (Fábio Akita's independent product).
+- **AI Agent Orchestrator** — coordination, sequencing, processes, states, authorized limits, links between versions and evidence, failure handling, and gates.
+- **Codex / Antigravity** — executors and reviewers according to assignments and permissions.
+- **Human** — final authority over scope, decisions, exceptions, formal approval, and integration.
 
-Nenhuma arquitetura definitiva é imposta indevidamente; as decisões de stack, persistência e transporte permanecem explicitamente em aberto.
+The documents do not improperly impose a final architecture. Decisions on stack, persistence, and transport remain explicitly open.
 
-### 6.3 Independência e reutilização (Critério 5.E)
+### 6.3 Independence and reuse (Criterion 5.E)
 
-- Ambos os documentos apresentam o `AI Agent Orchestrator` como projeto independente de repositórios consumidores (citando IAS, Jungle e projetos futuros como exemplos externos).
-- Não há incorporação de regras de domínio do IAS no conceito do orquestrador.
-- O AI Memory não é tratado como fonte de autorização operacional (README L5; Relatório L32, L115, L121 e L130).
+- Both documents present `AI Agent Orchestrator` as independent of consumer repositories, citing IAS, Jungle, and future projects as external examples.
+- The orchestrator concept incorporates no IAS domain rules.
+- The documents do not treat AI Memory as a source of operational authorization (README L5 and report L32, L115, L121, and L130).
 
-### 6.4 Relação com o AI Orchestration Lab (Critério 5.F)
+### 6.4 Relationship with AI Orchestration Lab (Criterion 5.F)
 
-Registra-se formalmente neste parecer a **orientação estratégica humana recente**:
-- O desenvolvimento futuro será concentrado no **AI Agent Orchestrator**, trabalhando em parceria com o **AI Memory**.
-- O **AI Orchestration Lab** deverá ser preservado como **referência histórica**, sem continuidade de implementação ativa prevista.
+This review formally records the **recent human strategic directive**.
+- Future development will focus on **AI Agent Orchestrator**, working in partnership with **AI Memory**.
+- **AI Orchestration Lab** is to be preserved as a **historical reference**, with no continued active implementation planned.
 
-**Avaliação:** Essa orientação **precisa ser formalizada posteriormente na documentação** (em `README.md` e em nota de contexto no relatório experimental ou documento de governança inicial), identificando-a explicitamente como decisão estratégica humana estabelecida. Sem esse registro, o repositório não documenta sua relação com o trabalho histórico do Lab nem delimita que não há migração automática de contratos ou desenvolvimento paralelo previsto (Achado **R1-002**).
+**Assessment** — This directive **must subsequently be formalized in the documentation** (in `README.md` and in a context note in the experimental report or an initial governance document), identifying it explicitly as an established human strategic decision. Without this record, the repository fails to document its relationship to the Lab's historical work or make clear that no automatic contract migration or parallel development is planned (Finding **R1-002**).
 
 ---
 
-## 7. Achados classificados
+## 7. Classified findings
 
 ### R1-001
-1. **Identificador:** `R1-001`
-2. **Severidade:** `MAJOR`
-3. **Arquivo e seção:** `docs/001-relatorio-experimental.md` — Seções 5, 6 e 8 (especialmente L32, L52, L56–58, L67–69 e L93).
-4. **Afirmação ou problema analisado:** O relatório discute o isolamento do IAS apenas sob a ótica das árvores Git sintéticas (`ias_touched`) e afirma que os registros das POCs 006 e 007 correlacionam envio e reivindicação, omitindo dois fatos materiais: (a) os scripts das POCs 005, 006 e 007 operaram sobre a inbox do projeto IAS no AI Memory (`default/luishenriqs-identity-and-access-server`); e (b) nas POCs 006 e 007, `ai-memory message send` gravou `"from_agent": "other"` e `"from_owner_user": null` em todas as mensagens, sem identificar o agente remetente na origem.
-5. **Evidência disponível:**
-   - `poc_ai_memory_005.py` (L15–16), `poc_ai_memory_006.py` (L22–23), `poc_ai_memory_007.py` (L26–27): `WORKSPACE = "default"`, `PROJECT = "luishenriqs-identity-and-access-server"`.
-   - Logs `*-send.stdout.txt` e `*-pop.stdout.txt` em `/tmp/ias-ai-memory-poc-006-3nvadl13/_poc_logs/` e `/tmp/ias-ai-memory-poc-007-c5_hla_j/_poc_logs/`: envio `from default/luishenriqs-identity-and-access-server to default/luishenriqs-identity-and-access-server`, com `"from_agent": "other"`, `"from_owner_user": null` e `security_notice` alertando entrada não confiável.
-6. **Impacto:** Perda relevante de rastreabilidade técnica. Leva a subestimar o acoplamento de namespace/inbox ocorrido nas POCs e omite uma limitação concreta de proveniência de identidade no uso via CLI do AI Memory, ambas diretamente relevantes para o planejamento do orquestrador.
-7. **Correção mínima recomendada:** Registrar explicitamente nas Seções 5, 6 e 8 que as POCs 005–007 usaram o projeto `default/luishenriqs-identity-and-access-server` no AI Memory (diferenciando isolamento da árvore de código do IAS vs. uso da inbox do projeto IAS) e documentar que os envios via CLI nas POCs 006–007 registraram `"from_agent": "other"` e `"from_owner_user": null`, com identificação do agente apenas no parâmetro `--agent` do `pop`.
+1. **Identifier** — `R1-001`
+2. **Severity** — `MAJOR`
+3. **File and section** — `docs/001-relatorio-experimental.md` — sections 5, 6, and 8 (especially L32, L52, L56–58, L67–69, and L93).
+4. **Claim or issue analyzed** — The report discusses IAS isolation only from the perspective of the synthetic Git trees (`ias_touched`) and states that records from POCs 006 and 007 correlate sends and claims, omitting two material facts. (a) The POC 005, 006, and 007 scripts operated on the IAS project inbox in AI Memory (`default/luishenriqs-identity-and-access-server`). (b) In POCs 006 and 007, `ai-memory message send` recorded `"from_agent": "other"` and `"from_owner_user": null` in every message, without identifying the sending agent at the source.
+5. **Available evidence**
+   - `poc_ai_memory_005.py` (L15–16), `poc_ai_memory_006.py` (L22–23), and `poc_ai_memory_007.py` (L26–27) contain `WORKSPACE = "default"` and `PROJECT = "luishenriqs-identity-and-access-server"`.
+   - Logs `*-send.stdout.txt` and `*-pop.stdout.txt` in `/tmp/ias-ai-memory-poc-006-3nvadl13/_poc_logs/` and `/tmp/ias-ai-memory-poc-007-c5_hla_j/_poc_logs/` show the send `from default/luishenriqs-identity-and-access-server to default/luishenriqs-identity-and-access-server`, with `"from_agent": "other"`, `"from_owner_user": null`, and `security_notice` warning of untrusted input.
+6. **Impact** — Significant loss of technical traceability. It understates the namespace/inbox coupling in the POCs and omits a concrete limitation of identity provenance when using the AI Memory CLI, both directly relevant to orchestrator planning.
+7. **Minimum recommended correction** — Explicitly record in sections 5, 6, and 8 that POCs 005–007 used the `default/luishenriqs-identity-and-access-server` project in AI Memory, distinguishing isolation of the IAS code tree from use of the IAS project inbox. Document that the CLI sends in POCs 006–007 recorded `"from_agent": "other"` and `"from_owner_user": null`, with agent identification only in the `--agent` parameter to `pop`.
 
 ---
 
 ### R1-002
-1. **Identificador:** `R1-002`
-2. **Severidade:** `MAJOR`
-3. **Arquivo e seção:** `README.md` (L1–11) e `docs/001-relatorio-experimental.md` (Seções 1, 2 e 15).
-4. **Afirmação ou problema analisado:** A documentação não registra a relação com o repositório `AI Orchestration Lab` nem a orientação estratégica humana recente de concentrar o desenvolvimento futuro no `AI Agent Orchestrator` (em parceria com o AI Memory), mantendo o `AI Orchestration Lab` como referência histórica sem continuidade ativa de implementação prevista.
-5. **Evidência disponível:** Leitura integral de `README.md` e `docs/001-relatorio-experimental.md` (zero menções ao `AI Orchestration Lab`); orientação estratégica humana informada no escopo da revisão R1 (Seção 5.F).
-6. **Impacto:** Lacuna material de governança e contexto para o planejamento técnico futuro, com risco de ambiguidade sobre escopo, manutenção paralela ou expectativa de migração de contratos do `AI Orchestration Lab`.
-7. **Correção mínima recomendada:** Formalizar em nota concisa no `README.md` e no relatório experimental (marcada explicitamente como decisão estratégica humana estabelecida) que o desenvolvimento futuro concentra-se no `AI Agent Orchestrator` em parceria com o AI Memory e que o `AI Orchestration Lab` é preservado apenas como referência histórica, sem continuidade ativa prevista.
+1. **Identifier** — `R1-002`
+2. **Severity** — `MAJOR`
+3. **File and section** — `README.md` (L1–11) and `docs/001-relatorio-experimental.md` (sections 1, 2, and 15).
+4. **Claim or issue analyzed** — The documentation omits the relationship with the `AI Orchestration Lab` repository and the recent human strategic directive to focus future development on `AI Agent Orchestrator` in partnership with AI Memory, keeping `AI Orchestration Lab` as a historical reference with no continued active implementation planned.
+5. **Available evidence** — Full reading of `README.md` and `docs/001-relatorio-experimental.md` (zero mentions of `AI Orchestration Lab`) and the human strategic directive provided in the R1 review scope (section 5.F).
+6. **Impact** — Material governance and context gap for future technical planning, with a risk of ambiguity about scope, parallel maintenance, or expectations for migration of `AI Orchestration Lab` contracts.
+7. **Minimum recommended correction** — Formalize in a concise note in `README.md` and the experimental report, explicitly marked as an established human strategic decision, that future development focuses on `AI Agent Orchestrator` in partnership with AI Memory and that `AI Orchestration Lab` is preserved only as a historical reference, with no active continuation planned.
 
 ---
 
 ### R1-003
-1. **Identificador:** `R1-003`
-2. **Severidade:** `MINOR`
-3. **Arquivo e seção:** `docs/001-relatorio-experimental.md` — Seções 6 e 7 (L56–58, L67–69, L73).
-4. **Afirmação ou problema analisado:** Embora o relatório informe que a comunicação foi mediada pelo despachante via CLI, omite três características operacionais das POCs 006 e 007: (a) `send` e `pop` foram executados de forma síncrona pelo mesmo processo em ~20 ms; (b) as mensagens de requisição (`REVIEW`, `REVIEW1`, `REVIEW2`) na inbox continham apenas resumos curtos, enquanto especificação, código-fonte, diff e testes foram injetados diretamente pelo despachante no prompt CLI do revisor; e (c) os pareceres trafegados na inbox foram truncados em 25.000 caracteres (POC-006) e 20.000 caracteres (POC-007).
-5. **Evidência disponível:** `poc_ai_memory_006.py` (L71–90, L155–178), `poc_ai_memory_007.py` (L101–127, L231–258, L299–318) e timestamps `created_at`/`claimed_at` nos logs `*-pop.stdout.txt`.
-6. **Impacto:** Pode induzir leitura imprecisa sobre o volume e o tipo de artefatos efetivamente transportados pela inbox do AI Memory nas POCs e mascarar restrições de payload/truncamento relevantes para o desenho de contratos de mensagem.
-7. **Correção mínima recomendada:** Acrescentar uma observação objetiva na Seção 6 (ou Seção 8) detalhando a execução síncrona `send`+`pop`, o fato de que o contexto técnico das requisições foi passado via prompt CLI e o limite de truncamento aplicado aos pareceres.
+1. **Identifier** — `R1-003`
+2. **Severity** — `MINOR`
+3. **File and section** — `docs/001-relatorio-experimental.md` — sections 6 and 7 (L56–58, L67–69, L73).
+4. **Claim or issue analyzed** — Although the report states that the dispatcher mediated communication through the CLI, it omits three operational characteristics of POCs 006 and 007. (a) The same process ran `send` and `pop` synchronously in ~20 ms. (b) The inbox request messages (`REVIEW`, `REVIEW1`, `REVIEW2`) contained only short summaries, while the dispatcher injected the specification, source code, diff, and tests directly into the reviewer's CLI prompt. (c) Reviews sent through the inbox were truncated at 25,000 characters (POC-006) and 20,000 characters (POC-007).
+5. **Available evidence** — `poc_ai_memory_006.py` (L71–90, L155–178), `poc_ai_memory_007.py` (L101–127, L231–258, L299–318), and `created_at`/`claimed_at` timestamps in the `*-pop.stdout.txt` logs.
+6. **Impact** — May cause readers to misinterpret the volume and type of artifacts actually transported through the AI Memory inbox in the POCs and obscure payload and truncation constraints relevant to designing message contracts.
+7. **Minimum recommended correction** — Add a factual note in section 6 (or section 8) detailing synchronous `send`+`pop` execution, the use of the CLI prompt to pass technical request context, and the truncation limit applied to reviews.
 
 ---
 
 ### R1-004
-1. **Identificador:** `R1-004`
-2. **Severidade:** `MINOR`
-3. **Arquivo e seção:** `docs/001-relatorio-experimental.md` — Seção 4 (L23–24) e Seção 12 (L122).
-4. **Afirmação ou problema analisado:** A tabela de ferramentas não registra que a POC-005 invoca o Antigravity via wrapper `ai-memory run --require-server --no-autowire --no-exit-prompt antigravity ...`, enquanto as POCs 006 e 007 invocam diretamente o binário `agy`. Tampouco registra parâmetros concretos observados nos logs do Codex (`approval: never`, `sandbox: workspace-write [workdir, /tmp, $TMPDIR]`, `model: gpt-6.2-sol`), em especial o fato de que o sandbox gravável em `/tmp` englobava o diretório pai dos artefatos da POC-007 (`regression_tests.py`, `_poc_logs/`, `result.json`), os quais não eram verificados por `guard_tree`.
-5. **Evidência disponível:**
-   - `poc_ai_memory_005.py` (L106–110) vs. `poc_ai_memory_006.py` (L170) e `poc_ai_memory_007.py` (L247, L310).
-   - Cabeçalhos de `codex-implement.stderr.txt` (POC-006), `codex-initial.stderr.txt` e `codex-correct.stderr.txt` (POC-007); `poc_ai_memory_007.py` (L85–92, L262–264).
-6. **Impacto:** Omissão de evidência concreta sobre diferenças de invocação dos executores e sobre o limite real do isolamento de sandbox em `/tmp` observado nas POCs. (Os logs de `codex-correct` não mostram acesso do Codex a `regression_tests.py`, mas a contenção não o impedia tecnicamente.)
-7. **Correção mínima recomendada:** Atualizar as linhas de `Codex CLI` e `Antigravity CLI` na Seção 4 para registrar as duas formas de invocação do Antigravity e os parâmetros efetivos do sandbox do Codex (`workspace-write` incluindo `/tmp`, `approval: never`), vinculando essa observação ao risco de contenção na Seção 12.
+1. **Identifier** — `R1-004`
+2. **Severity** — `MINOR`
+3. **File and section** — `docs/001-relatorio-experimental.md` — section 4 (L23–24) and section 12 (L122).
+4. **Claim or issue analyzed** — The tool table does not record that POC-005 invokes Antigravity through the wrapper `ai-memory run --require-server --no-autowire --no-exit-prompt antigravity ...`, while POCs 006 and 007 directly invoke the `agy` binary. It also omits specific parameters observed in the Codex logs (`approval: never`, `sandbox: workspace-write [workdir, /tmp, $TMPDIR]`, `model: gpt-6.2-sol`), particularly that writable sandbox access in `/tmp` covered the parent directory containing POC-007 artifacts (`regression_tests.py`, `_poc_logs/`, `result.json`), which `guard_tree` did not check.
+5. **Available evidence**
+   - `poc_ai_memory_005.py` (L106–110) vs. `poc_ai_memory_006.py` (L170) and `poc_ai_memory_007.py` (L247, L310).
+   - Headers of `codex-implement.stderr.txt` (POC-006), `codex-initial.stderr.txt` and `codex-correct.stderr.txt` (POC-007), and `poc_ai_memory_007.py` (L85–92, L262–264).
+6. **Impact** — Omits concrete evidence about differences in how the executors were invoked and the actual sandbox isolation boundary in `/tmp` observed in the POCs. (The `codex-correct` logs do not show Codex accessing `regression_tests.py`, but containment did not technically prevent it.)
+7. **Minimum recommended correction** — Update the `Codex CLI` and `Antigravity CLI` rows in section 4 to record both forms of Antigravity invocation and the effective Codex sandbox parameters (`workspace-write` including `/tmp`, `approval: never`), linking the observation to the containment risk in section 12.
 
 ---
 
 ### R1-005
-1. **Identificador:** `R1-005`
-2. **Severidade:** `MINOR`
-3. **Arquivo e seção:** `docs/001-relatorio-experimental.md` — Seções 3, 8, 10, 11 e 13 (L15, L80, L102–135).
-4. **Afirmação ou problema analisado:** A Seção 8 define apenas três categorias epistêmicas (`Verificação direta`, `Resultado reportado`, `Inferência`), sem distinguir explicitamente **decisões humanas já estabelecidas**, **hipóteses** e **propostas futuras ainda não homologadas**. Embora o texto use termos cautelosos ("candidata", "proposta"), na Seção 3 diretrizes de independência e propostas de coordenação aparecem no mesmo parágrafo sem marcação diferenciada.
-5. **Evidência disponível:** `docs/001-relatorio-experimental.md` (L15, L80, L102–135).
-6. **Impacto:** Pequena perda de clareza de governança sobre o que já é diretriz humana consolidada versus o que ainda é proposta técnica sujeita a deliberação.
-7. **Correção mínima recomendada:** Expandir a definição de categorias na Seção 8 (ou incluir marcação breve nas Seções 3, 10–13) distinguindo fato verificado diretamente, resultado reportado, interpretação/inferência técnica, hipótese, proposta futura não homologada e decisão humana já estabelecida.
+1. **Identifier** — `R1-005`
+2. **Severity** — `MINOR`
+3. **File and section** — `docs/001-relatorio-experimental.md` — sections 3, 8, 10, 11, and 13 (L15, L80, L102–135).
+4. **Claim or issue analyzed** — Section 8 defines only three epistemic categories (`Verificação direta`, `Resultado reportado`, `Inferência`, translated as direct verification, reported result, and inference), without explicitly distinguishing **established human decisions**, **hypotheses**, and **future proposals awaiting formal approval**. Although the text uses cautious terms ("candidate", "proposal"), independence directives and coordination proposals appear in the same paragraph in section 3 without distinct labels.
+5. **Available evidence** — `docs/001-relatorio-experimental.md` (L15, L80, L102–135).
+6. **Impact** — Minor loss of governance clarity about which items are established human directives and which remain technical proposals subject to deliberation.
+7. **Minimum recommended correction** — Expand the category definitions in section 8 (or add short labels in sections 3, 10–13) distinguishing directly verified fact, reported result, technical interpretation or inference, hypothesis, future proposal without formal approval, and established human decision.
 
 ---
 
 ### R1-006
-1. **Identificador:** `R1-006`
-2. **Severidade:** `EDITORIAL`
-3. **Arquivo e seção:** `README.md` (L9–11) e `docs/001-relatorio-experimental.md` (cabeçalho e Seções 4 e 8).
-4. **Afirmação ou problema analisado:** Os documentos não trazem metadados mínimos de identificação temporal (data de consolidação) e status formal de homologação (ex.: rascunho sujeito a revisão independente e aprovação humana), o que é particularmente útil dado que o relatório referencia artefatos voláteis em `/tmp`.
-5. **Evidência disponível:** `README.md` (L1–11) e `docs/001-relatorio-experimental.md` (L1–8, L28, L91).
-6. **Impacto:** Sem impacto estrutural; apenas melhoria de rastreabilidade temporal e clareza editorial.
-7. **Correção mínima recomendada:** Incluir breve bloco de metadados no topo de `docs/001-relatorio-experimental.md` (data, origem/autoria, status documental) e explicitar no `README.md` que a documentação inicial aguarda revisão/homologação humana.
+1. **Identifier** — `R1-006`
+2. **Severity** — `EDITORIAL`
+3. **File and section** — `README.md` (L9–11) and `docs/001-relatorio-experimental.md` (header and sections 4 and 8).
+4. **Claim or issue analyzed** — The documents lack minimum timing metadata (consolidation date) and formal approval status (for example, draft subject to independent review and human approval), which would be particularly useful because the report references volatile artifacts in `/tmp`.
+5. **Available evidence** — `README.md` (L1–11) and `docs/001-relatorio-experimental.md` (L1–8, L28, L91).
+6. **Impact** — No structural impact. This would improve temporal traceability and editorial clarity only.
+7. **Minimum recommended correction** — Add a short metadata block at the top of `docs/001-relatorio-experimental.md` with the date, origin/authorship, and document status, and state explicitly in `README.md` that the initial documentation awaits review and formal human approval.
 
 ---
 
-## 8. Contraprovas
+## 8. Counterexamples
 
-| # | Questão de contraprova | Resultado da verificação | Fundamentação |
+| # | Counterexample question | Verification result | Rationale |
 | --- | --- | --- | --- |
-| 1 | **O AI Memory comprovou comunicação direta entre agentes ou apenas transporte de mensagens?** | **Apenas transporte de mensagens mediado** (nas evidências verificadas). | Nas POCs 006 e 007, nem Codex nem Antigravity enviaram ou leram mensagens diretamente no AI Memory; o despachante executou `send` e `pop` via CLI em ~20 ms com `from_agent: "other"`. A comunicação via MCP das POCs 001–004 é apenas resultado reportado, sem evidência primária no conjunto. |
-| 2 | **O despachante das POCs comprovou execução automática?** | **Parcialmente / não comprovada de forma assíncrona na POC-005.** | Na POC-005 existe o script de polling/acionamento, mas **há ausência de evidência primária da execução** (sem logs, exit code ou estado); o PASS é reportado. Nas POCs 006 e 007 há evidência direta de encadeamento automático de subprocessos após disparo manual (`--execute`), sem escuta contínua de inbox. |
-| 3 | **A POC-006 realmente exercitou uma revisão independente?** | **Sim, com alcance limitado.** | `agy` rodou em processo separado (`--mode plan --print`), sem sessão compartilhada com o Codex, analisando apenas texto/diff/testes fornecidos e emitindo `VEREDITO: APROVADO`. Limitações: a implementação já passava nos 5 testes antes da revisão (não testou detecção de erro), o revisor não executou testes e `check_tree` não conferiu hashes dos arquivos existentes. |
-| 4 | **A POC-007 detectou um defeito sem informar ao revisor sua localização?** | **Sim, no caso sintético testado.** | `poc_ai_memory_007.py` (L238–246) não informou a injeção nem enviou `regression_tests.py` na primeira revisão; `antigravity-review1.stdout.txt` retornou `VEREDITO: AJUSTES` com 4 contraprovas concretas contra `split(" ")`. Limitação: função trivial de 4 linhas frente a especificação explícita de whitespace e prompt explicitamente adversarial. |
-| 5 | **A correção preservou o comportamento exigido?** | **Sim, no escopo da especificação e dos 8 testes.** | Após alteração para `split()`, `tests-green` (5/5) e `tests-final-public` (3/3) retornaram `exit=0`; o SHA-256 final de `demo/labels.py` coincide com `corrected_sha256` em `result.json`; `guard_tree` preservou arquivos imutáveis; `antigravity-review2` emitiu `VEREDITO: APROVADO`. Não constitui prova formal fora dos casos avaliados. |
-| 6 | **Há evidência de recuperação após interrupção real do despachante?** | **Não (ausência de evidência).** | Nenhum experimento simulou queda real (SIGKILL/crash entre `pop`, persistência e execução) nem retomada/conciliação. Os scripts interrompem sem retry. O `test_process_failures()` da POC-007 verifica apenas duplicidade em `set` em memória e `TimeoutExpired` em `time.sleep(2)` isolado. |
-| 7 | **Há evidência de suporte simultâneo a múltiplos projetos?** | **Não (ausência de evidência).** | Os três scripts (`005.py`, `006.py`, `007.py`) têm `WORKSPACE = "default"` e `PROJECT = "luishenriqs-identity-and-access-server"` fixos em código, operando em execução única sobre um único projeto. |
-| 8 | **Há evidência de gates humanos implementados?** | **Não (ausência de evidência).** | Não há implementação de pausa, aprovação registrada ou gate entre etapas nas POCs; apenas disparo manual via `--execute` nas POCs 006–007 e `approval: never` nas chamadas do Codex. |
-| 9 | **O isolamento do IAS foi comprovado independentemente?** | **Não.** | Na POC-006, `ias_touched: false` é literal emitido pelo próprio despachante; na POC-007, o manifesto registra `not_independently_verified`. Não há auditoria externa do repositório IAS, e **a inbox do projeto IAS no AI Memory foi efetivamente utilizada** nas POCs 005–007. |
-| 10 | **As limitações estão claramente documentadas?** | **Parcialmente.** | As limitações centrais estão bem registradas (ausência de logs 001–005, mediação por despachante, repositório sintético, autoteste local, `/tmp` volátil), mas faltam pontos materiais identificados nos Achados **R1-001** a **R1-004** (inbox do IAS, `from_agent: "other"`, assimetria/truncamento de payload, sandbox `/tmp` do Codex e divergência `ai-memory run` vs. `agy`). |
+| 1 | **Did AI Memory prove direct communication between agents or only message transport?** | **Mediated message transport only** (in the verified evidence). | In POCs 006 and 007, neither Codex nor Antigravity sent or read messages directly in AI Memory. The dispatcher ran `send` and `pop` via CLI in ~20 ms with `from_agent: "other"`. MCP communication in POCs 001–004 is only a reported result, with no primary evidence in the collection. |
+| 2 | **Did the POC dispatcher prove automatic execution?** | **Partially / asynchronous execution unproven in POC-005.** | POC-005 has a polling/invocation script, but **there is no primary execution evidence** (no logs, exit code, or state). PASS is reported. POCs 006 and 007 have direct evidence of automatic subprocess sequencing after a manual trigger (`--execute`), without continuous inbox listening. |
+| 3 | **Did POC-006 actually exercise independent review?** | **Yes, with limited scope.** | `agy` ran in a separate process (`--mode plan --print`), with no shared Codex session, analyzing only the supplied text, diff, and tests and issuing `VEREDITO: APROVADO`. The implementation already passed all 5 tests before review (defect detection was untested), the reviewer did not run tests, and `check_tree` did not verify hashes of existing files. |
+| 4 | **Did POC-007 detect a defect without telling the reviewer where it was?** | **Yes, in the synthetic case tested.** | `poc_ai_memory_007.py` (L238–246) did not disclose the injection or send `regression_tests.py` in the first review. `antigravity-review1.stdout.txt` returned `VEREDITO: AJUSTES` with 4 concrete counterexamples to `split(" ")`. The test was limited to a trivial 4-line function with an explicit whitespace specification and an explicitly adversarial prompt. |
+| 5 | **Did the correction preserve the required behavior?** | **Yes, within the scope of the specification and the 8 tests.** | After the change to `split()`, `tests-green` (5/5) and `tests-final-public` (3/3) returned `exit=0`. The final SHA-256 of `demo/labels.py` matches `corrected_sha256` in `result.json`. `guard_tree` preserved immutable files. `antigravity-review2` issued `VEREDITO: APROVADO`. This provides no formal proof beyond the evaluated cases. |
+| 6 | **Is there evidence of recovery after an actual dispatcher interruption?** | **No (lack of evidence).** | No experiment simulated an actual crash (SIGKILL/crash between `pop`, persistence, and execution) or recovery/reconciliation. The scripts stop without retrying. POC-007's `test_process_failures()` only checks duplication in an in-memory `set` and `TimeoutExpired` in an isolated `time.sleep(2)`. |
+| 7 | **Is there evidence of simultaneous support for multiple projects?** | **No (lack of evidence).** | All three scripts (`005.py`, `006.py`, `007.py`) hardcode `WORKSPACE = "default"` and `PROJECT = "luishenriqs-identity-and-access-server"`, operating in a single run on a single project. |
+| 8 | **Is there evidence of implemented human approval gates?** | **No (lack of evidence).** | The POCs implement no pause, recorded approval, or gate between steps. They have only manual triggering via `--execute` in POCs 006–007 and `approval: never` in Codex calls. |
+| 9 | **Was isolation from IAS independently proven?** | **No.** | In POC-006, `ias_touched: false` is a literal emitted by the dispatcher itself. In POC-007, the manifest records `not_independently_verified`. There is no external audit of the IAS repository, and **POCs 005–007 actually used the IAS project inbox in AI Memory**. |
+| 10 | **Are the limitations clearly documented?** | **Partially.** | The central limitations are well documented (missing 001–005 logs, dispatcher mediation, synthetic repository, local self-test, volatile `/tmp`), but material points identified in Findings **R1-001** through **R1-004** are missing (IAS inbox, `from_agent: "other"`, payload asymmetry and truncation, the Codex `/tmp` sandbox, and the difference between `ai-memory run` and `agy`). |
 
 ---
 
-## 9. Lacunas e limitações de evidência
+## 9. Evidence gaps and limitations
 
-1. **Ausência de evidências primárias das POCs 001–004:** permanecem exclusivamente como resultado reportado agregado; não há logs, comandos ou manifestos auditáveis.
-2. **Ausência de evidências de execução da POC-005:** apenas o script Python foi verificado; não há comprovação direta do `PASS` reportado nem do arquivo `~/.local/state/ai-memory-poc-005/processed.json`.
-3. **Volatilidade dos artefatos das POCs 006 e 007:** residem em `/tmp/ias-ai-memory-poc-006-3nvadl13/` e `/tmp/ias-ai-memory-poc-007-c5_hla_j/`, sujeitos a limpeza do sistema operacional.
-4. **Ausência de log dedicado do autoteste da POC-007:** `result.json` registra `"duplicate_timeout_no_retry_selftest": true`, mas `test_process_failures()` imprime apenas em `stdout` do despachante (não grava em `_poc_logs/`).
-5. **Ausência de versão registrada do Antigravity CLI e do Python 3 experimental:** nenhum log capturou a versão de `agy` ou `python3` utilizada nas execuções (limitação já reconhecida corretamente no relatório).
-6. **Escopo experimental restrito:** todas as evidências verificadas referem-se a uma função Python de ~4 linhas em repositórios sintéticos sem commits, sem concorrência real, sem rede e sem regras de um repositório de produção.
-
----
-
-## 10. Recomendações de saneamento documental
-
-Para encerrar os achados abertos antes da homologação humana da documentação inicial, recomenda-se (em ciclo dedicado e autorizado):
-
-1. **Saneamento prioritário (MAJOR):**
-   - Atualizar `docs/001-relatorio-experimental.md` (Seções 5, 6 e 8) para documentar o uso do projeto `default/luishenriqs-identity-and-access-server` no AI Memory nas POCs 005–007 e o registro de `"from_agent": "other"` / `"from_owner_user": null` nos envios das POCs 006–007 (**R1-001**).
-   - Atualizar `README.md` e `docs/001-relatorio-experimental.md` para formalizar, como decisão estratégica humana estabelecida, a concentração do desenvolvimento futuro no `AI Agent Orchestrator` (em parceria com o AI Memory) e a preservação do `AI Orchestration Lab` como referência histórica sem continuidade ativa prevista (**R1-002**).
-2. **Saneamento complementar (MINOR e EDITORIAL):**
-   - Documentar a mediação síncrona `send`+`pop`, a passagem de contexto via prompt CLI e o truncamento de 20k/25k caracteres nos pareceres (**R1-003**).
-   - Registrar na Seção 4/12 a diferença de invocação do Antigravity (`ai-memory run` vs. `agy`) e os parâmetros de execução/sandbox do Codex (`approval: never`, `workspace-write` incluindo `/tmp`) (**R1-004**).
-   - Expandir a legenda epistêmica da Seção 8 para separar explicitamente decisões humanas estabelecidas, hipóteses e propostas futuras não homologadas (**R1-005**).
-   - Adicionar metadados mínimos (data, origem e status documental) ao relatório e nota de status no `README.md` (**R1-006**).
-
-*(Nota: recomendações de saneamento são propostas técnicas desta revisão e não constituem autorização para alteração imediata dos documentos.)*
+1. **Lack of primary evidence from POCs 001–004** — These remain exclusively an aggregate reported result, with no auditable logs, commands, or manifests.
+2. **Lack of POC-005 execution evidence** — Only the Python script was verified. There is no direct proof of the reported `PASS` or of the file `~/.local/state/ai-memory-poc-005/processed.json`.
+3. **Volatility of POC 006 and 007 artifacts** — They reside in `/tmp/ias-ai-memory-poc-006-3nvadl13/` and `/tmp/ias-ai-memory-poc-007-c5_hla_j/`, subject to operating system cleanup.
+4. **Lack of a dedicated POC-007 self-test log** — `result.json` records `"duplicate_timeout_no_retry_selftest": true`, but `test_process_failures()` only prints to dispatcher `stdout` and does not write to `_poc_logs/`.
+5. **No recorded version of Antigravity CLI or the experimental Python 3 installation** — No log captured the version of `agy` or `python3` used in the runs, a limitation the report already correctly recognizes.
+6. **Restricted experimental scope** — All verified evidence concerns a Python function of ~4 lines in synthetic repositories with no commits, actual concurrency, networking, or production repository rules.
 
 ---
 
-## 11. Parecer conclusivo
+## 10. Documentation remediation recommendations
 
-**Classificação:** **`AJUSTES NECESSÁRIOS`**
+Closing the open findings before formal human approval of the initial documentation calls for the following in a dedicated, authorized cycle.
 
-A documentação inicial elaborada pelo Codex possui base factual sólida nas evidências das POCs 006 e 007, linguagem disciplinada quanto a limites e separação conceitual adequada entre AI Memory, orquestrador, agentes e autoridade humana. Não foram encontrados achados `BLOCKER`.
+1. **Priority remediation (MAJOR)**
+   - Update `docs/001-relatorio-experimental.md` (sections 5, 6, and 8) to document the use of the `default/luishenriqs-identity-and-access-server` project in AI Memory in POCs 005–007 and the recorded `"from_agent": "other"` / `"from_owner_user": null` in POCs 006–007 sends (**R1-001**).
+   - Update `README.md` and `docs/001-relatorio-experimental.md` to formalize, as an established human strategic decision, the focus of future development on `AI Agent Orchestrator` in partnership with AI Memory and preservation of `AI Orchestration Lab` as a historical reference with no active continuation planned (**R1-002**).
+2. **Additional remediation (MINOR and EDITORIAL)**
+   - Document synchronous `send`+`pop` mediation, transfer of context through the CLI prompt, and review truncation at 20k/25k characters (**R1-003**).
+   - Record in sections 4/12 the difference in Antigravity invocation (`ai-memory run` vs. `agy`) and Codex execution and sandbox parameters (`approval: never`, `workspace-write` including `/tmp`) (**R1-004**).
+   - Expand the epistemic legend in section 8 to distinguish established human decisions, hypotheses, and future proposals lacking formal approval explicitly (**R1-005**).
+   - Add minimum metadata (date, origin, and document status) to the report and a status note to `README.md` (**R1-006**).
 
-Contudo, em razão dos **2 achados `MAJOR` abertos** (`R1-001` e `R1-002`), **não se recomenda aprovação documental definitiva neste momento**. Após o saneamento desses dois pontos (preferencialmente acompanhado dos ajustes `MINOR` e `EDITORIAL` listados na Seção 10) e conferência em nova rodada breve (R2) ou validação direta pelo responsável humano, a documentação estará apta para homologação como baseline do planejamento técnico.
+*(The remediation recommendations are technical proposals from this review and do not constitute authorization to change the documents immediately.)*
+
+---
+
+## 11. Final verdict
+
+**Classification** — **`AJUSTES NECESSÁRIOS`** (adjustments required)
+
+The initial documentation drafted by Codex has a solid factual basis in the evidence from POCs 006 and 007, disciplined wording about limitations, and suitable conceptual separation among AI Memory, the orchestrator, agents, and human authority. The review found no `BLOCKER` findings.
+
+However, because of the **2 open `MAJOR` findings** (`R1-001` and `R1-002`), **final approval of the documentation is not recommended at this point**. After remediation of these two points, preferably accompanied by the `MINOR` and `EDITORIAL` adjustments listed in section 10, and a brief further review (R2) or direct validation by the human owner, the documentation will be ready for formal approval as the technical planning baseline.

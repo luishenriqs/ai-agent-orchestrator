@@ -1,23 +1,23 @@
 # AI Agent Orchestrator
 
-O AI Agent Orchestrator é um projeto para coordenar agentes de IA no desenvolvimento de software e reduzir o repasse manual de tarefas, resultados e pareceres. É independente dos projetos consumidores, como IAS e Jungle. A solução prevista trabalha em parceria com o AI Memory, produto independente criado por Fábio Akita que oferece comunicação auxiliar e memória persistente.
+AI Agent Orchestrator is a project for coordinating AI agents in software development and reducing manual handoff of tasks, results, and reviews. It is independent of consumer projects such as IAS and Jungle. The proposed solution works in partnership with AI Memory, an independent product created by Fábio Akita that provides supporting communication and persistent memory.
 
-O desenvolvimento futuro se concentra no AI Agent Orchestrator. O AI Orchestration Lab será preservado como referência histórica, sem continuidade ativa de desenvolvimento prevista. Uma eventual migração de artefatos ou contratos depende de decisão específica.
+Future development focuses on AI Agent Orchestrator. AI Orchestration Lab will be preserved as a historical reference, with no continued active development planned. Any migration of artifacts or contracts requires a separate decision.
 
-## Fluxo previsto
+## Planned workflow
 
-1. O responsável humano define o escopo e decide nos gates, com apoio manual do ChatGPT na preparação da tarefa e na análise das entregas. O humano entrega um prompt autorizado ao primeiro executor designado, que registra a tarefa no orquestrador.
-2. O orquestrador verifica a autorização aplicável antes de liberar ações ou transições coordenadas. Codex e Antigravity executam ou revisam conforme a designação, em um fluxo inicialmente local e sequencial.
-3. Mensagens curtas referenciam artefatos versionados e imutáveis. Eventos estruturados e estado persistente sustentam a rastreabilidade e a retomada controlada. Operações Git/GitHub podem ser executadas pelos agentes quando cobertas pela autorização e pelos gates aplicáveis.
+1. The human owner defines the scope and makes decisions at approval gates, with manual support from ChatGPT in preparing the task and analyzing deliverables. The human delivers an authorized prompt to the first designated executor, who registers the task with the orchestrator.
+2. The orchestrator verifies the applicable authorization before releasing coordinated actions or transitions. Codex and Antigravity execute or review as assigned in an initially local, sequential workflow.
+3. Short messages reference versioned, immutable artifacts. Structured events and persistent state support traceability and controlled recovery. Agents may perform Git/GitHub operations when covered by the applicable authorization and approval gates.
 
-A arquitetura prioriza simplicidade, com controles proporcionais aos riscos e sem infraestrutura distribuída ou abstrações prematuras. Uma interface web local mínima segue como proposta para a V1, condicionada à validação prévia do núcleo via CLI, à avaliação de custo e à decisão humana.
+The architecture prioritizes simplicity, with controls proportionate to risk and without distributed infrastructure or premature abstractions. A minimal local web interface remains a proposal for V1, conditional on prior CLI validation of the core, a cost assessment, and a human decision.
 
-## Estado e próximo gate
+## Status and next gate
 
-A fundação experimental está publicada. As diretrizes arquiteturais v0.3 passaram pela revisão independente e foram homologadas pelo responsável humano em 20/11/2026. O próximo gate é a autorização do planejamento técnico. A implementação ainda não começou. [Registro de homologação](docs/architecture/002-registro-homologacao-v03.md)
+The experimental foundation has been published. The original Portuguese v0.3 architectural directives passed independent review and received formal approval from the human owner on 20/11/2026. The next gate is authorization to start technical planning. Implementation has yet to begin. [Formal approval record](docs/architecture/002-registro-homologacao-v03.md)
 
-## Documentação
+## Documentation
 
-- Fundação experimental · [Relatório](docs/001-relatorio-experimental.md), [handoff](docs/handoffs/001-handoff-fundacao-experimental.md) e [manifesto de evidências](evidence/pocs/MANIFEST.md).
-- Arquitetura · [Diretrizes v0.3](docs/architecture/001-diretrizes-arquiteturais.md).
-- Revisão · [Auditoria integral](docs/reviews/005-auditoria-integral-independente-r1.md), [triagem](docs/reviews/006-triagem-auditoria-integral-r1.md) e [parecer regressivo](docs/reviews/007-revisao-regressiva-saneamento-auditoria-r1.md).
+- Experimental foundation · [Report](docs/001-relatorio-experimental.md), [handoff](docs/handoffs/001-handoff-fundacao-experimental.md), and [evidence manifest](evidence/pocs/MANIFEST.md).
+- Architecture · [v0.3 directives](docs/architecture/001-diretrizes-arquiteturais.md).
+- Review · [Full audit](docs/reviews/005-auditoria-integral-independente-r1.md), [finding triage](docs/reviews/006-triagem-auditoria-integral-r1.md), and [regression review](docs/reviews/007-revisao-regressiva-saneamento-auditoria-r1.md).
