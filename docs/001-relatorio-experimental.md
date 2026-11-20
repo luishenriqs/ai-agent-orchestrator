@@ -1,175 +1,175 @@
-# Relatório experimental de integração entre AI Memory, Codex e Antigravity
+# Experimental report on integration between AI Memory, Codex, and Antigravity
 
-**Origem e autoria** — consolidação experimental e saneamento documental R1 pelo Codex, com insumos das revisões do GPT e do Antigravity.
+**Origin and authorship** — experimental consolidation and R1 documentation remediation by Codex, with input from the GPT and Antigravity reviews.
 
-**Data e status** — edição de 2026-11-19, sujeita à revisão regressiva e à homologação humana.
+**Date and status** — 2026-11-19 edition, subject to regression review and formal human approval.
 
-## 1. Resumo executivo
+## 1. Executive summary
 
-As POCs 006 e 007 registram ciclos completos em repositórios Git sintéticos. Na 006, o Codex implementou uma função Python, o Antigravity emitiu um parecer e o Codex documentou sua resposta. Na 007, uma revisão identificou quatro categorias de falhas de whitespace em uma versão deliberadamente defeituosa que ainda passava nos testes públicos. Os logs registram quatro falhas nos testes regressivos antes da correção, cinco testes aprovados depois dela e um parecer regressivo favorável.
+POCs 006 and 007 record complete cycles in synthetic Git repositories. In 006, Codex implemented a Python function, Antigravity issued a review, and Codex documented its response. In 007, a review identified four categories of whitespace defects in a deliberately defective version that still passed the public tests. The logs record four regression test failures before the correction, five passing tests afterward, and a favorable regression review.
 
-A POC-005 tem código-fonte disponível e PASS reportado na sessão experimental. A cronologia das POCs 001 a 004 foi reconstituída a partir do relato dessa sessão. O material sustenta planejar uma coordenação de agentes que preserve autorização humana e evidências por etapa. A arquitetura e a tecnologia permanecem em aberto.
+POC-005 has available source code and a PASS reported in the experimental session. The chronology of POCs 001 through 004 was reconstructed from that session's account. The material supports planning agent coordination that preserves human authorization and evidence at each step. Architecture and technology remain open.
 
-## 2. Motivação e problema original
+## 2. Motivation and original problem
 
-O trabalho entre agentes envolve transferir contexto, acionar o executor certo, encaminhar alterações para revisão e preservar as evidências necessárias à decisão humana. Um mecanismo de comunicação cobre a troca de informações. O controle da sequência, dos efeitos de cada execução e das autorizações precisa ser explicitado para que esse fluxo possa ser usado em diferentes projetos.
+Work between agents involves transferring context, invoking the appropriate executor, routing changes for review, and preserving the evidence needed for human decisions. A communication mechanism covers information exchange. Control over sequencing, the effects of each execution, and authorizations must be explicit for this workflow to be usable across projects.
 
-**Decisão estratégica humana** — concentrar o desenvolvimento futuro no AI Agent Orchestrator em parceria com o AI Memory. O AI Orchestration Lab será preservado como referência histórica, sem continuidade ativa de desenvolvimento prevista. Eventual migração de seus artefatos ou contratos e qualquer decisão sobre incorporação de capacidades planejadas dependem de deliberação específica.
+**Human strategic decision** — focus future development on AI Agent Orchestrator in partnership with AI Memory. AI Orchestration Lab will be preserved as a historical reference, with no continued active development planned. Any migration of its artifacts or contracts and any decision to incorporate planned capabilities require separate deliberation.
 
-## 3. Objetivo da integração multiagente
+## 3. Objective of multi-agent integration
 
-O objetivo experimental foi investigar se Codex e Antigravity podem participar, em modo não interativo, de um fluxo coordenado com solicitações e pareceres correlacionados pelo AI Memory.
+The experimental objective was to investigate whether Codex and Antigravity can participate non-interactively in a coordinated workflow with requests and reviews correlated through AI Memory.
 
-A independência em relação às regras de domínio de IAS, Jungle e outros repositórios orienta o produto futuro. A proposta de coordenação, sujeita a deliberação, cobre designação de executores, execução, validação, revisão, correção e gates humanos.
+Independence from the domain rules of IAS, Jungle, and other repositories guides the future product. The coordination proposal, subject to deliberation, covers executor assignment, execution, validation, review, correction, and human approval gates.
 
-## 4. Ambiente e ferramentas
+## 4. Environment and tools
 
-| Componente | Registro disponível |
+| Component | Available record |
 | --- | --- |
-| Ubuntu no WSL2 | Ambiente experimental informado na descrição da tarefa. |
-| AI Memory 3.4.7 | Versão informada na descrição da tarefa. O histórico da sessão reporta uso da CLI na POC-001 e integração MCP nas etapas seguintes de comunicação. Nas POCs 005 a 007, os scripts consultados usam a CLI do AI Memory para as operações da inbox. |
-| Codex CLI | Os logs das POCs 006 e 007 identificam a versão 0.170.0, o modelo `gpt-6.2-sol`, `approval: never` e `sandbox: workspace-write [workdir, /tmp, $TMPDIR]`. Os scripts acionam o Codex em modo não interativo. |
-| Antigravity CLI | A POC-005 prevê invocação via wrapper `ai-memory run --require-server --no-autowire --no-exit-prompt antigravity --mode plan --print`. As POCs 006 e 007 invocam diretamente `agy --mode plan --print`. A versão precisa não foi obtida das fontes consultadas. |
-| Python 3 | Linguagem dos despachantes e ambiente dos testes com `unittest`. A versão de patch experimental não foi estabelecida. |
-| Git | Usado para criar repositórios de demonstração e, nas POCs 006 e 007, para manter a referência inicial no índice. A leitura atual das duas árvores confirma ausência de commits. |
+| Ubuntu on WSL2 | Experimental environment reported in the task description. |
+| AI Memory 3.4.7 | Version reported in the task description. The session history reports CLI use in POC-001 and MCP integration in subsequent communication steps. In POCs 005 through 007, the scripts consulted use the AI Memory CLI for inbox operations. |
+| Codex CLI | The POC 006 and 007 logs identify version 0.170.0, model `gpt-6.2-sol`, `approval: never`, and `sandbox: workspace-write [workdir, /tmp, $TMPDIR]`. The scripts invoke Codex in non-interactive mode. |
+| Antigravity CLI | POC-005 calls for invocation through the wrapper `ai-memory run --require-server --no-autowire --no-exit-prompt antigravity --mode plan --print`. POCs 006 and 007 directly invoke `agy --mode plan --print`. The exact version was unavailable from the sources consulted. |
+| Python 3 | Language used by the dispatchers and runtime for the tests using `unittest`. The experimental patch version was not established. |
+| Git | Used to create demonstration repositories and, in POCs 006 and 007, to keep the initial reference in the index. Inspection of both trees during this preparation confirms the absence of commits. |
 
-A preparação examinou as fontes por leitura. Nenhuma POC, teste experimental ou sessão dos executores foi iniciada durante a consolidação.
+Preparation consisted of reading the sources. No POC, experimental test, or executor session was started during consolidation.
 
-## 5. Papel do AI Memory
+## 5. Role of AI Memory
 
-O AI Memory, criado por Fábio Akita, permanece um produto independente de memória persistente e comunicação. Os scripts das POCs 005 a 007 apontam para a mesma inbox, `default/luishenriqs-identity-and-access-server`, associada ao IAS. Os registros das POCs 006 e 007 confirmam o uso desse namespace tanto na origem quanto no destino, embora os arquivos de código dessas execuções estivessem em repositórios Git temporários separados.
+AI Memory, created by Fábio Akita, remains an independent product for persistent memory and communication. The scripts for POCs 005 through 007 point to the same inbox, `default/luishenriqs-identity-and-access-server`, associated with IAS. The records for POCs 006 and 007 confirm the use of this namespace as both source and destination, although the code files for those runs were in separate temporary Git repositories.
 
-O orquestrador proposto poderá usar esse canal e manter a autorização e a situação do trabalho sob controle próprio. Reivindicação confirma a transição da mensagem na inbox. A conclusão de uma etapa depende das evidências e dos critérios do trabalho autorizado.
+The proposed orchestrator may use this channel while keeping authorization and work status under its own control. A claim confirms the message's transition in the inbox. Completion of a step depends on the evidence and criteria for the authorized work.
 
-## 6. Cronologia das POCs 001 a 007
+## 6. Chronology of POCs 001 through 007
 
-| Etapa | Registro cronológico | Base e limite |
+| Step | Chronological record | Basis and limitation |
 | --- | --- | --- |
-| POC-001 | Verificar envio, listagem e reivindicação de mensagens pela CLI do AI Memory. | Histórico reportado na sessão experimental. |
-| POC-002 | Verificar a consulta da inbox pelo Antigravity via MCP, incluindo a dificuldade inicial de permissões em execução não interativa. | Histórico reportado na sessão experimental. |
-| POC-003 | Verificar o envio de uma mensagem pelo Antigravity por meio da ferramenta MCP `memory_message_send`. | Histórico reportado na sessão experimental. |
-| POC-004 | Verificar o recebimento e a leitura pelo Codex da mensagem enviada pelo Antigravity. | Histórico reportado na sessão experimental. |
-| POC-005 | Acionamento do Antigravity a partir de uma mensagem-alvo. | Script inspecionado. PASS e saída `0` reportados na sessão experimental. |
-| POC-006 | Implementação, solicitação de revisão, parecer e tratamento da resposta. | Script, manifesto, logs, teste, código e resposta textual disponíveis. |
-| POC-007 | Injeção de defeito, revisão adversarial, RED, correção, GREEN e revisão regressiva. | Script, manifesto, logs, registro da injeção, testes e código final disponíveis. |
+| POC-001 | Verify sending, listing, and claiming messages through the AI Memory CLI. | History reported in the experimental session. |
+| POC-002 | Verify Antigravity's inbox lookup through MCP, including the initial permissions difficulty in non-interactive execution. | History reported in the experimental session. |
+| POC-003 | Verify Antigravity's sending of a message using the MCP tool `memory_message_send`. | History reported in the experimental session. |
+| POC-004 | Verify that Codex receives and reads the message sent by Antigravity. | History reported in the experimental session. |
+| POC-005 | Invoke Antigravity based on a target message. | Script inspected. PASS and exit code `0` reported in the experimental session. |
+| POC-006 | Implementation, review request, review, and response handling. | Script, manifest, logs, test, code, and text response available. |
+| POC-007 | Defect injection, adversarial review, RED, correction, GREEN, and regression review. | Script, manifest, logs, injection record, tests, and final code available. |
 
-### POCs 001 a 004 — Comunicação
+### POCs 001 through 004 — Communication
 
-Os resultados dessas etapas foram apresentados na sessão experimental acompanhada pelo GPT. A sequência reportada vai da verificação das operações da inbox pela CLI até a leitura, pelo Codex, da mensagem enviada pelo Antigravity. A cronologia individualizada deriva desse relato. O conjunto local examinado carece dos registros primários necessários para verificar independentemente essas quatro execuções.
+The results of these steps were presented in the experimental session tracked by GPT. The reported sequence runs from verifying inbox operations through the CLI to Codex reading the message sent by Antigravity. The chronology for each POC is based on that account. The local collection examined lacks the primary records needed to verify these four runs independently.
 
-### POC-005 — Acionamento automático
+### POC-005 — Automatic invocation
 
-O despachante em Python consulta a inbox do IAS indicada na seção 5 e procura uma mensagem pendente pelo assunto e pelo corpo da solicitação experimental. Trata múltiplas correspondências como ambiguidade, reivindica pelo ID, verifica ID e estado retornados e grava o ID antes de acionar o Antigravity. O código prevê captura de stdout, stderr e código de saída, exige a confirmação textual esperada e encerra sem retry em caso de falha.
+The Python dispatcher checks the IAS inbox identified in section 5 and looks for a pending message by the subject and body of the experimental request. It treats multiple matches as ambiguous, claims by ID, verifies the returned ID and state, and records the ID before invoking Antigravity. The code captures stdout, stderr, and the exit code, requires the expected text confirmation, and stops without retrying on failure.
 
-Segundo o relato da sessão experimental, a saída dos terminais exibida aos participantes confirmou o acionamento automático do Antigravity a partir dessa inbox e o código de saída `0`. O conjunto local contém o script, e a saída original da execução permanece indisponível para conferência. O PASS tem, portanto, a sessão como fonte.
+According to the experimental session account, terminal output shown to the participants confirmed that Antigravity was invoked automatically from this inbox and returned exit code `0`. The local collection contains the script, and the original execution output remains unavailable for verification. The session is therefore the source of the PASS result.
 
-### POC-006 — Implementação e revisão
+### POC-006 — Implementation and review
 
-O Codex implementou `normalize_label` em uma árvore sintética. O despachante enviou e reivindicou a solicitação pelo AI Memory e encaminhou a especificação, os testes e o diff ao Antigravity. O parecer aprovou a implementação. O despachante registrou o retorno na inbox, reivindicou pelo ID e incluiu o parecer no contexto enviado ao Codex, que produziu `demo/REVIEW_RESPONSE.md`.
+Codex implemented `normalize_label` in a synthetic tree. The dispatcher sent and claimed the request through AI Memory and forwarded the specification, tests, and diff to Antigravity. The review approved the implementation. The dispatcher recorded the response in the inbox, claimed it by ID, and included the review in the context sent to Codex, which produced `demo/REVIEW_RESPONSE.md`.
 
-O manifesto registra PASS. Os logs registram cinco testes aprovados antes da revisão e cinco no fim, ambos com saída 0. A solicitação e a resposta têm logs de envio e reivindicação com saída 0 e IDs coincidentes com o manifesto. O parecer foi textual, com base no material fornecido. A checagem da árvore cobria caminhos de arquivo e links simbólicos, sem comprovar a imutabilidade de cada arquivo permitido ou efeitos fora do diretório experimental.
+The manifest records PASS. The logs record five passing tests before review and five at the end, both with exit code 0. The request and response have send and claim logs with exit code 0 and IDs matching the manifest. The review was textual and based on the supplied material. The tree check covered file paths and symbolic links without proving the immutability of each permitted file or checking effects outside the experimental directory.
 
-### POC-007 — Revisão adversarial
+### POC-007 — Adversarial review
 
-1. O Codex produziu a implementação inicial e os três testes públicos passaram.
-2. O despachante substituiu o conteúdo de `labels.py` por uma versão de teste com `split(" ")` e registrou os hashes anterior e defeituoso. Os três testes públicos continuaram passando.
-3. A revisão inicial do Antigravity foi cega quanto à injeção deliberada e aos testes regressivos ocultos. O revisor recebeu a especificação, a fonte, o diff e os testes públicos. Em seu parecer `AJUSTES`, apresentou contraprovas para espaços nas extremidades, espaços repetidos, tabulações e quebras de linha, e entradas compostas apenas de whitespace.
-4. O RED registrou cinco testes, quatro falhas e saída 1. O caso de string vazia passou nessa etapa.
-5. O Codex corrigiu a função usando `split()` sem argumento. O GREEN registrou cinco testes regressivos aprovados, e os três testes públicos continuaram passando, ambos com saída 0.
-6. O Antigravity emitiu parecer regressivo `APROVADO` após examinar as versões e os casos. O despachante registrou o parecer e reivindicou a resposta na inbox sob o rótulo do Codex. O fluxo termina nessa entrega. O artefato não registra outra sessão do Codex depois do parecer final.
+1. Codex produced the initial implementation, and all three public tests passed.
+2. The dispatcher replaced the contents of `labels.py` with a test version using `split(" ")` and recorded the prior and defective hashes. The three public tests continued to pass.
+3. Antigravity's initial review was blind to the deliberate injection and hidden regression tests. The reviewer received the specification, source, diff, and public tests. In its `AJUSTES` review, it presented counterexamples for leading and trailing spaces, repeated spaces, tabs and newlines, and whitespace-only inputs.
+4. RED recorded five tests, four failures, and exit code 1. The empty-string case passed at this stage.
+5. Codex corrected the function using `split()` without an argument. GREEN recorded five passing regression tests, and the three public tests continued to pass, both with exit code 0.
+6. Antigravity issued an `APROVADO` regression review after examining the versions and cases. The dispatcher recorded the review and claimed the response in the inbox under the Codex label. The workflow ends at that delivery. The artifact records no further Codex session after the final review.
 
-O manifesto registra PASS e quatro mensagens correlacionadas, compondo dois ciclos de solicitação e resposta. Os quatro IDs coincidem com os logs de envio e reivindicação, todos com saída 0. O hash da fonte final coincide com o hash corrigido do manifesto. O manifesto também registra um autoteste local de duplicidade, timeout e ausência de retry. O script mostra que ele usa um conjunto em memória e um subprocesso de teste separado. Isso limita a evidência sobre concorrência real e recuperação após queda.
+The manifest records PASS and four correlated messages, making up two request and response cycles. All four IDs match the send and claim logs, all with exit code 0. The final source hash matches the corrected hash in the manifest. The manifest also records a local self-test for duplication, timeout, and absence of retries. The script shows that it uses an in-memory set and a separate test subprocess. This limits the evidence for actual concurrency and recovery after a crash.
 
-### Mediação das mensagens nas POCs 006 e 007
+### Message mediation in POCs 006 and 007
 
-O mesmo despachante executou `send` e `pop` por ID em sequência síncrona via CLI. Nos seis registros de reivindicação, os intervalos entre `created_at` e `claimed_at` ficaram entre cerca de 19 e 22 ms. Os agentes receberam o contexto do despachante nos prompts CLI. As requisições na inbox continham resumos curtos e os prompts de revisão levavam a especificação e, conforme a etapa, código-fonte, diff e testes.
+The same dispatcher ran `send` and `pop` by ID in a synchronous sequence via the CLI. In the six claim records, the intervals between `created_at` and `claimed_at` were approximately 19 to 22 ms. The agents received context from the dispatcher in CLI prompts. Inbox requests contained short summaries, and review prompts included the specification and, depending on the step, source code, diff, and tests.
 
-Os scripts limitavam o texto dos pareceres enviado à inbox aos primeiros 25.000 caracteres na POC-006 e aos primeiros 20.000 na POC-007. Nas etapas em que o Codex tratou o parecer, o despachante inseriu no prompt o texto da saída do revisor sujeito ao mesmo limite. O truncamento citado no achado R1-003 do [parecer independente](reviews/001-revisao-independente-r1.md) corresponde à regra dos scripts. Os três pareceres registrados ficaram abaixo dos limites e seus textos constam integralmente nos registros da inbox.
+The scripts limited review text sent to the inbox to the first 25,000 characters in POC-006 and the first 20,000 in POC-007. At steps where Codex handled the review, the dispatcher inserted the reviewer's output text in the prompt subject to the same limit. The truncation mentioned in finding R1-003 of the [independent review](reviews/001-revisao-independente-r1.md) corresponds to the rule in the scripts. The three recorded reviews stayed below the limits, and their full text appears in the inbox records.
 
-## 7. Resultados efetivamente demonstrados
+## 7. Results actually demonstrated
 
-- Os artefatos das POCs 006 e 007 registram que um despachante externo conseguiu intercalar execuções de Codex e Antigravity com operações de envio e reivindicação via CLI do AI Memory em um fluxo sintético.
-- A POC-006 registra o processamento do parecer pelo Codex e duas execuções da suíte de cinco testes com saída 0.
-- A POC-007 registra que uma revisão baseada na especificação detectou defeitos ausentes da suíte pública. Os mesmos cinco testes regressivos registraram quatro falhas no RED e nenhuma no GREEN. O parecer regressivo confirmou a correção no caso estudado.
-- O acionamento automático pela observação da inbox na POC-005 é sustentado pela lógica do script e pelo relato da sessão. As operações de comunicação das POCs 001 a 004, incluindo o uso de CLI e MCP, permanecem resultados reportados.
+- The artifacts for POCs 006 and 007 record that an external dispatcher could interleave Codex and Antigravity runs with send and claim operations through the AI Memory CLI in a synthetic workflow.
+- POC-006 records Codex handling the review and two runs of the five-test suite with exit code 0.
+- POC-007 records that a specification-based review detected defects missed by the public suite. The same five regression tests recorded four failures in RED and none in GREEN. The regression review confirmed the correction in the case studied.
+- Automatic invocation by monitoring the inbox in POC-005 is supported by the script logic and the session account. Communication operations in POCs 001 through 004, including CLI and MCP use, remain reported results.
 
-## 8. Evidências e limitações
+## 8. Evidence and limitations
 
-**Verificação direta** significa que o arquivo, seu conteúdo ou a concordância entre artefatos foi conferida nesta preparação. **Resultado reportado** atribui uma afirmação à sessão experimental, à descrição da tarefa ou ao registro do executor ou despachante. **Inferência técnica** é uma conclusão extraída do conjunto, limitada aos casos e às condições que ele representa. **Hipótese** é uma explicação ou expectativa ainda sujeita a verificação. **Proposta futura** é uma opção técnica ainda sujeita a deliberação e homologação. **Decisão humana estabelecida** é uma orientação já definida pelo responsável humano, como o direcionamento estratégico da seção 2.
+**Direct verification** means that the file, its contents, or agreement between artifacts was checked during this preparation. A **reported result** attributes a claim to the experimental session, task description, or record produced by the executor or dispatcher. A **technical inference** is a conclusion drawn from the collection and limited to the cases and conditions it represents. A **hypothesis** is an explanation or expectation still subject to verification. A **future proposal** is a technical option still subject to deliberation and formal approval. An **established human decision** is a directive already set by the human owner, such as the strategic direction in section 2.
 
-| Fonte consultada | Evidência usada |
+| Source consulted | Evidence used |
 | --- | --- |
-| Relato da sessão experimental acompanhado pelo GPT, fornecido na revisão documental | Histórico individualizado das POCs 001 a 004 e relato de acionamento automático e saída `0` da POC-005. |
-| Descrição da tarefa | Contexto e ambiente informados e orientação estratégica humana. |
-| `/mnt/c/Users/<perfil-windows>/Downloads/poc_ai_memory_005.py` | Seleção, reivindicação, registro local, acionamento e condição de sucesso. |
-| `/mnt/c/Users/<perfil-windows>/Downloads/poc_ai_memory_006.py` | Fluxo entre executores, critérios de parada, limites do repositório sintético e geração dos artefatos. |
-| `/tmp/ias-ai-memory-poc-006-3nvadl13/` | `result.json`, logs de agentes, mensagem e testes em `_poc_logs/`, `demo/labels.py`, testes públicos, `demo/REVIEW_RESPONSE.md` e estado Git do demo. |
-| `/mnt/c/Users/<perfil-windows>/Downloads/poc_ai_memory_007.py` | Injeção, verificação da árvore, roteamento de mensagens, critérios RED/GREEN e autoteste local. |
-| `/tmp/ias-ai-memory-poc-007-c5_hla_j/` | `result.json`, `_poc_logs/fault-injection.json`, logs de agentes, mensagens, pareceres e testes, `regression_tests.py`, fonte, testes públicos e estado Git do demo. |
+| Account of the experimental session tracked by GPT, supplied during documentation review | Individual history of POCs 001 through 004 and the report of automatic invocation and exit code `0` in POC-005. |
+| Task description | Reported context and environment and human strategic direction. |
+| `/mnt/c/Users/<perfil-windows>/Downloads/poc_ai_memory_005.py` | Selection, claim, local record, invocation, and success condition. |
+| `/mnt/c/Users/<perfil-windows>/Downloads/poc_ai_memory_006.py` | Workflow between executors, stop criteria, synthetic repository boundaries, and artifact generation. |
+| `/tmp/ias-ai-memory-poc-006-3nvadl13/` | `result.json`, agent, message, and test logs in `_poc_logs/`, `demo/labels.py`, public tests, `demo/REVIEW_RESPONSE.md`, and demo Git state. |
+| `/mnt/c/Users/<perfil-windows>/Downloads/poc_ai_memory_007.py` | Injection, tree verification, message routing, RED/GREEN criteria, and local self-test. |
+| `/tmp/ias-ai-memory-poc-007-c5_hla_j/` | `result.json`, `_poc_logs/fault-injection.json`, agent logs, messages, reviews, and tests, `regression_tests.py`, source, public tests, and demo Git state. |
 
-Para identificar os manifestos inspecionados caso permaneçam disponíveis, o SHA-256 do `result.json` da POC-006 é `9a3a37ce1dce4162aa1371e50653599aefb555531220ca9784494f29001374bd` e o da POC-007 é `4e6646242b523f1eed43f6c5f0734117c779dabfa908267bdbdbd020ef2aecf1`. As referências em `/tmp` são voláteis. Os artefatos originais permanecem em seus locais de origem.
+To identify the inspected manifests if they remain available, the SHA-256 of `result.json` for POC-006 is `9a3a37ce1dce4162aa1371e50653599aefb555531220ca9784494f29001374bd` and for POC-007 it is `4e6646242b523f1eed43f6c5f0734117c779dabfa908267bdbdbd020ef2aecf1`. References in `/tmp` are volatile. The original artifacts remain in their original locations.
 
-A POC-006 registra `ias_touched: false` no manifesto. O registro é uma afirmação do despachante. A POC-007 registra explicitamente a ausência de verificação independente desse ponto. As verificações das árvores sintéticas não oferecem uma auditoria de efeitos no IAS histórico. Também ficaram indisponíveis no conjunto indicado os registros primários das POCs 001 a 004 e o resultado de execução da POC-005.
+POC-006 records `ias_touched: false` in the manifest. The record is a claim by the dispatcher. POC-007 explicitly records the lack of independent verification of this point. The synthetic tree checks do not provide an audit of effects on the historical IAS. The primary records for POCs 001 through 004 and the POC-005 execution result were also unavailable in the indicated collection.
 
-Nos envios via CLI das POCs 006 e 007, a saída de `send` identifica o ID e o namespace de origem e destino. O JSON obtido no `pop` registra `"from_agent": "other"` e `"from_owner_user": null`. O parâmetro `--agent` de `pop` informa o rótulo do reivindicante escolhido pelo despachante. Esses registros sustentam a correlação das mensagens por ID e deixam a identidade autenticada do remetente sem comprovação.
+For CLI sends in POCs 006 and 007, the output of `send` identifies the ID and the source and destination namespaces. The JSON obtained from `pop` records `"from_agent": "other"` and `"from_owner_user": null`. The `--agent` parameter of `pop` specifies the claimant label chosen by the dispatcher. These records support correlating messages by ID and leave the authenticated identity of the sender unverified.
 
-## 9. Problemas encontrados e soluções aplicadas
+## 9. Problems encountered and solutions applied
 
-- **Ambiguidade e duplicidade de mensagem.** A POC-005 interrompe diante de múltiplas correspondências e registra localmente o ID reivindicado. As POCs 006 e 007 verificam o ID recém-enviado e o estado retornado. A POC-007 confere também assunto, corpo e repetição dentro da execução. Uma interrupção entre reivindicação e registro durável pode exigir conciliação.
-- **Interpretação de falhas do processo.** Os scripts tratam códigos de saída e timeouts e interrompem o fluxo nos erros previstos, sem nova tentativa automática. Nas POCs 006 e 007, logs por etapa preservam a saída e os códigos observados. O autoteste local da POC-007 oferece evidência limitada sobre o mecanismo, sem teste de falha distribuída.
-- **Cobertura insuficiente.** O defeito de separação por espaço literal escapou da suíte pública da POC-007. Parecer com contraprovas e testes regressivos reduziram essa lacuna. A correção passou a separar sequências de whitespace e ignorar whitespace nas extremidades.
-- **Escopo e independência.** As POCs 006 e 007 usaram repositórios sintéticos e revisões textuais. A POC-007 acrescentou hashes para arquivos protegidos e conferiu que a fonte permaneceu igual durante as revisões. A evidência cobre a árvore e os arquivos observados.
+- **Message ambiguity and duplication.** POC-005 stops on multiple matches and records the claimed ID locally. POCs 006 and 007 verify the newly sent ID and the returned state. POC-007 also checks subject, body, and repetition within the run. An interruption between the claim and durable recording may require reconciliation.
+- **Interpreting process failures.** The scripts handle exit codes and timeouts and stop the workflow on anticipated errors without automatic retry. In POCs 006 and 007, per-step logs preserve the observed output and codes. The local POC-007 self-test provides limited evidence about the mechanism, without a distributed failure test.
+- **Insufficient coverage.** The literal-space splitting defect escaped the POC-007 public suite. A review with counterexamples and regression tests reduced this gap. The correction splits on runs of whitespace and ignores leading and trailing whitespace.
+- **Scope and independence.** POCs 006 and 007 used synthetic repositories and textual reviews. POC-007 added hashes for protected files and checked that the source remained unchanged during reviews. The evidence covers the observed tree and files.
 
-## 10. Arquitetura conceitual resultante
+## 10. Resulting conceptual architecture
 
-A sequência de trabalho candidata começa com a autorização humana de uma tarefa. O orquestrador vincula escopo, repositório e referência de trabalho, aciona um executor e coleta os resultados e evidências de validação. Uma solicitação de revisão pode trafegar pelo AI Memory com referência à tarefa e à versão examinada. O orquestrador recebe o parecer, prepara correção e nova revisão quando aplicável e apresenta as evidências para decisão humana.
+The candidate workflow starts with human authorization for a task. The orchestrator binds the scope, repository, and working reference, invokes an executor, and collects the results and validation evidence. A review request may travel through AI Memory with a reference to the task and the version under examination. The orchestrator receives the review, prepares a correction and a new review where applicable, and presents the evidence for a human decision.
 
-A inferência dos experimentos é que comunicação, execução e verificação podem ser coordenadas por uma camada externa. Permanecem em aberto o mecanismo de persistência, o transporte, o isolamento de execução e o modelo operacional de cada gate.
+The inference from the experiments is that communication, execution, and verification can be coordinated by an external layer. The persistence mechanism, transport, execution isolation, and operating model for each gate remain open.
 
-## 11. Responsabilidades propostas
+## 11. Proposed responsibilities
 
-| Ator | Responsabilidade candidata |
+| Actor | Candidate responsibility |
 | --- | --- |
-| AI Memory | Memória persistente, contexto e comunicação entre agentes, incluindo solicitações e pareceres correlacionáveis. |
-| Orquestrador | Controlar sequência, processos, estados, limites autorizados, vínculos entre versões e evidências, tratamento de falhas e encaminhamento aos gates. |
-| Executores e revisores | Implementar, testar ou revisar conforme designação e permissões. Registrar resultado, evidência e limitações. O revisor examina a versão indicada e explicita os motivos do parecer. |
-| Responsável humano | Aprovar escopo e mudanças, resolver exceções, homologar decisões e autorizar integração. Mensagens dos agentes entram como insumo técnico. |
+| AI Memory | Persistent memory, context, and communication between agents, including requests and reviews that can be correlated. |
+| Orchestrator | Control sequence, processes, states, authorized limits, links between versions and evidence, failure handling, and routing to approval gates. |
+| Executors and reviewers | Implement, test, or review as assigned and permitted. Record the result, evidence, and limitations. The reviewer examines the specified version and explains the reasoning for the review. |
+| Human owner | Approve scope and changes, resolve exceptions, formally approve decisions, and authorize integration. Agent messages serve as technical input. |
 
-## 12. Riscos técnicos ainda não resolvidos
+## 12. Unresolved technical risks
 
-- Falhas e concorrência entre reivindicação, persistência, início do processo e gravação da saída podem deixar tarefa ou mensagem em estado incerto.
-- Processos filhos, limites de tempo, cancelamento e recuperação de execução parcial precisam de investigação no ambiente alvo.
-- Mensagens e pareceres podem conter instruções indevidas ou referências manipuladas. Autorização e identidade do agente precisam de verificação independente do conteúdo recebido.
-- A seleção de workspace e as verificações posteriores de árvore não garantem, por si só, contenção de acesso a outros projetos, configurações, credenciais ou rede.
-- Na POC-007, a área gravável `/tmp` incluía o diretório pai de `demo/`, onde ficavam `regression_tests.py`, `_poc_logs/` e `result.json`. Esses artefatos estavam fora da árvore verificada por `guard_tree`. Os logs da correção não mostram acesso do Codex a `regression_tests.py`. A configuração registrada permitia escrita nesse local.
-- Pareceres em texto livre podem ser ambíguos. Os scripts usam padrões textuais simples em alguns critérios, sujeitos a negociação de formato e validação.
-- Retenção em `/tmp`, exposição de dados em logs e divergência entre fonte testada e fonte revisada afetam a rastreabilidade. As POCs cobrem uma função pequena e execuções controladas, com generalização e escala por avaliar.
+- Failures and concurrency between claim, persistence, process start, and recording output can leave a task or message in an uncertain state.
+- Child processes, time limits, cancellation, and recovery of partial execution need investigation in the target environment.
+- Messages and reviews may contain improper instructions or manipulated references. Authorization and agent identity require verification independent of the content received.
+- Workspace selection and subsequent tree checks alone do not guarantee containment of access to other projects, configuration, credentials, or the network.
+- In POC-007, the writable area `/tmp` included the parent directory of `demo/`, containing `regression_tests.py`, `_poc_logs/`, and `result.json`. These artifacts were outside the tree checked by `guard_tree`. The correction logs do not show Codex accessing `regression_tests.py`. The recorded configuration allowed writes to that location.
+- Free-text reviews can be ambiguous. The scripts use simple text patterns for some criteria, subject to format negotiation and validation.
+- Retention in `/tmp`, data exposure in logs, and divergence between the tested and reviewed source affect traceability. The POCs cover a small function and controlled runs, with generalization and scale yet to be evaluated.
 
-## 13. Requisitos candidatos ao planejamento
+## 13. Candidate requirements for planning
 
-1. Vincular cada execução a um ID de tarefa, projeto autorizado, versão de referência, escopo, papel e autorização humana verificável.
-2. Registrar transições de estado e IDs de mensagens com evidências de processo, testes, revisão e decisão humana vinculadas à versão avaliada.
-3. Validar origem, destino, tipo e correlação da mensagem antes de usá-la como contexto. Preservar a distinção entre reivindicação e conclusão.
-4. Prever isolamento da execução, orçamento de arquivos e permissões proporcionais ao papel. Delimitar alterações em Git e acessos externos conforme autorização.
-5. Definir semântica para duplicidade, concorrência, timeout, cancelamento, retomada e conciliação manual, com efeitos verificáveis.
-6. Vincular revisão ao conteúdo exato, preservar independência e exigir contraprovas para achados reproduzíveis quando aplicável.
-7. Guardar evidências suficientes para auditoria com controle de acesso, retenção definida e redução de dados sensíveis.
-8. Submeter mudanças de escopo, homologação e integração ao gate humano aplicável.
+1. Bind each execution to a task ID, authorized project, reference version, scope, role, and verifiable human authorization.
+2. Record state transitions and message IDs with process, test, review, and human decision evidence linked to the version evaluated.
+3. Validate message source, destination, type, and correlation before using it as context. Preserve the distinction between claim and completion.
+4. Provide execution isolation, a file budget, and permissions proportionate to the role. Bound Git changes and external access according to authorization.
+5. Define semantics for duplication, concurrency, timeout, cancellation, recovery, and manual reconciliation, with verifiable effects.
+6. Bind review to the exact content, preserve independence, and require counterexamples for reproducible findings where applicable.
+7. Retain sufficient evidence for audit with access control, defined retention, and minimization of sensitive data.
+8. Submit scope changes, formal approval, and integration to the applicable human approval gate.
 
-## 14. Questões arquiteturais pendentes
+## 14. Open architectural questions
 
-- Qual componente mantém o estado de execução e como concilia divergências com estados e IDs da inbox?
-- Quais operações usarão CLI, MCP ou outro contrato suportado e qual será o formato versionado das mensagens?
-- Onde os agentes executarão e como limites de leitura, escrita, subprocessos e rede serão verificados?
-- Qual modelo de concorrência, propriedade da execução e retomada cobre falhas entre reivindicação e acionamento?
-- Qual artefato identifica a versão analisada, principalmente antes de um commit, e como a revisão vinculará essa versão aos resultados dos testes?
-- Como registrar identidades, aprovações humanas, retenção e acesso a evidências em diferentes projetos?
-- Quais são os critérios mínimos para adotar a solução em um repositório real e quais operações de integração exigirão autorização específica?
+- Which component holds the execution state, and how does it reconcile discrepancies with inbox states and IDs?
+- Which operations will use CLI, MCP, or another supported contract, and what will the versioned message format be?
+- Where will the agents run, and how will read, write, subprocess, and network limits be verified?
+- What model for concurrency, execution ownership, and recovery covers failures between claim and invocation?
+- Which artifact identifies the version under analysis, especially before a commit, and how will the review link that version to test results?
+- How will identities, human approvals, retention, and access to evidence be recorded across projects?
+- What are the minimum criteria for adopting the solution in a real repository, and which integration operations will require specific authorization?
 
-## 15. Recomendações para a próxima fase
+## 15. Recommendations for the next phase
 
-Iniciar o planejamento técnico com aprovação humana de um escopo pequeno e verificável. Priorizar a modelagem de estados, do vínculo entre versão e evidência, da fronteira de autorização e dos cenários de falha entre reivindicação e início do processo. Comparar opções de integração com o AI Memory e de isolamento com base nesses requisitos. Definir critérios mensuráveis para duplicidade, timeout, retomada e contenção antes de pedir autorização para novos experimentos ou implementação.
+Start technical planning with human approval of a small, verifiable scope. Prioritize modeling states, the link between version and evidence, the authorization boundary, and failure scenarios between claim and process start. Compare AI Memory integration and isolation options against these requirements. Define measurable criteria for duplication, timeout, recovery, and containment before requesting authorization for new experiments or implementation.
 
-Recomenda-se preservar em armazenamento persistente os artefatos essenciais disponíveis das POCs 005 a 007. O caminho `evidence/pocs/` é uma estrutura candidata, sujeita a aprovação como contrato de armazenamento. O conjunto deve reunir logs de execução e códigos de saída, manifestos, pareceres, versões do código avaliado, testes e resultados RED/GREEN quando aplicáveis. Registrar a origem, a execução e a versão associada a cada artefato e verificar sua integridade com hashes SHA-256. Definir acesso e retenção e reduzir dados sensíveis nas cópias compartilhadas, registrando as supressões e a relação com os originais sob acesso restrito.
+The recommendation is to preserve the available essential artifacts from POCs 005 through 007 in persistent storage. The path `evidence/pocs/` is a candidate structure, subject to approval as a storage contract. The collection should include execution logs and exit codes, manifests, reviews, versions of the evaluated code, tests, and RED/GREEN results where applicable. Record the origin, execution, and version associated with each artifact and verify integrity using SHA-256 hashes. Define access and retention and minimize sensitive data in shared copies, recording the redactions and their relationship to the restricted originals.
 
-A autorização desta etapa cobre a preparação local e documental. Arquitetura, stack, implementação e integração Git dependem de deliberação própria.
+Authorization for this step covers local documentation preparation. Architecture, stack, implementation, and Git integration require separate deliberation.

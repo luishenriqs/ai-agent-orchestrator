@@ -1,92 +1,92 @@
-# Handoff da fundação experimental do AI Agent Orchestrator
+# AI Agent Orchestrator experimental foundation handoff
 
-## 1. Identificação
+## 1. Identification
 
-- **Projeto** — AI Agent Orchestrator.
-- **Data de referência** — 2026-11-19, no fuso America/Sao_Paulo.
-- **Repositório** — `$HOME/projects/ai-agent-orchestrator`.
-- **Git** — branch local `main`, sem commit inicial, remotes ou entradas no índice. Os documentos e as evidências estão na árvore de trabalho como arquivos não rastreados.
-- **Fase experimental** — POCs 001–007 documentadas. A preservação local reúne as evidências disponíveis e selecionadas das POCs 005–007.
-- **Gate atual** — a preservação e este handoff foram autorizados. A documentação aguarda homologação humana. Planejamento técnico, implementação e operações de integração Git dependem de autorização própria.
+- **Project** — AI Agent Orchestrator.
+- **Reference date** — 2026-11-19, in the America/Sao_Paulo time zone.
+- **Repository** — `$HOME/projects/ai-agent-orchestrator`.
+- **Git** — local `main` branch, with no initial commit, remotes, or index entries. Documents and evidence are in the working tree as untracked files.
+- **Experimental phase** — POCs 001–007 documented. The local collection preserves the available selected evidence from POCs 005–007.
+- **Current gate** — preservation and this handoff were authorized. The documentation awaits formal human approval. Technical planning, implementation, and Git integration operations require separate authorization.
 
-## 2. Origem e motivação
+## 2. Origin and motivation
 
-A investigação começou em uma discussão sobre as funcionalidades do AI Memory, apresentado por Fábio Akita. A comunicação e a memória persistente oferecidas pelo produto poderiam reduzir o transporte manual de solicitações, contexto e pareceres entre agentes. As POCs investigaram primeiro a entrega de mensagens, depois o acionamento não interativo e, por fim, o encadeamento de execução, revisão e validação.
+The investigation began in a discussion of the features of AI Memory, presented by Fábio Akita. The product's communication and persistent memory could reduce manual transfer of requests, context, and reviews between agents. The POCs investigated message delivery first, then non-interactive invocation, and finally the sequencing of execution, review, and validation.
 
-## 3. Objetivo estratégico
+## 3. Strategic objective
 
-Construir uma aplicação independente e reutilizável em diferentes projetos, como IAS e Jungle. A aplicação trabalharia em parceria com o AI Memory para encaminhar solicitações e pareceres e coordenar tarefas autorizadas, com resultados e evidências vinculados ao trabalho. A aplicação deve preservar a autoridade humana sobre escopo, etapas e integração.
+Build an independent application that can be reused across projects such as IAS and Jungle. The application would work with AI Memory to route requests and reviews and coordinate authorized tasks, with results and evidence linked to the work. The application must preserve human authority over scope, steps, and integration.
 
-## 4. Histórico das POCs 001–007
+## 4. History of POCs 001–007
 
-Os resultados das POCs 001–004 e da execução da POC-005 vêm do relato da sessão experimental acompanhada pelo GPT. Há evidência local primária do código da POC-005 e dos artefatos de execução das POCs 006–007. O inventário registra a procedência e as lacunas. [Manifesto de evidências](../../evidence/pocs/MANIFEST.md)
+The results of POCs 001–004 and the POC-005 run come from the account of the experimental session tracked by GPT. Primary local evidence exists for the POC-005 code and the execution artifacts from POCs 006–007. The inventory records provenance and gaps. [Evidence manifest](../../evidence/pocs/MANIFEST.md)
 
-| POC | Objetivo e mecanismo | Resultado e conhecimento adquirido | Evidências e limites |
+| POC | Objective and mechanism | Result and lessons learned | Evidence and limits |
 | --- | --- | --- | --- |
-| 001 | Verificar envio, listagem e reivindicação individual por meio da CLI do AI Memory. | A sessão reportou as operações básicas da inbox. O ID da mensagem serviu como referência para a reivindicação individual. | Histórico no relatório experimental. Os registros primários da execução estão indisponíveis no conjunto local. |
-| 002 | Consultar a inbox pelo Antigravity via MCP em execução não interativa. | A sessão reportou a consulta e uma dificuldade inicial de permissões. A compatibilidade do acesso depende das permissões efetivas da execução. | Histórico no relatório experimental. Faltam logs para conferir a configuração ou reproduzir a sequência. |
-| 003 | Enviar mensagem pelo Antigravity usando a ferramenta MCP `memory_message_send`. | O envio foi reportado na sessão. É um antecedente da comunicação direta do agente via MCP. | Histórico no relatório experimental, sem log primário do envio. |
-| 004 | Receber e ler pelo Codex a mensagem enviada pelo Antigravity. | A sessão reportou o recebimento e a leitura via MCP, complementando o envio da POC-003. | Histórico no relatório experimental, sem saída original que permita conferir a leitura ou a identidade. |
-| 005 | Acionar o Antigravity após detectar uma mensagem-alvo. O script consulta a inbox pela CLI, valida a resposta de reivindicação por ID, registra o ID e aciona o wrapper `ai-memory run`. | A sessão reportou acionamento automático e saída `0`. O script mostra a sequência planejada, com bloqueio em caso de ambiguidade e sem retry automático. | [Script da POC-005](../../evidence/pocs/005/poc_ai_memory_005.py). A saída original, o manifesto de execução e o estado da reivindicação não estão disponíveis no conjunto local. |
-| 006 | Encadear implementação, revisão e tratamento do parecer. O Codex implementou `normalize_label`, o despachante usou a inbox pela CLI e passou o contexto ao Antigravity e o parecer ao Codex. | O manifesto registra PASS. Houve uma solicitação e uma resposta, parecer `APROVADO` e registro de resposta do Codex. Cinco testes passaram antes e cinco depois. O caso demonstra a coordenação entre processos separados em uma árvore sintética, com um código que já passava nos testes antes da revisão. | [Manifesto da POC-006](../../evidence/pocs/006/result.json) e [resposta do Codex](../../evidence/pocs/006/demo/REVIEW_RESPONSE.md). O parecer foi textual e a checagem de árvore não verificava a imutabilidade de cada arquivo permitido. |
-| 007 | Verificar detecção e correção de defeito controlado. Após a implementação inicial, o despachante injetou `split(" ")`. O Antigravity recebeu especificação, fonte, diff e testes públicos, sem aviso da injeção nem os testes regressivos na primeira revisão. | O manifesto registra PASS. Os três testes públicos passaram mesmo com o defeito. O parecer `AJUSTES` apontou quatro classes de falha. No RED, quatro dos cinco testes falharam com saída `1`. Após o Codex corrigir para `split()`, os cinco regressivos e os três públicos passaram com saída `0`. O parecer regressivo foi `APROVADO`. Quatro mensagens compuseram dois ciclos de solicitação e resposta. O fluxo mostrou o valor de contraprovas e testes independentes da suíte pública. | [Manifesto da POC-007](../../evidence/pocs/007/result.json), [registro de injeção](../../evidence/pocs/007/_poc_logs/fault-injection.json), [RED](../../evidence/pocs/007/_poc_logs/tests-red.stderr.txt) e [GREEN](../../evidence/pocs/007/_poc_logs/tests-green.stderr.txt). O registro termina na reivindicação da resposta final pelo despachante. A implementação inicial e a versão defeituosa subsistem em registros incorporados, e o código corrigido está disponível como arquivo. |
+| 001 | Verify sending, listing, and individual claiming through the AI Memory CLI. | The session reported basic inbox operations. The message ID served as the reference for the individual claim. | History in the experimental report. Primary execution records are unavailable in the local collection. |
+| 002 | Check the inbox from Antigravity through MCP in non-interactive execution. | The session reported the lookup and an initial permissions difficulty. Compatibility of access depends on the effective permissions of the run. | History in the experimental report. Logs are missing for checking configuration or reproducing the sequence. |
+| 003 | Send a message from Antigravity using the MCP tool `memory_message_send`. | The send was reported in the session. It is a precedent for direct agent communication via MCP. | History in the experimental report, with no primary send log. |
+| 004 | Have Codex receive and read the message sent by Antigravity. | The session reported receipt and reading via MCP, complementing the POC-003 send. | History in the experimental report, with no original output to verify the read or identity. |
+| 005 | Invoke Antigravity after detecting a target message. The script checks the inbox via CLI, validates the response to the claim by ID, records the ID, and invokes the `ai-memory run` wrapper. | The session reported automatic invocation and exit code `0`. The script shows the planned sequence, stopping on ambiguity and with no automatic retry. | [POC-005 script](../../evidence/pocs/005/poc_ai_memory_005.py). The original output, execution manifest, and claim state are unavailable in the local collection. |
+| 006 | Sequence implementation, review, and review handling. Codex implemented `normalize_label`, the dispatcher used the inbox through the CLI and passed context to Antigravity and the review to Codex. | The manifest records PASS. There was one request and one response, an `APROVADO` review, and a record of the Codex response. Five tests passed before and five afterward. The case demonstrates coordination between separate processes in a synthetic tree, with code that already passed the tests before review. | [POC-006 manifest](../../evidence/pocs/006/result.json) and [Codex response](../../evidence/pocs/006/demo/REVIEW_RESPONSE.md). The review was textual, and the tree check did not verify the immutability of each permitted file. |
+| 007 | Verify detection and correction of a controlled defect. After initial implementation, the dispatcher injected `split(" ")`. Antigravity received the specification, source, diff, and public tests, with no notice of the injection and no regression tests in the first review. | The manifest records PASS. All three public tests passed even with the defect. The `AJUSTES` review identified four classes of failure. In RED, four of the five tests failed with exit code `1`. After Codex corrected the implementation to use `split()`, all five regression tests and all three public tests passed with exit code `0`. The regression review was `APROVADO`. Four messages formed two request and response cycles. The workflow showed the value of counterexamples and tests independent of the public suite. | [POC-007 manifest](../../evidence/pocs/007/result.json), [injection record](../../evidence/pocs/007/_poc_logs/fault-injection.json), [RED](../../evidence/pocs/007/_poc_logs/tests-red.stderr.txt), and [GREEN](../../evidence/pocs/007/_poc_logs/tests-green.stderr.txt). The record ends when the dispatcher claims the final response. The initial implementation and the defective version survive in embedded records, and the corrected code is available as a file. |
 
-## 5. Arquitetura conceitual
+## 5. Conceptual architecture
 
-| Ator | Responsabilidade conceitual |
+| Actor | Conceptual responsibility |
 | --- | --- |
-| AI Memory | Oferecer contexto, memória persistente e comunicação entre agentes. |
-| AI Agent Orchestrator | Coordenar tarefas, processos, estados, gates e coleta de evidências, vinculando a revisão à versão avaliada. |
-| Codex e Antigravity | Executar ou revisar conforme a designação e os limites autorizados. Na experiência, o Codex implementou e corrigiu, e o Antigravity revisou. |
-| Responsável humano | Decidir escopo, autorizações, exceções e homologação. |
+| AI Memory | Provide context, persistent memory, and communication between agents. |
+| AI Agent Orchestrator | Coordinate tasks, processes, states, approval gates, and evidence collection, binding review to the version evaluated. |
+| Codex and Antigravity | Execute or review according to the assignment and authorized limits. In the experiment, Codex implemented and corrected, and Antigravity reviewed. |
+| Human owner | Decide on scope, authorizations, exceptions, and formal approval. |
 
-A arquitetura técnica definitiva está pendente de aprovação. Persistência, transporte, ambiente de execução e representação dos gates continuam em aberto.
+The final technical architecture is pending approval. Persistence, transport, execution environment, and representation of gates remain open.
 
-## 6. Decisões humanas estabelecidas
+## 6. Established human decisions
 
-- Desenvolver o AI Agent Orchestrator como aplicação independente, reutilizável em diferentes projetos e complementar ao AI Memory.
-- Preservar a autoridade humana sobre escopo, execução, decisões e homologação.
-- Concentrar o desenvolvimento futuro no AI Agent Orchestrator em parceria com o AI Memory. Preservar o AI Orchestration Lab como referência histórica, sem continuidade ativa de desenvolvimento prevista.
-- Condicionar exclusão, alteração ou migração automática de artefatos e contratos do Lab a autorização específica. A preservação histórica não autoriza essas ações nem comprova equivalência entre os projetos.
+- Develop AI Agent Orchestrator as an independent application that can be reused across projects and complements AI Memory.
+- Preserve human authority over scope, execution, decisions, and formal approval.
+- Focus future development on AI Agent Orchestrator in partnership with AI Memory. Preserve AI Orchestration Lab as a historical reference, with no continued active development planned.
+- Require specific authorization to delete, modify, or automatically migrate the Lab's artifacts and contracts. Historical preservation neither authorizes these actions nor proves equivalence between the projects.
 
-## 7. Estado documental
+## 7. Documentation status
 
-| Documento | Estado |
+| Document | Status |
 | --- | --- |
-| [README.md](../../README.md) | Elaboração inicial pelo Codex e saneamento R1. Apresenta o projeto e a decisão estratégica. |
-| [Relatório experimental](../001-relatorio-experimental.md) | Elaborado pelo Codex e saneado com os achados do GPT e do Antigravity. Distingue observações, relatos, inferências, propostas e decisões. |
-| [Parecer independente R1](../reviews/001-revisao-independente-r1.md) | Revisão original do Antigravity. Classificou seis achados e concluiu `AJUSTES NECESSÁRIOS`. |
-| [Parecer regressivo R2](../reviews/002-revisao-regressiva-r2.md) | Revisão concluída em 2026-11-19. Conferiu os 12 achados e emitiu `SUFICIENTE — APTO PARA HOMOLOGAÇÃO HUMANA`. |
-| [Manifesto de evidências](../../evidence/pocs/MANIFEST.md) | Criado nesta etapa. Cataloga cada arquivo novo nas pastas 005, 006 e 007, com proveniência, hashes, supressões e lacunas. |
-| [Handoff da fundação experimental](001-handoff-fundacao-experimental.md) | Este documento, criado nesta etapa para permitir retomada por uma nova instância. |
+| [README.md](../../README.md) | Initially drafted by Codex and remediated in R1. Introduces the project and the strategic decision. |
+| [Experimental report](../001-relatorio-experimental.md) | Drafted by Codex and remediated using findings from GPT and Antigravity. Distinguishes observations, reports, inferences, proposals, and decisions. |
+| [Independent review R1](../reviews/001-revisao-independente-r1.md) | Original Antigravity review. Classified six findings and concluded `AJUSTES NECESSÁRIOS` (adjustments required). |
+| [Regression review R2](../reviews/002-revisao-regressiva-r2.md) | Review completed on 2026-11-19. Checked the 12 findings and issued `SUFICIENTE — APTO PARA HOMOLOGAÇÃO HUMANA` (sufficient — ready for formal human approval). |
+| [Evidence manifest](../../evidence/pocs/MANIFEST.md) | Created in this step. Catalogs each new file in directories 005, 006, and 007, with provenance, hashes, redactions, and gaps. |
+| [Experimental foundation handoff](001-handoff-fundacao-experimental.md) | This document, created in this step to allow a new instance to resume the work. |
 
-A autorização atual tornou efetivo o acervo local que os documentos anteriores ainda descrevem como proposta. A estrutura e a política definitiva de retenção e acesso permanecem a deliberar. A homologação humana da documentação inicial continua pendente.
+The current authorization established the local collection that earlier documents still describe as a proposal. The final structure and retention and access policy remain subject to deliberation. Formal human approval of the initial documentation remains pending.
 
-## 8. Resultados e limitações técnicas
+## 8. Technical results and limitations
 
-- **Transporte e acionamento** — as POCs 001–004 registram em relato a CLI e o MCP. Na POC-005, o script usa `ai-memory run --require-server --no-autowire --no-exit-prompt antigravity --mode plan --print`. Nas POCs 006–007, o despachante chamou diretamente `agy --mode plan --print` e acionou o Codex em modo não interativo. Os agentes receberam contexto técnico por prompts CLI. As solicitações na inbox continham resumos.
-- **Namespace e identidade** — os três scripts apontam para `default/luishenriqs-identity-and-access-server`. Os logs das POCs 006–007 confirmam seu uso como origem e destino, com `from_agent: "other"` e `from_owner_user: null`. O `--agent` do `pop` é o rótulo do reivindicante escolhido pelo despachante. A identidade autenticada do remetente permanece sem comprovação.
-- **Mediação e payload** — o mesmo despachante executou `send` seguido de `pop` por ID. Nos seis registros, criação e reivindicação ficaram separadas por aproximadamente 19–22 ms. Os scripts limitavam os pareceres a 25.000 caracteres na POC-006 e 20.000 na POC-007. Os três pareceres observados chegaram completos. A reivindicação registra uma transição na inbox, e a conclusão depende das evidências da etapa.
-- **Revisão e validação** — houve revisão textual em processo separado e tratamento do parecer na POC-006. Na POC-007, os registros ligam revisão adversarial, RED, correção, GREEN e revisão regressiva experimental. O parecer regressivo experimental é distinto da revisão documental R2.
-- **Isolamento** — os repositórios de código 006–007 eram temporários e sem commits. Os dados do IAS como projeto do AI Memory eram compartilhados pela inbox. Os cabeçalhos do Codex v0.170.0 registram `approval: never` e `workspace-write [workdir, /tmp, $TMPDIR]`. Na POC-007, `/tmp` autorizava escrita no diretório pai da árvore que `guard_tree` conferia. O teste regressivo, os logs e o manifesto ficavam fora dessa checagem. A auditoria dos efeitos externos ao demo permaneceu fora do alcance dos registros experimentais.
-- **Falhas e escala** — foi registrado um autoteste local de duplicidade em memória e timeout em subprocesso isolado na POC-007. Faltam demonstrações de recuperação confiável após queda real, concorrência entre despachantes, entrega assíncrona confiável, gates humanos implementados e suporte simultâneo a múltiplos projetos. Os resultados se limitam à pequena função Python e aos ambientes sintéticos examinados.
+- **Transport and invocation** — POCs 001–004 record CLI and MCP use in the session account. In POC-005, the script uses `ai-memory run --require-server --no-autowire --no-exit-prompt antigravity --mode plan --print`. In POCs 006–007, the dispatcher called `agy --mode plan --print` directly and invoked Codex in non-interactive mode. The agents received technical context through CLI prompts. Inbox requests contained summaries.
+- **Namespace and identity** — all three scripts point to `default/luishenriqs-identity-and-access-server`. The logs from POCs 006–007 confirm its use as both source and destination, with `from_agent: "other"` and `from_owner_user: null`. The `--agent` parameter of `pop` is the claimant label selected by the dispatcher. The authenticated identity of the sender remains unverified.
+- **Mediation and payload** — the same dispatcher executed `send` followed by `pop` by ID. In the six records, creation and claim were approximately 19–22 ms apart. The scripts limited reviews to 25,000 characters in POC-006 and 20,000 in POC-007. All three observed reviews arrived in full. A claim records an inbox transition, and completion depends on the evidence for the step.
+- **Review and validation** — POC-006 included a textual review in a separate process and handling of the review. In POC-007, records link adversarial review, RED, correction, GREEN, and experimental regression review. The experimental regression review is distinct from documentation review R2.
+- **Isolation** — the 006–007 code repositories were temporary and had no commits. IAS data as an AI Memory project were shared through the inbox. The Codex v0.170.0 headers record `approval: never` and `workspace-write [workdir, /tmp, $TMPDIR]`. In POC-007, `/tmp` allowed writes in the parent directory of the tree checked by `guard_tree`. The regression test, logs, and manifest were outside that check. Auditing effects outside the demo remained beyond the scope of the experimental records.
+- **Failures and scale** — POC-007 recorded a local in-memory duplication self-test and a timeout self-test in an isolated subprocess. Reliable recovery after an actual crash, concurrency between dispatchers, reliable asynchronous delivery, implemented human approval gates, and simultaneous support for multiple projects remain to be demonstrated. The results are limited to the small Python function and the synthetic environments examined.
 
-## 9. Riscos e questões pendentes
+## 9. Risks and open questions
 
-- Definir modelo de tarefas e estados, persistência e idempotência entre reivindicação, registro, acionamento e gravação do resultado.
-- Verificar identidade e proveniência de mensagens e artefatos. Delimitar segurança, isolamento e permissões de arquivos, processos e rede.
-- Definir controle de processos, timeouts, cancelamento, recuperação de falhas parciais, conciliação e concorrência.
-- Deliberar sobre versionamento de contratos, vínculo da evidência com a versão revisada, retenção, acesso e integridade dos artefatos.
-- Definir gates humanos verificáveis, suporte a múltiplos projetos e quais contratos de CLI ou MCP do AI Memory poderão ser usados em cada operação.
+- Define the task and state model, persistence, and idempotency across claim, recording, invocation, and writing the result.
+- Verify message and artifact identity and provenance. Define security, isolation, and permissions for files, processes, and the network.
+- Define process control, timeouts, cancellation, partial failure recovery, reconciliation, and concurrency.
+- Deliberate on contract versioning, the link between evidence and the reviewed version, retention, access, and artifact integrity.
+- Define verifiable human approval gates, multi-project support, and which AI Memory CLI or MCP contracts can be used for each operation.
 
-## 10. Próximo gate
+## 10. Next gate
 
-A revisão regressiva documental R2 foi concluída com recomendação favorável à homologação. O próximo gate é a decisão do responsável humano sobre a homologação da baseline documental. A abertura do planejamento técnico exige autorização correspondente.
+Documentation regression review R2 was completed with a recommendation in favor of formal approval. The next gate is the human owner's decision on formal approval of the documentation baseline. Starting technical planning requires the corresponding authorization.
 
-## 11. Orientações para nova instância
+## 11. Guidance for a new instance
 
-1. Leia a baseline documental, este handoff e o manifesto. Use os documentos persistentes para recuperar fatos, limites e decisões.
-2. Verifique o estado real da branch, do índice, dos commits, dos remotes e da árvore de trabalho. Revalide os hashes das cópias e consulte a indicação de sanitização antes de comparar com os originais.
-3. Respeite os gates. Aguarde autorização para iniciar planejamento, implementação ou novas execuções e trate a arquitetura técnica como pendente.
-4. Use a memória dos agentes e as mensagens como contexto histórico. A autorização normativa vem do responsável humano e dos documentos aplicáveis.
-5. Preserve o isolamento dos projetos. A inbox do IAS é parte da história experimental. O escopo de acesso de uma nova sessão deve ser estabelecido pela autorização vigente.
+1. Read the documentation baseline, this handoff, and the manifest. Use the persistent documents to recover facts, limits, and decisions.
+2. Check the actual state of the branch, index, commits, remotes, and working tree. Revalidate the hashes of the copies and check the sanitization notes before comparing them with the originals.
+3. Respect the gates. Await authorization before starting planning, implementation, or new runs, and treat the technical architecture as pending.
+4. Use agent memory and messages as historical context. Normative authorization comes from the human owner and the applicable documents.
+5. Preserve project isolation. The IAS inbox is part of the experimental history. The access scope for a new session must be established by the authorization in effect.

@@ -1,45 +1,45 @@
-# Revisão Regressiva Independente R2 — Diretrizes Arquiteturais do AI Agent Orchestrator
+# Independent Regression Review R2 — AI Agent Orchestrator Architectural Directives
 
-**Veredito:** **`APROVADO PARA HOMOLOGAÇÃO HUMANA`** (7/7 achados de R1 fechados; 0 novos achados materiais; 1 observação editorial não bloqueante).
+**Verdict** — **`APROVADO PARA HOMOLOGAÇÃO HUMANA`** (cleared for formal human approval). 7/7 R1 findings closed, 0 new material findings, and 1 non-blocking editorial observation.
 
-- **Documento auditado:** [001-diretrizes-arquiteturais.md](../architecture/001-diretrizes-arquiteturais.md) — candidata **v0.2** (2026-11-20; SHA-256 `046cb4a1b5fb23173f2bf992d46c46785c018d56284b0c1bd5de261bdcebfd2c`) frente à **v0.1** (SHA-256 `c94ffa2a04ea13c002927c4497395c9b37aa6362dcc9a967852865b94b62e10c`) e ao parecer [003-revisao-independente-diretrizes-arquiteturais-r1.md](003-revisao-independente-diretrizes-arquiteturais-r1.md).
-- **Escopo e contexto:** revisão regressiva fechada sobre o texto carregado no prompt, sem uso de ferramentas, comandos ou consultas externas. Os hashes SHA-256 e a integridade da baseline Git (`HEAD`/`main`/`origin/main` em `eeb3f53a755d7c8b55a6fa606ed3c4ec89d79f91`) são tratados como verificações locais fornecidas pelo Codex.
+- **Audited document** — [001-diretrizes-arquiteturais.md](../architecture/001-diretrizes-arquiteturais.md), candidate **v0.2** (2026-11-20, SHA-256 `046cb4a1b5fb23173f2bf992d46c46785c018d56284b0c1bd5de261bdcebfd2c`) compared with **v0.1** (SHA-256 `c94ffa2a04ea13c002927c4497395c9b37aa6362dcc9a967852865b94b62e10c`) and the review [003-revisao-independente-diretrizes-arquiteturais-r1.md](003-revisao-independente-diretrizes-arquiteturais-r1.md).
+- **Scope and context** — Closed regression review of the text provided in the prompt, without tools, commands, or external consultation. SHA-256 hashes and the integrity of the Git baseline (`HEAD`/`main`/`origin/main` at `eeb3f53a755d7c8b55a6fa606ed3c4ec89d79f91`) are treated as local checks supplied by Codex.
 
 ---
 
-## 1. Resultado da verificação regressiva (R1 → v0.2)
+## 1. Regression verification results (R1 → v0.2)
 
-| ID | Sev. | Seção (v0.2) | Resultado | Fundamento verificável na v0.2 |
+| ID | Sev. | Section (v0.2) | Result | Verifiable basis in v0.2 |
 | --- | --- | --- | --- | --- |
-| **ARQ-R1-001** | `MAJOR` | Seção 11 | **FECHADO** | Inclui *reinicializações inesperadas* e *interrupções de contexto*; atribui ao **orquestrador** a revalidação de contexto/escopo e reconciliação com histórico, artefatos e efeitos observáveis; restringe o executor a conferir o handoff e prosseguir somente após validação do orquestrador; determina que, diante de incerteza material, o orquestrador interrompe o fluxo e solicita intervenção humana. |
-| **ARQ-R1-002** | `MAJOR` | Seção 6 (passo 1) | **FECHADO** | Explicita que, antes de qualquer ação da tarefa coordenada, o orquestrador registra e valida tarefa, escopo, repositório, baseline, executor, limites e critérios a partir de autorização verificável do humano; trata solicitações do executor e mensagens do AI Memory como insumos e mantém eventual atuação manual avulsa fora do fluxo coordenado até esse gate. |
-| **ARQ-R1-003** | `MAJOR` | Seções 15 e 16 | **FECHADO** | Seção 15 (*Execução e falhas*) incorpora *condições mínimas de integração de executores* (`DEC-15`). Seção 16 incorpora AI Memory como produto auxiliar independente com autorização humana por fonte própria (`DEC-03`), revisão independente com vínculo achado–correção–regressão (`DEC-14`) e operação local simples para Codex/Antigravity aberta a futuros executores (`DEC-15`). |
-| **ARQ-R1-004** | `MINOR` | Seção 14 | **FECHADO** | Corrige *Limites de validade* para atribuir a correlação aos **IDs de mensagem**, registra a inbox compartilhada do IAS e a não autenticação de `from_agent: "other"`, `from_owner_user: null` e `--agent`, e lista explicitamente *gates humanos implementados* e *suporte simultâneo a múltiplos projetos* entre as lacunas. |
-| **ARQ-R1-005** | `MINOR` | Seções 4, 9, 12 e 13 | **FECHADO** | Procede a ressalva do Codex de que a Seção 4 já citava *operações com conclusão incerta*; a v0.2 completa o modelo operacional nas Seções 4, 9, 12 e 13 ao explicitar operações incertas na Seção 9, vedar controle baseado apenas em texto livre (`DEC-10`) e exigir destino durável fora da área temporária (`DEC-06`). |
-| **ARQ-R1-006** | `MINOR` | Seções 7 e 8 | **FECHADO** | Seção 7 define mensagens recebidas como *entradas não confiáveis*, exige verificação da etapa ativa e impede que solicitações duplicadas ou fora de ordem autorizem transição por si sós (remetendo o mecanismo ao planejamento). Seção 8 ajusta a imutabilidade para *enquanto retida* e recuperável pelo período aplicável. |
-| **ARQ-R1-007** | `EDITORIAL` | Seções 1 e 3 | **FECHADO** | Seção 1 inclui o metadado **Autoria** (*Codex, a partir das diretrizes comunicadas pelo responsável humano*) e a Seção 3 registra que README, handoff e manifesto preservam o estado da fundação experimental de 2026-11-19. |
+| **ARQ-R1-001** | `MAJOR` | Section 11 | **FECHADO** (closed) | Includes *unexpected restarts* and *context interruptions*. Assigns the **orchestrator** responsibility for revalidating context and scope and reconciling them with history, artifacts, and observable effects. Limits the executor to checking the handoff and proceeding only after orchestrator validation. Requires the orchestrator to stop the workflow and request human intervention in the event of material uncertainty. |
+| **ARQ-R1-002** | `MAJOR` | Section 6 (step 1) | **FECHADO** | Specifies that, before any coordinated task action, the orchestrator registers and validates the task, scope, repository, baseline, executor, limits, and criteria based on verifiable human authorization. Treats executor requests and AI Memory messages as inputs and keeps any standalone manual work outside the coordinated workflow until this gate. |
+| **ARQ-R1-003** | `MAJOR` | Sections 15 and 16 | **FECHADO** | Section 15 (*Execution and failures*) includes *minimum conditions for integrating executors* (`DEC-15`). Section 16 includes AI Memory as an independent supporting product and human authorization through a separate source (`DEC-03`), independent review linking findings, corrections, and regression checks (`DEC-14`), and simple local operation for Codex/Antigravity that accommodates future executors (`DEC-15`). |
+| **ARQ-R1-004** | `MINOR` | Section 14 | **FECHADO** | Corrects *Limits of validity* to attribute correlation to **message IDs**, records the shared IAS inbox and the lack of authentication for `from_agent: "other"`, `from_owner_user: null`, and `--agent`, and explicitly lists *implemented human approval gates* and *simultaneous support for multiple projects* among the gaps. |
+| **ARQ-R1-005** | `MINOR` | Sections 4, 9, 12, and 13 | **FECHADO** | Codex correctly noted that section 4 already cited *operations whose completion is uncertain*. v0.2 completes the operational model in sections 4, 9, 12, and 13 by specifying uncertain operations in section 9, prohibiting control based solely on free text (`DEC-10`), and requiring a durable destination outside the temporary workspace (`DEC-06`). |
+| **ARQ-R1-006** | `MINOR` | Sections 7 and 8 | **FECHADO** | Section 7 defines incoming messages as *untrusted inputs*, requires verification of the active step, and prevents duplicate or out-of-order requests from authorizing a transition on their own, leaving the mechanism to planning. Section 8 specifies immutability *for as long as it is retained* and recoverability for the applicable period. |
+| **ARQ-R1-007** | `EDITORIAL` | Sections 1 and 3 | **FECHADO** | Section 1 includes **Author** metadata (*Codex, based on the directives communicated by the human owner*), and section 3 records that the README, handoff, and manifest preserve the state of the experimental foundation on 2026-11-19. |
 
 ---
 
-## 2. Verificações transversais
+## 2. Cross-cutting checks
 
-- **Fidelidade às 16 decisões (`DEC-01` a `DEC-16`):** todas permanecem preservadas na Seção 4 e corretamente refletidas nas seções normativas, sem rediscussão de mérito nem antecipação das 16 questões deliberadamente abertas na Seção 15.
-- **Coerência das seções alteradas:** nenhuma contradição introduzida. O acréscimo na Seção 9 (*"A reivindicação na inbox comprova a transição da mensagem e a conclusão da etapa depende de evidência própria"*) reforça `DEC-03` e harmoniza-se com as Seções 7 e 10.
-- **Simplicidade e budget:** o texto mantém foco estritamente conceitual, local-first e enxuto, sem abstrações prematuras, infraestrutura distribuída ou ampliação de escopo.
-
----
-
-## 3. Novos achados materiais e observação editorial
-
-- **Novos achados materiais:** **nenhum** (0 `BLOCKER`, 0 `MAJOR`, 0 `MINOR`).
-- **Observação editorial não bloqueante:** na Seção 13 (segundo item, **Impedir**), falta uma vírgula em *"reuso automático de namespace alheio repetição insegura"*. Não altera o sentido normativo e pode ser ajustada oportunamente ou ignorada sem prejuízo.
+- **Fidelity to the 16 decisions (`DEC-01` through `DEC-16`)** — All are preserved in section 4 and correctly reflected in the normative sections, without reopening their merits or preempting the 16 questions deliberately left open in section 15.
+- **Consistency of the modified sections** — No contradiction introduced. The addition in section 9 (*"A reivindicação na inbox comprova a transição da mensagem e a conclusão da etapa depende de evidência própria"* — translation: "An inbox claim proves the message transition, and completion of the step depends on its own evidence") reinforces `DEC-03` and aligns with sections 7 and 10.
+- **Simplicity and budget** — The text remains strictly conceptual, local-first, and lean, without premature abstractions, distributed infrastructure, or scope expansion.
 
 ---
 
-## 4. Veredito e pendências
+## 3. New material findings and editorial observation
 
-**Suficiência para homologação humana:** **ATINGIDA.** Não há pendências técnicas ou documentais obrigatórias. A versão candidata **v0.2** de [001-diretrizes-arquiteturais.md](../architecture/001-diretrizes-arquiteturais.md) está apta para submissão ao gate de homologação humana.
+- **New material findings** — **None** (0 `BLOCKER`, 0 `MAJOR`, 0 `MINOR`).
+- **Non-blocking editorial observation** — In section 13 (second item, **Prevent**), a comma is missing in *"reuso automático de namespace alheio repetição insegura"* (translation: "automatic reuse of another project's namespace unsafe repetition"). This does not change the normative meaning and can be addressed when convenient or left as is without consequence.
 
 ---
 
-**Registro do Codex após a R2** — aplicada somente a vírgula indicada pelo Antigravity na Seção 13. O SHA-256 da edição final é `b12cb547d861b4515fd9a3d6d6ab5468fb24864ec79db4ea734b7ba072e3d700`.
+## 4. Verdict and open items
+
+**Sufficiency for formal human approval** — **ACHIEVED.** There are no mandatory technical or documentation items pending. Candidate **v0.2** of [001-diretrizes-arquiteturais.md](../architecture/001-diretrizes-arquiteturais.md) is ready for submission to the formal human approval gate.
+
+---
+
+**Codex record after R2** — Only the comma identified by Antigravity in section 13 was added. The SHA-256 of the final edition is `b12cb547d861b4515fd9a3d6d6ab5468fb24864ec79db4ea734b7ba072e3d700`.
