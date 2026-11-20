@@ -1,13 +1,23 @@
 # AI Agent Orchestrator
 
-Projeto independente para coordenar agentes de IA em trabalhos de desenvolvimento de software. A responsabilidade proposta abrange tarefas, processos executores, sequência de trabalho, revisões, estados, evidências e gates de aprovação humana.
+O AI Agent Orchestrator é um projeto para coordenar agentes de IA no desenvolvimento de software e reduzir o repasse manual de tarefas, resultados e pareceres. É independente dos projetos consumidores, como IAS e Jungle. A solução prevista trabalha em parceria com o AI Memory, produto independente criado por Fábio Akita que oferece comunicação auxiliar e memória persistente.
 
-O orquestrador deverá trabalhar em parceria com o AI Memory, produto independente criado por Fábio Akita que oferece memória persistente e comunicação entre agentes. O responsável humano autoriza o escopo, as decisões e a integração. Mensagens trocadas no AI Memory servem como contexto e insumo técnico.
+O desenvolvimento futuro se concentra no AI Agent Orchestrator. O AI Orchestration Lab será preservado como referência histórica, sem continuidade ativa de desenvolvimento prevista. Uma eventual migração de artefatos ou contratos depende de decisão específica.
 
-O projeto é independente dos repositórios em que poderá atuar, incluindo IAS, Jungle e projetos futuros.
+## Fluxo previsto
 
-**Decisão estratégica humana** — concentrar o desenvolvimento futuro no AI Agent Orchestrator em parceria com o AI Memory. O AI Orchestration Lab será preservado como referência histórica, sem continuidade ativa de desenvolvimento prevista. Eventual migração de artefatos ou contratos depende de decisão específica.
+1. O responsável humano define o escopo e decide nos gates, com apoio manual do ChatGPT na preparação da tarefa e na análise das entregas. O humano entrega um prompt autorizado ao primeiro executor designado, que registra a tarefa no orquestrador.
+2. O orquestrador verifica a autorização aplicável antes de liberar ações ou transições coordenadas. Codex e Antigravity executam ou revisam conforme a designação, em um fluxo inicialmente local e sequencial.
+3. Mensagens curtas referenciam artefatos versionados e imutáveis. Eventos estruturados e estado persistente sustentam a rastreabilidade e a retomada controlada. Operações Git/GitHub podem ser executadas pelos agentes quando cobertas pela autorização e pelos gates aplicáveis.
 
-**Estado atual** — documentação inicial saneada em 2026-11-19, sujeita à revisão regressiva e à homologação humana. A arquitetura está em discussão e a implementação ainda não começou.
+A arquitetura prioriza simplicidade, com controles proporcionais aos riscos e sem infraestrutura distribuída ou abstrações prematuras. Uma interface web local mínima segue como proposta para a V1, condicionada à validação prévia do núcleo via CLI, à avaliação de custo e à decisão humana.
 
-O [relatório experimental](docs/001-relatorio-experimental.md) reúne as POCs de integração com Codex e Antigravity. A próxima fase proposta é o planejamento técnico, sujeito à aprovação humana.
+## Estado e próximo gate
+
+A fundação experimental está publicada. As diretrizes arquiteturais v0.3 passaram pela revisão independente e foram homologadas pelo responsável humano em 20/11/2026. O próximo gate é a autorização do planejamento técnico. A implementação ainda não começou. [Registro de homologação](docs/architecture/002-registro-homologacao-v03.md)
+
+## Documentação
+
+- Fundação experimental · [Relatório](docs/001-relatorio-experimental.md), [handoff](docs/handoffs/001-handoff-fundacao-experimental.md) e [manifesto de evidências](evidence/pocs/MANIFEST.md).
+- Arquitetura · [Diretrizes v0.3](docs/architecture/001-diretrizes-arquiteturais.md).
+- Revisão · [Auditoria integral](docs/reviews/005-auditoria-integral-independente-r1.md), [triagem](docs/reviews/006-triagem-auditoria-integral-r1.md) e [parecer regressivo](docs/reviews/007-revisao-regressiva-saneamento-auditoria-r1.md).
