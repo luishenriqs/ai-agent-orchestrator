@@ -12,14 +12,19 @@ Future development focuses on AI Agent Orchestrator. AI Orchestration Lab will b
 4. The orchestrator maintains authoritative structured events and persistent state for traceability and recovery. AI Memory messages provide optional support and confer no authorization or authority over transitions. The main V1 workflow requires no short-message protocol. Operations without an explicit AI Memory dependency continue during an outage.
 5. Versioned, immutable artifacts support independent review. Commits and hashes can identify versions used in execution, testing, and review. Agents may perform Git/GitHub operations when covered by the applicable authorization and approval gates.
 
-The architecture prioritizes simplicity, with controls proportionate to risk and without distributed infrastructure or premature abstractions. A minimal local web interface remains a proposal for V1, conditional on prior CLI validation of the core, a cost assessment, and a human decision.
+The architecture prioritizes simplicity, with controls proportionate to risk and without distributed infrastructure or premature abstractions. The decision on a minimal local web interface for V1 remains open pending P3's technical and cost evaluation and a human decision.
 
 ## Status and next gate
 
-The experimental foundation has been published. The original Portuguese v0.3 architectural directives passed independent review and received formal approval from the human owner on 20/11/2026. The v0.4 directives passed independent review and received formal approval from the human owner on 20/11/2026. The approved document retains the exact text submitted for review, including its candidate status wording. Starting technical planning requires separate authorization. Implementation has yet to begin. [v0.3 formal approval record](docs/architecture/002-registro-homologacao-v03.md) · [v0.4 formal approval record](docs/architecture/004-registro-homologacao-v04.md)
+The experimental foundation has been published, and the v0.3 and v0.4 architectural directives received formal human approval on 20 November 2026 after independent review. [v0.3 formal approval record](docs/architecture/002-registro-homologacao-v03.md) · [v0.4 formal approval record](docs/architecture/004-registro-homologacao-v04.md)
+
+The human owner formally approved the P2-R2 V1 operational contracts on 20 November 2026 after independent regression review. The specification and approval record were integrated into `main` in commit `6d62f76`. The SHA-256 value in the approval record has 63 hexadecimal characters, so verification of the published file against the recorded approval remains open. [P2-R2 formal approval record](docs/specifications/P2-V1-FORMAL-HOMOLOGATION-R2.md)
+
+P2-R2 defines eight behavioral contracts covering task authorization, state, agent dispatch, worktree isolation, evidence, independent review, recovery, and Git/GitHub approval gates and closure. P3 is the next planning stage and requires separate human authorization. It will compare implementation options and demonstrate feasibility with the actual agent CLIs. Implementation has yet to begin and requires its own authorization.
 
 ## Documentation
 
 - Experimental foundation · [Report](docs/001-relatorio-experimental.md), [handoff](docs/handoffs/001-handoff-fundacao-experimental.md), and [evidence manifest](evidence/pocs/MANIFEST.md).
 - Architecture · [Approved v0.4 directives](docs/architecture/003-diretrizes-arquiteturais-v04.md) and [v0.3 directives, English translation](docs/architecture/001-diretrizes-arquiteturais.md).
+- V1 operational contracts · [P2-R2 specification](docs/specifications/P2-V1-OPERATIONAL-CONTRACTS-R2.md) and [independent review triage](docs/reviews/P2-V1-INDEPENDENT-REVIEWS-TRIAGE-R1.md).
 - Review · [Full audit](docs/reviews/005-auditoria-integral-independente-r1.md), [finding triage](docs/reviews/006-triagem-auditoria-integral-r1.md), and [regression review](docs/reviews/007-revisao-regressiva-saneamento-auditoria-r1.md).
